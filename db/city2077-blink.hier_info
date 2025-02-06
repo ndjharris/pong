@@ -1,0 +1,95 @@
+|city2077_blink
+MAX10_CLK1_50 => state[0].CLK
+MAX10_CLK1_50 => state[1].CLK
+KEY[0] => state.DATAB
+KEY[0] => state.DATAB
+KEY[0] => state.DATAB
+KEY[0] => state.DATAB
+KEY[0] => state.DATAB
+KEY[0] => counter:bincount.countclock
+KEY[0] => state.DATAB
+KEY[1] => state[0].ACLR
+KEY[1] => state[1].ACLR
+KEY[1] => counter:bincount.reset
+LEDR[0] <= state[1].DB_MAX_OUTPUT_PORT_TYPE
+LEDR[1] <= <GND>
+LEDR[2] <= <GND>
+LEDR[3] <= <GND>
+LEDR[4] <= <GND>
+LEDR[5] <= <GND>
+LEDR[6] <= counter:bincount.leds[0]
+LEDR[7] <= counter:bincount.leds[1]
+LEDR[8] <= counter:bincount.leds[2]
+LEDR[9] <= counter:bincount.leds[3]
+HEX0[0] <= hexdisplay:hexlsb.hexout[0]
+HEX0[1] <= hexdisplay:hexlsb.hexout[1]
+HEX0[2] <= hexdisplay:hexlsb.hexout[2]
+HEX0[3] <= hexdisplay:hexlsb.hexout[3]
+HEX0[4] <= hexdisplay:hexlsb.hexout[4]
+HEX0[5] <= hexdisplay:hexlsb.hexout[5]
+HEX0[6] <= hexdisplay:hexlsb.hexout[6]
+HEX0[7] <= hexdisplay:hexlsb.hexout[7]
+HEX1[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[1] <= HEX1[1].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[2] <= HEX1[2].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[3] <= HEX1[3].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[4] <= HEX1[4].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[5] <= HEX1[5].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[6] <= HEX1[6].DB_MAX_OUTPUT_PORT_TYPE
+HEX1[7] <= HEX1[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|city2077_blink|counter:bincount
+countclock => count[0].CLK
+countclock => count[1].CLK
+countclock => count[2].CLK
+countclock => count[3].CLK
+reset => count[0].ACLR
+reset => count[1].ACLR
+reset => count[2].ACLR
+reset => count[3].ACLR
+leds[0] <= count[0].DB_MAX_OUTPUT_PORT_TYPE
+leds[1] <= count[1].DB_MAX_OUTPUT_PORT_TYPE
+leds[2] <= count[2].DB_MAX_OUTPUT_PORT_TYPE
+leds[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|city2077_blink|hexdisplay:hexlsb
+values[0] => Mux0.IN19
+values[0] => Mux1.IN19
+values[0] => Mux2.IN19
+values[0] => Mux3.IN19
+values[0] => Mux4.IN19
+values[0] => Mux5.IN19
+values[0] => Mux6.IN19
+values[1] => Mux0.IN18
+values[1] => Mux1.IN18
+values[1] => Mux2.IN18
+values[1] => Mux3.IN18
+values[1] => Mux4.IN18
+values[1] => Mux5.IN18
+values[1] => Mux6.IN18
+values[2] => Mux0.IN17
+values[2] => Mux1.IN17
+values[2] => Mux2.IN17
+values[2] => Mux3.IN17
+values[2] => Mux4.IN17
+values[2] => Mux5.IN17
+values[2] => Mux6.IN17
+values[3] => Mux0.IN16
+values[3] => Mux1.IN16
+values[3] => Mux2.IN16
+values[3] => Mux3.IN16
+values[3] => Mux4.IN16
+values[3] => Mux5.IN16
+values[3] => Mux6.IN16
+hexout[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+hexout[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+hexout[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+hexout[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+hexout[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+hexout[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+hexout[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+hexout[7] <= <VCC>
+
+
