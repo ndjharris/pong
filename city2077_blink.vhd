@@ -73,6 +73,8 @@ begin
 	counttens <= counti / 10;
 	countlsb <= std_logic_vector(to_unsigned(countunits, 4));
 	countmsb <= std_logic_vector(to_unsigned(counttens, 4));
+
+
 	-- Logic to toggle Led state
 	
 	process (clk, resetn, button)
