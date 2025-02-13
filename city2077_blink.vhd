@@ -14,6 +14,8 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
 
 entity city2077_blink is
 
@@ -54,13 +56,23 @@ signal button		: std_logic;
 signal ledState	: std_logic;
 signal state		: std_logic_vector(1 downto 0);
 signal count		: std_logic_vector(3 downto 0);
+signal countlsb	: std_logic_vector(3 downto 0);
+signal countmsb	: std_logic_vector(3 downto 0);
+signal counti		: integer range 0 to 100   := 0;
+signal countunits	: integer range 0 to 10   := 0;
+signal counttens	: integer range 0 to 10   := 0;
+
 
 begin
 	clk <= Max10_clk1_50;
 	reset <= key(1);
 	resetn <= not reset;
 	button <= key(0);
-
+	counti <= to_integer(unsigned(count));
+	countunits <= counti mod 10;
+	counttens <= counti / 10;
+	countlsb <= std_logic_vector(to_unsigned(countunits, 4));
+	countmsb <= std_logic_vector(to_unsigned(counttens, 4));
 	-- Logic to toggle Led state
 	
 	process (clk, resetn, button)
@@ -100,7 +112,8 @@ begin
 	end process;
 	
 	bincount : counter port map(button, resetn, count);
-	hexlsb 	: hexdisplay port map(count, HEX0(7 downto 0));
+	hexlsb 	: hexdisplay port map(countlsb, HEX0(7 downto 0));
+	hexmsb	: hexdisplay port map(countmsb, HEX1(7 downto 0));
 
 	ledState <= state(1);
 	LEDR(0) <= ledState;
