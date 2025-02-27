@@ -105,6 +105,12 @@ signal Xpi			: integer range 0 to 639;
 signal Yp			: std_logic_vector(9 downto 0);
 signal Ypi			: integer range 0 to 479;
 
+signal ballX		: integer range 0 to 639 := 320;
+signal ballXdir	: integer range -1 to 1 := 1;
+signal ballY		: integer range 0 to 479 := 240;
+signal ballydir	: integer range -1 to 1 := 1;
+signal ballSize	: integer range 1 to 100 := 20;
+
 
 
 begin
@@ -131,7 +137,7 @@ begin
 	
 	process (clk, resetn, button)
 	
-	
+	-- Get Inputs
 	begin
 
 		if resetn = '1' then
@@ -165,19 +171,69 @@ begin
 		end if;
 	end process;
 	
+	-- Update Display
+	
 	process(vgaClk, Xpi, Ypi)
-	begin 
-		if ( (Xpi-counti*10)> 50) AND ((Xpi-counti*10) < 100) AND ( Ypi > 50) AND (Ypi < 100)	then
-			RGB_R <= x"7";
-			RGB_G	<= x"0";
-			RGB_B	<= x"7";
-		else
+	begin
+--		-- clear
+		RGB_R <= x"0";
+		RGB_G	<= x"0";
+		RGB_B	<= x"0";
+
+		-- Draw Paddle
+		if ( (Xpi-counti*10)> 90) AND ((Xpi-counti*10) < 100) AND ( Ypi > 50) AND (Ypi < 150)	then
+			RGB_R <= x"f";
+			RGB_G	<= x"f";
+			RGB_B	<= x"f";
+			
+			-- Draw the Ball
+		elsif ( (Xpi>ballX-ballSize/2) AND (Xpi<ballX+ballSize/2) AND 
+				  (Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2))	then
+			RGB_R <= x"f";
+			RGB_G	<= x"f";
+			RGB_B	<= x"0";
+			-- draw the playfield edges
+		elsif (YPi = 50 or Ypi = 479 or (Xpi = 1 and Ypi >50) or (xpi = 639 and Ypi >50)) then
+			RGB_R <= x"f";
+			RGB_G	<= x"f";
+			RGB_B	<= x"f";
+			-- Background
+		elsif (Xpi > 0 and Xpi < 640 and Ypi > 50 and yPi < 480 ) then
 			RGB_R <= x"0";
-			RGB_G	<= x"0";
+			RGB_G	<= x"7";
 			RGB_B	<= x"0";
 		end if;
 	end process;
-		
+	
+	-- move Ball - synchronised to Vsync 60Hz
+	process( VSync, ballX, BallY)
+		begin
+			if resetn = '1' then
+				ballX <= 320;
+				ballY <= 240;
+				ballXDir <= 1;
+				ballYDir <= 1;
+			elsif (rising_edge(VSync)) then 
+				ballx <= ballx + ballXDir;
+				bally	<= bally + BallYDir;
+			
+				if ballX > 630 then
+					ballXdir <= -1;
+				elsif ballX < 10 then
+					ballXdir <= 1;
+				end if;
+				if ballY > 470 then
+					ballYdir <= -1;
+				elsif ballY < 50 then
+					ballYdir <= 1;
+				end if;
+			end if;
+			
+	end process;
+	
+	
+	
+	-- Instantiate components
 	
 	bincount : counter port map(button, resetn, count);
 	hexlsb 	: hexdisplay port map(countlsb, HEX0(7 downto 0));

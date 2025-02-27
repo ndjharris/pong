@@ -1,5 +1,5 @@
 Analysis & Synthesis report for city2077-blink
-Fri Feb 14 09:48:07 2025
+Thu Feb 27 13:20:51 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -14,16 +14,19 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
-  9. General Register Statistics
- 10. Parameter Settings for User Entity Instance: video_sync_generator:display
- 11. Parameter Settings for User Entity Instance: vgaClockPLL:vgaClock|altpll:altpll_component
- 12. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
- 13. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
- 14. altpll Parameter Settings by Entity Instance
- 15. Port Connectivity Checks: "video_sync_generator:display"
- 16. Post-Synthesis Netlist Statistics for Top Partition
- 17. Elapsed Time Per Partition
- 18. Analysis & Synthesis Messages
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: video_sync_generator:display
+ 14. Parameter Settings for User Entity Instance: vgaClockPLL:vgaClock|altpll:altpll_component
+ 15. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 16. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
+ 17. altpll Parameter Settings by Entity Instance
+ 18. Port Connectivity Checks: "video_sync_generator:display"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
 
 
 
@@ -50,15 +53,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Feb 14 09:48:07 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Feb 27 13:20:51 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 118                                         ;
-;     Total combinational functions  ; 117                                         ;
-;     Dedicated logic registers      ; 48                                          ;
-; Total registers                    ; 48                                          ;
+; Total logic elements               ; 240                                         ;
+;     Total combinational functions  ; 239                                         ;
+;     Dedicated logic registers      ; 68                                          ;
+; Total registers                    ; 68                                          ;
 ; Total pins                         ; 43                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -168,7 +171,8 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -202,39 +206,39 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                                                                                   ;
-+---------------------------------------------+-------------------------------------------------------------------------------------------------+
-; Resource                                    ; Usage                                                                                           ;
-+---------------------------------------------+-------------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 118                                                                                             ;
-;                                             ;                                                                                                 ;
-; Total combinational functions               ; 117                                                                                             ;
-; Logic element usage by number of LUT inputs ;                                                                                                 ;
-;     -- 4 input functions                    ; 35                                                                                              ;
-;     -- 3 input functions                    ; 25                                                                                              ;
-;     -- <=2 input functions                  ; 57                                                                                              ;
-;                                             ;                                                                                                 ;
-; Logic elements by mode                      ;                                                                                                 ;
-;     -- normal mode                          ; 66                                                                                              ;
-;     -- arithmetic mode                      ; 51                                                                                              ;
-;                                             ;                                                                                                 ;
-; Total registers                             ; 48                                                                                              ;
-;     -- Dedicated logic registers            ; 48                                                                                              ;
-;     -- I/O registers                        ; 0                                                                                               ;
-;                                             ;                                                                                                 ;
-; I/O pins                                    ; 43                                                                                              ;
-;                                             ;                                                                                                 ;
-; Embedded Multiplier 9-bit elements          ; 0                                                                                               ;
-;                                             ;                                                                                                 ;
-; Total PLLs                                  ; 1                                                                                               ;
-;     -- PLLs                                 ; 1                                                                                               ;
-;                                             ;                                                                                                 ;
-; Maximum fan-out node                        ; vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 43                                                                                              ;
-; Total fan-out                               ; 529                                                                                             ;
-; Average fan-out                             ; 2.10                                                                                            ;
-+---------------------------------------------+-------------------------------------------------------------------------------------------------+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 240          ;
+;                                             ;              ;
+; Total combinational functions               ; 239          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 60           ;
+;     -- 3 input functions                    ; 78           ;
+;     -- <=2 input functions                  ; 101          ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 105          ;
+;     -- arithmetic mode                      ; 134          ;
+;                                             ;              ;
+; Total registers                             ; 68           ;
+;     -- Dedicated logic registers            ; 68           ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 43           ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Total PLLs                                  ; 1            ;
+;     -- PLLs                                 ; 1            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; KEY[1]~input ;
+; Maximum fan-out                             ; 47           ;
+; Total fan-out                               ; 934          ;
+; Average fan-out                             ; 2.37         ;
++---------------------------------------------+--------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -242,7 +246,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                             ; Entity Name          ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
-; |city2077_blink                              ; 117 (27)            ; 48 (2)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 43   ; 0            ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
+; |city2077_blink                              ; 239 (149)           ; 68 (22)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 43   ; 0            ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
 ;    |counter:bincount|                        ; 4 (4)               ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|counter:bincount                                                                                ; counter              ; work         ;
 ;    |hexdisplay:hexlsb|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|hexdisplay:hexlsb                                                                               ; hexdisplay           ; work         ;
 ;    |lpm_divide:Div0|                         ; 5 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Div0                                                                                 ; lpm_divide           ; work         ;
@@ -270,19 +274,55 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------------+---------+--------------+--------------+--------------------------------------+-----------------+
 
 
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; ballXdir[0]                           ; Stuck at VCC due to stuck port data_in ;
+; ballydir[0]                           ; Stuck at VCC due to stuck port data_in ;
+; ballY[0]                              ; Merged with ballX[0]                   ;
+; Total Number of Removed Registers = 3 ;                                        ;
++---------------------------------------+----------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 48    ;
+; Total registers                              ; 68    ;
 ; Number of registers using Synchronous Clear  ; 14    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 27    ;
+; Number of registers using Asynchronous Clear ; 47    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 10    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; ballX[8]                               ; 5       ;
+; ballX[6]                               ; 5       ;
+; ballY[7]                               ; 5       ;
+; ballY[6]                               ; 4       ;
+; ballY[5]                               ; 4       ;
+; ballY[4]                               ; 4       ;
+; Total number of inverted registers = 6 ;         ;
++----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |city2077_blink|RGB_B      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +---------------------------------------------------------------------------+
@@ -757,26 +797,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 43                          ;
-; cycloneiii_ff         ; 48                          ;
-;     CLR               ; 17                          ;
+; cycloneiii_ff         ; 68                          ;
+;     CLR               ; 37                          ;
 ;     ENA CLR           ; 10                          ;
 ;     SCLR              ; 14                          ;
 ;     plain             ; 7                           ;
-; cycloneiii_lcell_comb ; 121                         ;
-;     arith             ; 51                          ;
+; cycloneiii_lcell_comb ; 244                         ;
+;     arith             ; 134                         ;
 ;         1 data inputs ; 5                           ;
-;         2 data inputs ; 39                          ;
-;         3 data inputs ; 7                           ;
-;     normal            ; 70                          ;
-;         0 data inputs ; 5                           ;
-;         1 data inputs ; 7                           ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 18                          ;
-;         4 data inputs ; 35                          ;
+;         2 data inputs ; 71                          ;
+;         3 data inputs ; 58                          ;
+;     normal            ; 110                         ;
+;         0 data inputs ; 9                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 13                          ;
+;         3 data inputs ; 20                          ;
+;         4 data inputs ; 60                          ;
 ; cycloneiii_pll        ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 3.07                        ;
+; Max LUT depth         ; 7.50                        ;
+; Average LUT depth     ; 4.09                        ;
 +-----------------------+-----------------------------+
 
 
@@ -795,7 +835,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri Feb 14 09:47:58 2025
+    Info: Processing started: Thu Feb 27 13:20:42 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off city2077-blink -c city2077-blink
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -816,16 +856,22 @@ Info (12021): Found 1 design units, including 1 entities, in source file vgacloc
     Info (12023): Found entity 1: vgaClockPLL File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 40
 Info (12127): Elaborating entity "city2077_blink" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(95): object "blanking" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 95
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(170): signal "counti" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 170
+Warning (10540): VHDL Signal Declaration warning at city2077_blink.vhd(112): used explicit default value for signal "ballSize" because signal was never assigned a value File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 112
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(184): signal "counti" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 184
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(190): signal "ballX" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(190): signal "ballSize" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(191): signal "ballY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 191
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(191): signal "ballSize" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 191
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(211): signal "resetn" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 211
 Warning (10873): Using initial value X (don't care) for net "LEDR[5..1]" at city2077_blink.vhd(25) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 25
-Info (12128): Elaborating entity "counter" for hierarchy "counter:bincount" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 182
-Info (12128): Elaborating entity "hexdisplay" for hierarchy "hexdisplay:hexlsb" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 183
-Info (12128): Elaborating entity "video_sync_generator" for hierarchy "video_sync_generator:display" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 185
+Info (12128): Elaborating entity "counter" for hierarchy "counter:bincount" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 238
+Info (12128): Elaborating entity "hexdisplay" for hierarchy "hexdisplay:hexlsb" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 239
+Info (12128): Elaborating entity "video_sync_generator" for hierarchy "video_sync_generator:display" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 241
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(86): truncated value with size 32 to match size of target (10) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 86
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(89): truncated value with size 32 to match size of target (11) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 89
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(95): truncated value with size 32 to match size of target (11) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 95
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(99): truncated value with size 32 to match size of target (10) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 99
-Info (12128): Elaborating entity "vgaClockPLL" for hierarchy "vgaClockPLL:vgaClock" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 186
+Info (12128): Elaborating entity "vgaClockPLL" for hierarchy "vgaClockPLL:vgaClock" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 242
 Info (12128): Elaborating entity "altpll" for hierarchy "vgaClockPLL:vgaClock|altpll:altpll_component" File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
 Info (12130): Elaborated megafunction instantiation "vgaClockPLL:vgaClock|altpll:altpll_component" File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
 Info (12133): Instantiated megafunction "vgaClockPLL:vgaClock|altpll:altpll_component" with the following parameter: File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
@@ -887,10 +933,10 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/vgac
     Info (12023): Found entity 1: vgaClockPLL_altpll File: D:/GitHub/city2077-blink/db/vgaclockpll_altpll.v Line: 30
 Info (12128): Elaborating entity "vgaClockPLL_altpll" for hierarchy "vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
 Info (278001): Inferred 2 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 116
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 117
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 116
-Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 116
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 122
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 123
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 122
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 122
     Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "7"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -905,8 +951,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/add_
     Info (12023): Found entity 1: add_sub_t3c File: D:/GitHub/city2077-blink/db/add_sub_t3c.tdf Line: 23
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_u3c.tdf
     Info (12023): Found entity 1: add_sub_u3c File: D:/GitHub/city2077-blink/db/add_sub_u3c.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 117
-Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 117
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 123
+Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 123
     Info (12134): Parameter "LPM_WIDTHN" = "7"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -928,24 +974,18 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX1[2]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
     Warning (13410): Pin "HEX1[6]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
     Warning (13410): Pin "HEX1[7]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
-    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 28
-    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
-    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
-    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
-    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
-    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 162 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 284 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 118 logic cells
+    Info (21061): Implemented 240 logic cells
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 4796 megabytes
-    Info: Processing ended: Fri Feb 14 09:48:07 2025
+    Info: Peak virtual memory: 4801 megabytes
+    Info: Processing ended: Thu Feb 27 13:20:51 2025
     Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:22
+    Info: Total CPU time (on all processors): 00:00:20
 
 
