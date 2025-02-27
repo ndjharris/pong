@@ -1,5 +1,5 @@
 Analysis & Synthesis report for city2077-blink
-Thu Feb 13 13:06:01 2025
+Fri Feb 14 09:48:07 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -50,13 +50,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Feb 13 13:06:01 2025       ;
+; Analysis & Synthesis Status        ; Successful - Fri Feb 14 09:48:07 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 103                                         ;
-;     Total combinational functions  ; 102                                         ;
+; Total logic elements               ; 118                                         ;
+;     Total combinational functions  ; 117                                         ;
 ;     Dedicated logic registers      ; 48                                          ;
 ; Total registers                    ; 48                                          ;
 ; Total pins                         ; 43                                          ;
@@ -207,17 +207,17 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                           ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 103                                                                                             ;
+; Estimated Total logic elements              ; 118                                                                                             ;
 ;                                             ;                                                                                                 ;
-; Total combinational functions               ; 102                                                                                             ;
+; Total combinational functions               ; 117                                                                                             ;
 ; Logic element usage by number of LUT inputs ;                                                                                                 ;
-;     -- 4 input functions                    ; 31                                                                                              ;
-;     -- 3 input functions                    ; 18                                                                                              ;
-;     -- <=2 input functions                  ; 53                                                                                              ;
+;     -- 4 input functions                    ; 35                                                                                              ;
+;     -- 3 input functions                    ; 25                                                                                              ;
+;     -- <=2 input functions                  ; 57                                                                                              ;
 ;                                             ;                                                                                                 ;
 ; Logic elements by mode                      ;                                                                                                 ;
-;     -- normal mode                          ; 61                                                                                              ;
-;     -- arithmetic mode                      ; 41                                                                                              ;
+;     -- normal mode                          ; 66                                                                                              ;
+;     -- arithmetic mode                      ; 51                                                                                              ;
 ;                                             ;                                                                                                 ;
 ; Total registers                             ; 48                                                                                              ;
 ;     -- Dedicated logic registers            ; 48                                                                                              ;
@@ -232,8 +232,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                                                                                                 ;
 ; Maximum fan-out node                        ; vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 43                                                                                              ;
-; Total fan-out                               ; 493                                                                                             ;
-; Average fan-out                             ; 2.08                                                                                            ;
+; Total fan-out                               ; 529                                                                                             ;
+; Average fan-out                             ; 2.10                                                                                            ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------------+
 
 
@@ -242,7 +242,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                             ; Entity Name          ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
-; |city2077_blink                              ; 102 (11)            ; 48 (2)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 43   ; 0            ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
+; |city2077_blink                              ; 117 (27)            ; 48 (2)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 43   ; 0            ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
 ;    |counter:bincount|                        ; 4 (4)               ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|counter:bincount                                                                                ; counter              ; work         ;
 ;    |hexdisplay:hexlsb|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|hexdisplay:hexlsb                                                                               ; hexdisplay           ; work         ;
 ;    |lpm_divide:Div0|                         ; 5 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Div0                                                                                 ; lpm_divide           ; work         ;
@@ -256,7 +256,7 @@ https://fpgasoftware.intel.com/eula.
 ;    |vgaClockPLL:vgaClock|                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock                                                                            ; vgaClockPLL          ; work         ;
 ;       |altpll:altpll_component|              ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock|altpll:altpll_component                                                    ; altpll               ; work         ;
 ;          |vgaClockPLL_altpll:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated                  ; vgaClockPLL_altpll   ; work         ;
-;    |video_sync_generator:display|            ; 65 (65)             ; 42 (42)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|video_sync_generator:display                                                                    ; video_sync_generator ; work         ;
+;    |video_sync_generator:display|            ; 64 (64)             ; 42 (42)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|video_sync_generator:display                                                                    ; video_sync_generator ; work         ;
 +----------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -762,20 +762,21 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR           ; 10                          ;
 ;     SCLR              ; 14                          ;
 ;     plain             ; 7                           ;
-; cycloneiii_lcell_comb ; 106                         ;
-;     arith             ; 41                          ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 37                          ;
-;     normal            ; 65                          ;
-;         0 data inputs ; 4                           ;
+; cycloneiii_lcell_comb ; 121                         ;
+;     arith             ; 51                          ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 39                          ;
+;         3 data inputs ; 7                           ;
+;     normal            ; 70                          ;
+;         0 data inputs ; 5                           ;
 ;         1 data inputs ; 7                           ;
 ;         2 data inputs ; 5                           ;
 ;         3 data inputs ; 18                          ;
-;         4 data inputs ; 31                          ;
+;         4 data inputs ; 35                          ;
 ; cycloneiii_pll        ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.60                        ;
-; Average LUT depth     ; 2.52                        ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 3.07                        ;
 +-----------------------+-----------------------------+
 
 
@@ -794,7 +795,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Feb 13 13:05:52 2025
+    Info: Processing started: Fri Feb 14 09:47:58 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off city2077-blink -c city2077-blink
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -815,6 +816,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file vgacloc
     Info (12023): Found entity 1: vgaClockPLL File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 40
 Info (12127): Elaborating entity "city2077_blink" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(95): object "blanking" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 95
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(170): signal "counti" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 170
 Warning (10873): Using initial value X (don't care) for net "LEDR[5..1]" at city2077_blink.vhd(25) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 25
 Info (12128): Elaborating entity "counter" for hierarchy "counter:bincount" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 182
 Info (12128): Elaborating entity "hexdisplay" for hierarchy "hexdisplay:hexlsb" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 183
@@ -926,18 +928,24 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX1[2]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
     Warning (13410): Pin "HEX1[6]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
     Warning (13410): Pin "HEX1[7]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 27
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 28
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 147 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 162 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 103 logic cells
+    Info (21061): Implemented 118 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 18 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
     Info: Peak virtual memory: 4796 megabytes
-    Info: Processing ended: Thu Feb 13 13:06:01 2025
+    Info: Processing ended: Fri Feb 14 09:48:07 2025
     Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:20
+    Info: Total CPU time (on all processors): 00:00:22
 
 

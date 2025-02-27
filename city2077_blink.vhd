@@ -167,10 +167,10 @@ begin
 	
 	process(vgaClk, Xpi, Ypi)
 	begin 
-		if ( Xpi > 50) AND (Xpi < 100) AND ( Ypi > 50) AND (Ypi < 100)	then
-			RGB_R <= x"F";
-			RGB_G	<= x"F";
-			RGB_B	<= x"F";
+		if ( (Xpi-counti*10)> 50) AND ((Xpi-counti*10) < 100) AND ( Ypi > 50) AND (Ypi < 100)	then
+			RGB_R <= x"7";
+			RGB_G	<= x"0";
+			RGB_B	<= x"7";
 		else
 			RGB_R <= x"0";
 			RGB_G	<= x"0";

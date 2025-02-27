@@ -1,5 +1,5 @@
 Fitter report for city2077-blink
-Thu Feb 13 13:06:09 2025
+Fri Feb 14 09:48:16 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -71,15 +71,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Thu Feb 13 13:06:09 2025       ;
+; Fitter Status                      ; Successful - Fri Feb 14 09:48:16 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 104 / 49,760 ( < 1 % )                      ;
-;     Total combinational functions  ; 103 / 49,760 ( < 1 % )                      ;
+; Total logic elements               ; 119 / 49,760 ( < 1 % )                      ;
+;     Total combinational functions  ; 118 / 49,760 ( < 1 % )                      ;
 ;     Dedicated logic registers      ; 48 / 49,760 ( < 1 % )                       ;
 ; Total registers                    ; 48                                          ;
 ; Total pins                         ; 43 / 360 ( 12 % )                           ;
@@ -157,13 +157,13 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.02        ;
+; Average used               ; 1.03        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.7%      ;
-;     Processors 3-4         ;   0.7%      ;
+;     Processor 2            ;   0.9%      ;
+;     Processors 3-4         ;   0.9%      ;
 +----------------------------+-------------+
 
 
@@ -465,8 +465,8 @@ https://fpgasoftware.intel.com/eula.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 259 ) ; 0.00 % ( 0 / 259 )         ; 0.00 % ( 0 / 259 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 259 ) ; 0.00 % ( 0 / 259 )         ; 0.00 % ( 0 / 259 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 274 ) ; 0.00 % ( 0 / 274 )         ; 0.00 % ( 0 / 274 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 274 ) ; 0.00 % ( 0 / 274 )         ; 0.00 % ( 0 / 274 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -489,7 +489,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 241 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 256 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 18 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -505,20 +505,20 @@ The pin-out file can be found in D:/GitHub/city2077-blink/output_files/city2077-
 +---------------------------------------------+------------------------+
 ; Resource                                    ; Usage                  ;
 +---------------------------------------------+------------------------+
-; Total logic elements                        ; 104 / 49,760 ( < 1 % ) ;
-;     -- Combinational with no register       ; 56                     ;
+; Total logic elements                        ; 119 / 49,760 ( < 1 % ) ;
+;     -- Combinational with no register       ; 71                     ;
 ;     -- Register only                        ; 1                      ;
 ;     -- Combinational with a register        ; 47                     ;
 ;                                             ;                        ;
 ; Logic element usage by number of LUT inputs ;                        ;
-;     -- 4 input functions                    ; 31                     ;
-;     -- 3 input functions                    ; 18                     ;
-;     -- <=2 input functions                  ; 54                     ;
+;     -- 4 input functions                    ; 35                     ;
+;     -- 3 input functions                    ; 25                     ;
+;     -- <=2 input functions                  ; 58                     ;
 ;     -- Register only                        ; 1                      ;
 ;                                             ;                        ;
 ; Logic elements by mode                      ;                        ;
-;     -- normal mode                          ; 62                     ;
-;     -- arithmetic mode                      ; 41                     ;
+;     -- normal mode                          ; 67                     ;
+;     -- arithmetic mode                      ; 51                     ;
 ;                                             ;                        ;
 ; Total registers*                            ; 48 / 51,509 ( < 1 % )  ;
 ;     -- Dedicated logic registers            ; 48 / 49,760 ( < 1 % )  ;
@@ -545,11 +545,11 @@ The pin-out file can be found in D:/GitHub/city2077-blink/output_files/city2077-
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )          ;
 ; Impedance control blocks                    ; 0 / 1 ( 0 % )          ;
 ; Average interconnect usage (total/H/V)      ; 0.1% / 0.1% / 0.1%     ;
-; Peak interconnect usage (total/H/V)         ; 0.5% / 0.5% / 0.4%     ;
+; Peak interconnect usage (total/H/V)         ; 0.7% / 0.8% / 0.7%     ;
 ; Maximum fan-out                             ; 42                     ;
 ; Highest non-global fan-out                  ; 27                     ;
-; Total fan-out                               ; 507                    ;
-; Average fan-out                             ; 1.95                   ;
+; Total fan-out                               ; 543                    ;
+; Average fan-out                             ; 1.97                   ;
 +---------------------------------------------+------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -562,20 +562,20 @@ The pin-out file can be found in D:/GitHub/city2077-blink/output_files/city2077-
 +---------------------------------------------+-----------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                   ; Low                            ;
 ;                                             ;                       ;                                ;
-; Total logic elements                        ; 104 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
-;     -- Combinational with no register       ; 56                    ; 0                              ;
+; Total logic elements                        ; 119 / 49760 ( < 1 % ) ; 0 / 49760 ( 0 % )              ;
+;     -- Combinational with no register       ; 71                    ; 0                              ;
 ;     -- Register only                        ; 1                     ; 0                              ;
 ;     -- Combinational with a register        ; 47                    ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic element usage by number of LUT inputs ;                       ;                                ;
-;     -- 4 input functions                    ; 31                    ; 0                              ;
-;     -- 3 input functions                    ; 18                    ; 0                              ;
-;     -- <=2 input functions                  ; 54                    ; 0                              ;
+;     -- 4 input functions                    ; 35                    ; 0                              ;
+;     -- 3 input functions                    ; 25                    ; 0                              ;
+;     -- <=2 input functions                  ; 58                    ; 0                              ;
 ;     -- Register only                        ; 1                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Logic elements by mode                      ;                       ;                                ;
-;     -- normal mode                          ; 62                    ; 0                              ;
-;     -- arithmetic mode                      ; 41                    ; 0                              ;
+;     -- normal mode                          ; 67                    ; 0                              ;
+;     -- arithmetic mode                      ; 51                    ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Total registers                             ; 48                    ; 0                              ;
 ;     -- Dedicated logic registers            ; 48 / 49760 ( < 1 % )  ; 0 / 49760 ( 0 % )              ;
@@ -600,8 +600,8 @@ The pin-out file can be found in D:/GitHub/city2077-blink/output_files/city2077-
 ;     -- Registered Output Connections        ; 0                     ; 0                              ;
 ;                                             ;                       ;                                ;
 ; Internal Connections                        ;                       ;                                ;
-;     -- Total Connections                    ; 511                   ; 53                             ;
-;     -- Registered Connections               ; 199                   ; 0                              ;
+;     -- Total Connections                    ; 547                   ; 53                             ;
+;     -- Registered Connections               ; 211                   ; 0                              ;
 ;                                             ;                       ;                                ;
 ; External Connections                        ;                       ;                                ;
 ;     -- Top                                  ; 0                     ; 43                             ;
@@ -1316,7 +1316,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node                   ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; ADC blocks ; Full Hierarchy Name                                                                                             ; Entity Name          ; Library Name ;
 +----------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
-; |city2077_blink                              ; 104 (13)    ; 48 (2)                    ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 43   ; 0            ; 56 (11)      ; 1 (1)             ; 47 (1)           ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
+; |city2077_blink                              ; 119 (29)    ; 48 (2)                    ; 0 (0)         ; 0           ; 0    ; 1          ; 0            ; 0       ; 0         ; 43   ; 0            ; 71 (27)      ; 1 (1)             ; 47 (1)           ; 0          ; |city2077_blink                                                                                                 ; city2077_blink       ; work         ;
 ;    |counter:bincount|                        ; 4 (4)       ; 4 (4)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 0          ; |city2077_blink|counter:bincount                                                                                ; counter              ; work         ;
 ;    |hexdisplay:hexlsb|                       ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; 0          ; |city2077_blink|hexdisplay:hexlsb                                                                               ; hexdisplay           ; work         ;
 ;    |lpm_divide:Div0|                         ; 5 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |city2077_blink|lpm_divide:Div0                                                                                 ; lpm_divide           ; work         ;
@@ -1330,7 +1330,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ;    |vgaClockPLL:vgaClock|                    ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock                                                                            ; vgaClockPLL          ; work         ;
 ;       |altpll:altpll_component|              ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock|altpll:altpll_component                                                    ; altpll               ; work         ;
 ;          |vgaClockPLL_altpll:auto_generated| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0          ; |city2077_blink|vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated                  ; vgaClockPLL_altpll   ; work         ;
-;    |video_sync_generator:display|            ; 65 (65)     ; 42 (42)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 23 (23)      ; 0 (0)             ; 42 (42)          ; 0          ; |city2077_blink|video_sync_generator:display                                                                    ; video_sync_generator ; work         ;
+;    |video_sync_generator:display|            ; 64 (64)     ; 42 (42)                   ; 0 (0)         ; 0           ; 0    ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 22 (22)      ; 0 (0)             ; 42 (42)          ; 0          ; |city2077_blink|video_sync_generator:display                                                                    ; video_sync_generator ; work         ;
 +----------------------------------------------+-------------+---------------------------+---------------+-------------+------+------------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+------------+-----------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -1392,12 +1392,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Source Pin / Fanout                           ; Pad To Core Index ; Setting ;
 +-----------------------------------------------+-------------------+---------+
 ; KEY[0]                                        ;                   ;         ;
-;      - counter:bincount|count[0]              ; 0                 ; 0       ;
-;      - counter:bincount|count[1]              ; 0                 ; 0       ;
-;      - counter:bincount|count[2]              ; 0                 ; 0       ;
-;      - counter:bincount|count[3]              ; 0                 ; 0       ;
-;      - state[0]                               ; 1                 ; 0       ;
-;      - state~0                                ; 1                 ; 0       ;
+;      - counter:bincount|count[0]              ; 1                 ; 0       ;
+;      - counter:bincount|count[1]              ; 1                 ; 0       ;
+;      - counter:bincount|count[2]              ; 1                 ; 0       ;
+;      - counter:bincount|count[3]              ; 1                 ; 0       ;
+;      - state[0]                               ; 0                 ; 0       ;
+;      - state~0                                ; 0                 ; 0       ;
 ; MAX10_CLK1_50                                 ;                   ;         ;
 ; KEY[1]                                        ;                   ;         ;
 ;      - state[0]                               ; 0                 ; 6       ;
@@ -1406,27 +1406,27 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - counter:bincount|count[1]              ; 0                 ; 6       ;
 ;      - counter:bincount|count[2]              ; 0                 ; 6       ;
 ;      - counter:bincount|count[3]              ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[4]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[3]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[2]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[1]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[6]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[5]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[8]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[7]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|v_cnt[9]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|h_cnt[4]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|h_cnt[2]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[10] ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[7]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[9]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[8]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[6]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[5]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|h_cnt[3]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|h_cnt[2]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|h_cnt[4]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|h_cnt[1]  ; 0                 ; 6       ;
-;      - video_sync_generator:display|h_cnt[0]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|h_cnt[3]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[4]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[3]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[2]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[1]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[9]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[6]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[8]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[7]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|v_cnt[5]  ; 0                 ; 6       ;
 ;      - video_sync_generator:display|v_cnt[0]  ; 0                 ; 6       ;
+;      - video_sync_generator:display|h_cnt[0]  ; 0                 ; 6       ;
 +-----------------------------------------------+-------------------+---------+
 
 
@@ -1440,9 +1440,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; MAX10_CLK1_50                                                                                   ; PIN_P11            ; 2       ; Clock        ; no     ; --                   ; --               ; --                        ;
 ; MAX10_CLK1_50                                                                                   ; PIN_P11            ; 2       ; Clock        ; yes    ; Global Clock         ; GCLK19           ; --                        ;
 ; vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated|wire_pll1_clk[0] ; PLL_1              ; 42      ; Clock        ; yes    ; Global Clock         ; GCLK18           ; --                        ;
-; video_sync_generator:display|Equal0~3                                                           ; LCCOMB_X15_Y22_N30 ; 10      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; video_sync_generator:display|vert_valid~3                                                       ; LCCOMB_X14_Y21_N24 ; 9       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; video_sync_generator:display|xPos~10                                                            ; LCCOMB_X14_Y22_N4  ; 6       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; video_sync_generator:display|Equal0~3                                                           ; LCCOMB_X44_Y49_N20 ; 10      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; video_sync_generator:display|vert_valid~5                                                       ; LCCOMB_X45_Y43_N4  ; 9       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
+; video_sync_generator:display|xPos~13                                                            ; LCCOMB_X46_Y49_N2  ; 6       ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
 +-------------------------------------------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -1461,49 +1461,49 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-------------------------+
 ; Routing Resource Type ; Usage                   ;
 +-----------------------+-------------------------+
-; Block interconnects   ; 111 / 148,641 ( < 1 % ) ;
-; C16 interconnects     ; 8 / 5,382 ( < 1 % )     ;
-; C4 interconnects      ; 46 / 106,704 ( < 1 % )  ;
-; Direct links          ; 44 / 148,641 ( < 1 % )  ;
+; Block interconnects   ; 118 / 148,641 ( < 1 % ) ;
+; C16 interconnects     ; 13 / 5,382 ( < 1 % )    ;
+; C4 interconnects      ; 77 / 106,704 ( < 1 % )  ;
+; Direct links          ; 39 / 148,641 ( < 1 % )  ;
 ; Global clocks         ; 2 / 20 ( 10 % )         ;
-; Local interconnects   ; 58 / 49,760 ( < 1 % )   ;
+; Local interconnects   ; 62 / 49,760 ( < 1 % )   ;
 ; NSLEEPs               ; 0 / 500 ( 0 % )         ;
-; R24 interconnects     ; 9 / 5,406 ( < 1 % )     ;
-; R4 interconnects      ; 72 / 147,764 ( < 1 % )  ;
+; R24 interconnects     ; 14 / 5,406 ( < 1 % )    ;
+; R4 interconnects      ; 64 / 147,764 ( < 1 % )  ;
 +-----------------------+-------------------------+
 
 
 +---------------------------------------------------------------------------+
 ; LAB Logic Elements                                                        ;
 +--------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 8.67) ; Number of LABs  (Total = 12) ;
+; Number of Logic Elements  (Average = 9.92) ; Number of LABs  (Total = 12) ;
 +--------------------------------------------+------------------------------+
-; 1                                          ; 1                            ;
-; 2                                          ; 2                            ;
+; 1                                          ; 2                            ;
+; 2                                          ; 1                            ;
 ; 3                                          ; 0                            ;
-; 4                                          ; 1                            ;
+; 4                                          ; 0                            ;
 ; 5                                          ; 1                            ;
 ; 6                                          ; 1                            ;
-; 7                                          ; 1                            ;
+; 7                                          ; 0                            ;
 ; 8                                          ; 0                            ;
 ; 9                                          ; 0                            ;
-; 10                                         ; 0                            ;
+; 10                                         ; 1                            ;
 ; 11                                         ; 0                            ;
 ; 12                                         ; 0                            ;
 ; 13                                         ; 0                            ;
-; 14                                         ; 1                            ;
-; 15                                         ; 1                            ;
-; 16                                         ; 3                            ;
+; 14                                         ; 0                            ;
+; 15                                         ; 2                            ;
+; 16                                         ; 4                            ;
 +--------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.08) ; Number of LABs  (Total = 12) ;
+; LAB-wide Signals  (Average = 0.92) ; Number of LABs  (Total = 12) ;
 +------------------------------------+------------------------------+
 ; 1 Async. clear                     ; 4                            ;
-; 1 Clock                            ; 8                            ;
+; 1 Clock                            ; 6                            ;
 ; 1 Clock enable                     ; 1                            ;
 +------------------------------------+------------------------------+
 
@@ -1511,23 +1511,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 12.08) ; Number of LABs  (Total = 12) ;
+; Number of Signals Sourced  (Average = 13.33) ; Number of LABs  (Total = 12) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 2                            ;
 ; 2                                            ; 0                            ;
-; 3                                            ; 1                            ;
-; 4                                            ; 2                            ;
-; 5                                            ; 0                            ;
-; 6                                            ; 0                            ;
-; 7                                            ; 2                            ;
-; 8                                            ; 0                            ;
+; 3                                            ; 0                            ;
+; 4                                            ; 1                            ;
+; 5                                            ; 1                            ;
+; 6                                            ; 1                            ;
+; 7                                            ; 0                            ;
+; 8                                            ; 1                            ;
 ; 9                                            ; 0                            ;
 ; 10                                           ; 0                            ;
 ; 11                                           ; 0                            ;
 ; 12                                           ; 0                            ;
 ; 13                                           ; 0                            ;
-; 14                                           ; 0                            ;
+; 14                                           ; 1                            ;
 ; 15                                           ; 1                            ;
 ; 16                                           ; 0                            ;
 ; 17                                           ; 0                            ;
@@ -1537,59 +1537,58 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; 21                                           ; 0                            ;
 ; 22                                           ; 0                            ;
 ; 23                                           ; 0                            ;
-; 24                                           ; 1                            ;
+; 24                                           ; 0                            ;
 ; 25                                           ; 1                            ;
 ; 26                                           ; 0                            ;
-; 27                                           ; 2                            ;
+; 27                                           ; 3                            ;
 +----------------------------------------------+------------------------------+
 
 
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 5.50) ; Number of LABs  (Total = 12) ;
+; Number of Signals Sourced Out  (Average = 6.17) ; Number of LABs  (Total = 12) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 4                            ;
+; 1                                               ; 3                            ;
 ; 2                                               ; 1                            ;
 ; 3                                               ; 0                            ;
 ; 4                                               ; 1                            ;
-; 5                                               ; 1                            ;
+; 5                                               ; 2                            ;
 ; 6                                               ; 0                            ;
-; 7                                               ; 2                            ;
+; 7                                               ; 0                            ;
 ; 8                                               ; 0                            ;
 ; 9                                               ; 1                            ;
-; 10                                              ; 0                            ;
+; 10                                              ; 1                            ;
 ; 11                                              ; 1                            ;
-; 12                                              ; 0                            ;
-; 13                                              ; 0                            ;
-; 14                                              ; 0                            ;
-; 15                                              ; 0                            ;
-; 16                                              ; 0                            ;
-; 17                                              ; 1                            ;
+; 12                                              ; 1                            ;
+; 13                                              ; 1                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                        ;
 +---------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 6.17) ; Number of LABs  (Total = 12) ;
+; Number of Distinct Inputs  (Average = 6.83) ; Number of LABs  (Total = 12) ;
 +---------------------------------------------+------------------------------+
 ; 0                                           ; 0                            ;
 ; 1                                           ; 0                            ;
-; 2                                           ; 1                            ;
-; 3                                           ; 2                            ;
-; 4                                           ; 2                            ;
-; 5                                           ; 2                            ;
+; 2                                           ; 0                            ;
+; 3                                           ; 4                            ;
+; 4                                           ; 3                            ;
+; 5                                           ; 1                            ;
 ; 6                                           ; 0                            ;
 ; 7                                           ; 0                            ;
 ; 8                                           ; 0                            ;
 ; 9                                           ; 0                            ;
-; 10                                          ; 1                            ;
-; 11                                          ; 0                            ;
-; 12                                          ; 2                            ;
-; 13                                          ; 0                            ;
-; 14                                          ; 1                            ;
+; 10                                          ; 0                            ;
+; 11                                          ; 1                            ;
+; 12                                          ; 1                            ;
+; 13                                          ; 1                            ;
+; 14                                          ; 0                            ;
+; 15                                          ; 0                            ;
+; 16                                          ; 0                            ;
+; 17                                          ; 1                            ;
 +---------------------------------------------+------------------------------+
 
 
@@ -1753,9 +1752,9 @@ This will disable optimization of problematic paths and expose them for further 
 +-----------------+----------------------+-------------------+
 ; Source Register ; Destination Register ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; KEY[0]          ; state[0]             ; 3.223             ;
-; state[0]        ; state[1]             ; 1.512             ;
-; state[1]        ; state[1]             ; 1.512             ;
+; KEY[0]          ; state[0]             ; 3.256             ;
+; state[0]        ; state[1]             ; 1.473             ;
+; state[1]        ; state[1]             ; 1.473             ;
 +-----------------+----------------------+-------------------+
 Note: This table only shows the top 3 path(s) that have the largest delay added for hold.
 
@@ -1956,7 +1955,7 @@ Info (170195): Router estimated average interconnect usage is 0% of the availabl
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
 Info (11888): Total time spent on timing analysis during the Fitter is 0.12 seconds.
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M50DAF484C6GES are preliminary
@@ -1972,10 +1971,10 @@ Warning (169177): 3 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2
     Info (169178): Pin KEY[1] uses I/O standard 3.3 V Schmitt Trigger at A7 File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 24
 Info (144001): Generated suppressed messages file D:/GitHub/city2077-blink/output_files/city2077-blink.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 151 warnings
-    Info: Peak virtual memory: 5557 megabytes
-    Info: Processing ended: Thu Feb 13 13:06:09 2025
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:11
+    Info: Peak virtual memory: 5562 megabytes
+    Info: Processing ended: Fri Feb 14 09:48:16 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:12
 
 
 +----------------------------+
