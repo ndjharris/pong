@@ -1,5 +1,5 @@
 Flow report for city2077-blink
-Thu Feb 27 13:21:07 2025
+Thu Mar 06 13:23:11 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,18 +41,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Feb 27 13:21:04 2025       ;
+; Flow Status                        ; Successful - Thu Mar 06 13:23:08 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 241 / 49,760 ( < 1 % )                      ;
-;     Total combinational functions  ; 240 / 49,760 ( < 1 % )                      ;
-;     Dedicated logic registers      ; 68 / 49,760 ( < 1 % )                       ;
-; Total registers                    ; 68                                          ;
-; Total pins                         ; 43 / 360 ( 12 % )                           ;
+; Total logic elements               ; 420 / 49,760 ( < 1 % )                      ;
+;     Total combinational functions  ; 415 / 49,760 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 85 / 49,760 ( < 1 % )                       ;
+; Total registers                    ; 85                                          ;
+; Total pins                         ; 59 / 360 ( 16 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/27/2025 13:20:43 ;
+; Start date & time ; 03/06/2025 13:22:46 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; city2077-blink      ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+----------------+----------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name    ; Section Id ;
 +-------------------------------------+----------------------------------------+----------------+----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 92384141857171.174066244316560         ; --             ; --             ; --         ;
+; COMPILER_SIGNATURE_ID               ; 92384141857171.174126736613052         ; --             ; --             ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --             ; --             ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vgaClockPLL_inst.v                     ; --             ; --             ; --         ;
@@ -100,11 +100,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4801 MB             ; 00:00:20                           ;
-; Fitter               ; 00:00:08     ; 1.0                     ; 5559 MB             ; 00:00:12                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4685 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.1                     ; 4813 MB             ; 00:00:02                           ;
-; Total                ; 00:00:22     ; --                      ; --                  ; 00:00:37                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4796 MB             ; 00:00:20                           ;
+; Fitter               ; 00:00:08     ; 1.1                     ; 5566 MB             ; 00:00:12                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4687 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.2                     ; 4811 MB             ; 00:00:02                           ;
+; Total                ; 00:00:23     ; --                      ; --                  ; 00:00:37                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

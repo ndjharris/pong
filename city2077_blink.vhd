@@ -25,6 +25,8 @@ entity city2077_blink is
 		LEDR			: out	std_logic_vector(9 downto 0);
 		HEX0			:	out std_logic_vector(7 downto 0);
 		HEX1			:	out std_logic_vector(7 downto 0);
+		HEX4			:	out std_logic_vector(7 downto 0);
+		HEX5			:	out std_logic_vector(7 downto 0);
 		VGA_R			:	out Std_logic_vector(3 downto 0);
 		VGA_G			:	out Std_logic_vector(3 downto 0);
 		VGA_B			:	out Std_logic_vector(3 downto 0);
@@ -85,12 +87,12 @@ signal resetn		: std_logic;
 signal button		: std_logic;
 signal ledState	: std_logic;
 signal state		: std_logic_vector(1 downto 0);
-signal count		: std_logic_vector(3 downto 0);
-signal countlsb	: std_logic_vector(3 downto 0);
-signal countmsb	: std_logic_vector(3 downto 0);
-signal counti		: integer range 0 to 100   := 0;
-signal countunits	: integer range 0 to 10   := 0;
-signal counttens	: integer range 0 to 10   := 0;
+
+signal plyr1lsb	: std_logic_vector(3 downto 0);
+signal plyr1msb	: std_logic_vector(3 downto 0);
+signal plyr2lsb	: std_logic_vector(3 downto 0);
+signal plyr2msb	: std_logic_vector(3 downto 0);
+
 
 signal blanking	: std_logic;
 signal vgaClk		: std_logic;
@@ -111,6 +113,14 @@ signal ballY		: integer range 0 to 479 := 240;
 signal ballydir	: integer range -1 to 1 := 1;
 signal ballSize	: integer range 1 to 100 := 20;
 
+signal paddle1pos	: integer range 0 to 479 := 240;
+signal paddle1sz	: integer range 0 to 100 := 40;
+signal player1scr : integer range 0 to 21 := 0;
+signal paddle2pos	: integer range 0 to 479 := 240;
+signal paddle2sz	: integer range 0 to 100 := 40;
+signal player2scr : integer range 0 to 21 := 0;
+
+
 
 
 begin
@@ -118,11 +128,13 @@ begin
 	reset <= key(1);
 	resetn <= not reset;
 	button <= key(0);
-	counti <= to_integer(unsigned(count));
-	countunits <= counti mod 10;
-	counttens <= counti / 10;
-	countlsb <= std_logic_vector(to_unsigned(countunits, 4));
-	countmsb <= std_logic_vector(to_unsigned(counttens, 4));
+
+	plyr1lsb <= std_logic_vector(to_unsigned(player1scr mod 10, 4));
+	plyr1msb <= std_logic_vector(to_unsigned(player1scr / 10, 4));
+
+	plyr2lsb <= std_logic_vector(to_unsigned(player2scr mod 10, 4));
+	plyr2msb <= std_logic_vector(to_unsigned(player2scr / 10, 4));
+	
 	Xpi <= to_integer(unsigned(Xp));
 	ypi <= to_integer(unsigned(Yp));
 	VGA_VS <= VSync;
@@ -173,35 +185,38 @@ begin
 	
 	-- Update Display
 	
-	process(vgaClk, Xpi, Ypi)
+	process(vgaClk, Xpi, Ypi, blanking)
 	begin
 --		-- clear
 		RGB_R <= x"0";
 		RGB_G	<= x"0";
 		RGB_B	<= x"0";
-
-		-- Draw Paddle
-		if ( (Xpi-counti*10)> 90) AND ((Xpi-counti*10) < 100) AND ( Ypi > 50) AND (Ypi < 150)	then
-			RGB_R <= x"f";
-			RGB_G	<= x"f";
-			RGB_B	<= x"f";
-			
-			-- Draw the Ball
-		elsif ( (Xpi>ballX-ballSize/2) AND (Xpi<ballX+ballSize/2) AND 
-				  (Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2))	then
-			RGB_R <= x"f";
-			RGB_G	<= x"f";
-			RGB_B	<= x"0";
-			-- draw the playfield edges
-		elsif (YPi = 50 or Ypi = 479 or (Xpi = 1 and Ypi >50) or (xpi = 639 and Ypi >50)) then
-			RGB_R <= x"f";
-			RGB_G	<= x"f";
-			RGB_B	<= x"f";
-			-- Background
-		elsif (Xpi > 0 and Xpi < 640 and Ypi > 50 and yPi < 480 ) then
-			RGB_R <= x"0";
-			RGB_G	<= x"7";
-			RGB_B	<= x"0";
+		if (blanking = '1') then
+			-- Draw Paddles
+			if ((( Xpi> 20) AND (Xpi < 40) AND ( Ypi > (paddle1pos - paddle1sz)) AND (Ypi < (paddle1pos + paddle1sz)))
+				or (( Xpi> 600) AND (Xpi < 620) AND ( Ypi > (paddle2pos - paddle2sz)) AND (Ypi < (paddle2pos + paddle2sz))))
+				then
+				RGB_R <= x"f";
+				RGB_G	<= x"f";
+				RGB_B	<= x"f";
+				
+				-- Draw the Ball
+			elsif ( (Xpi>ballX-ballSize/2) AND (Xpi<ballX+ballSize/2) AND 
+					  (Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2))	then
+				RGB_R <= x"f";
+				RGB_G	<= x"f";
+				RGB_B	<= x"0";
+				-- draw the playfield edges
+			elsif (YPi = 50 or Ypi = 479 or (Xpi = 1 and Ypi >50) or (xpi = 639 and Ypi >50)) then
+				RGB_R <= x"f";
+				RGB_G	<= x"f";
+				RGB_B	<= x"f";
+				-- Background
+			elsif (Xpi > 0 and Xpi < 640 and Ypi > 50 and yPi < 480 ) then
+				RGB_R <= x"0";
+				RGB_G	<= x"7";
+				RGB_B	<= x"0";
+			end if;
 		end if;
 	end process;
 	
@@ -216,15 +231,39 @@ begin
 			elsif (rising_edge(VSync)) then 
 				ballx <= ballx + ballXDir;
 				bally	<= bally + BallYDir;
-			
-				if ballX > 630 then
+				-- AI player2 control
+				paddle2pos <= bally;
+
+			   -- player 1 paddle hit
+				if ((ballX < 40 + (ballSize /2)) and 
+				((ballY >= paddle1pos - paddle1sz/2) and (ballY < paddle1pos + paddle1sz/2))) 
+				then
+					ballXdir <= 1;	
+					ballx <= ballX + 1;
+					
+			   -- player 2 paddle hit
+				elsif ((ballX > 600 - (ballSize /2)) and 
+				((ballY >= paddle2pos - paddle2sz/2) and (ballY < paddle2pos + paddle2sz/2))) 
+				then
+					ballXdir <= -1;	
+					ballx <= ballX - 1;
+				
+				-- ball hits left edge
+				elsif ballX > 630 then
 					ballXdir <= -1;
-				elsif ballX < 10 then
+					ballx <= 320;
+					player1scr <= player1scr + 1;
+				-- ball hits right edge
+				elsif ballX < 20 then
 					ballXdir <= 1;
+					ballx <= 320;
+					player2scr <= player2scr + 1;
 				end if;
+				-- ball hits bottom edge
 				if ballY > 470 then
 					ballYdir <= -1;
-				elsif ballY < 50 then
+				-- ball hits top edge
+				elsif ballY < 60 then
 					ballYdir <= 1;
 				end if;
 			end if;
@@ -235,14 +274,14 @@ begin
 	
 	-- Instantiate components
 	
-	bincount : counter port map(button, resetn, count);
-	hexlsb 	: hexdisplay port map(countlsb, HEX0(7 downto 0));
-	hexmsb	: hexdisplay port map(countmsb, HEX1(7 downto 0));
+	hexlsb 	: hexdisplay port map(plyr1lsb, HEX4(7 downto 0));
+	hexmsb	: hexdisplay port map(plyr1msb, HEX5(7 downto 0));
+	hexlsb2 	: hexdisplay port map(plyr2lsb, HEX0(7 downto 0));
+	hexmsb2	: hexdisplay port map(plyr2msb, HEX1(7 downto 0));
 	display	: video_sync_generator port map( resetn, vgaClk, blanking, Hsync, Vsync, Xp, Yp );
 	vgaClock	: vgaClockPLL port map( clk, vgaClk);
 
 	ledState <= state(1);
 	LEDR(0) <= ledState;
-	LEDR(9 downto 6) <= count(3 downto 0);
 
 end rtl;
