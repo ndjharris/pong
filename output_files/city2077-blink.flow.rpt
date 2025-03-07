@@ -1,5 +1,5 @@
 Flow report for city2077-blink
-Thu Mar 06 13:23:11 2025
+Thu Mar 06 13:56:53 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,24 +41,24 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Mar 06 13:23:08 2025       ;
+; Flow Status                        ; Successful - Thu Mar 06 13:56:50 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 420 / 49,760 ( < 1 % )                      ;
-;     Total combinational functions  ; 415 / 49,760 ( < 1 % )                      ;
-;     Dedicated logic registers      ; 85 / 49,760 ( < 1 % )                       ;
-; Total registers                    ; 85                                          ;
-; Total pins                         ; 59 / 360 ( 16 % )                           ;
+; Total logic elements               ; 664 / 49,760 ( 1 % )                        ;
+;     Total combinational functions  ; 639 / 49,760 ( 1 % )                        ;
+;     Dedicated logic registers      ; 231 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 231                                         ;
+; Total pins                         ; 60 / 360 ( 17 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
+; Total memory bits                  ; 576 / 1,677,312 ( < 1 % )                   ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
-; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
+; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
-; ADC blocks                         ; 0 / 2 ( 0 % )                               ;
+; ADC blocks                         ; 1 / 2 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -67,32 +67,38 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/06/2025 13:22:46 ;
+; Start date & time ; 03/06/2025 13:56:26 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; city2077-blink      ;
 +-------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                            ;
-+-------------------------------------+----------------------------------------+----------------+----------------+------------+
-; Assignment Name                     ; Value                                  ; Default Value  ; Entity Name    ; Section Id ;
-+-------------------------------------+----------------------------------------+----------------+----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 92384141857171.174126736613052         ; --             ; --             ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --             ; --             ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --             ; --             ; --         ;
-; MISC_FILE                           ; vgaClockPLL_inst.v                     ; --             ; --             ; --         ;
-; MISC_FILE                           ; vgaClockPLL_bb.v                       ; --             ; --             ; --         ;
-; MISC_FILE                           ; vgaClockPLL.cmp                        ; --             ; --             ; --         ;
-; MISC_FILE                           ; vgaClockPLL.ppf                        ; --             ; --             ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --             ; city2077_blink ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --             ; city2077_blink ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --             ; city2077_blink ; Top        ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --             ; --             ; --         ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --             ; --             ; --         ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --             ; --             ; --         ;
-; TOP_LEVEL_ENTITY                    ; city2077_blink                         ; city2077-blink ; --             ; --         ;
-+-------------------------------------+----------------------------------------+----------------+----------------+------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                              ;
++-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
+; Assignment Name                     ; Value                                                    ; Default Value  ; Entity Name    ; Section Id ;
++-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
+; COMPILER_SIGNATURE_ID               ; 92384141857171.174126938604156                           ; --             ; --             ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                       ; --             ; --             ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                        ; --             ; --             ; --         ;
+; MISC_FILE                           ; paddle/synthesis/../paddle.cmp                           ; --             ; --             ; --         ;
+; MISC_FILE                           ; paddle/synthesis/../../paddle.qsys                       ; --             ; --             ; --         ;
+; MISC_FILE                           ; vgaClockPLL_inst.v                                       ; --             ; --             ; --         ;
+; MISC_FILE                           ; vgaClockPLL_bb.v                                         ; --             ; --             ; --         ;
+; MISC_FILE                           ; vgaClockPLL.cmp                                          ; --             ; --             ; --         ;
+; MISC_FILE                           ; vgaClockPLL.ppf                                          ; --             ; --             ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                      ; --             ; --             ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                    ; --             ; --             ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                             ; --             ; --             ; --         ;
+; SLD_FILE                            ; paddle/synthesis/paddle.debuginfo                        ; --             ; --             ; --         ;
+; SLD_INFO                            ; QSYS_NAME paddle HAS_SOPCINFO 1 GENERATION_ID 1741267815 ; --             ; paddle         ; --         ;
+; SOPCINFO_FILE                       ; paddle/synthesis/../../paddle.sopcinfo                   ; --             ; --             ; --         ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                       ; --             ; --             ; --         ;
+; TOP_LEVEL_ENTITY                    ; city2077_blink                                           ; city2077-blink ; --             ; --         ;
++-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -100,11 +106,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4796 MB             ; 00:00:20                           ;
-; Fitter               ; 00:00:08     ; 1.1                     ; 5566 MB             ; 00:00:12                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4687 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.2                     ; 4811 MB             ; 00:00:02                           ;
-; Total                ; 00:00:23     ; --                      ; --                  ; 00:00:37                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4822 MB             ; 00:00:21                           ;
+; Fitter               ; 00:00:09     ; 1.1                     ; 5572 MB             ; 00:00:15                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4690 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.3                     ; 4813 MB             ; 00:00:03                           ;
+; Total                ; 00:00:23     ; --                      ; --                  ; 00:00:42                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

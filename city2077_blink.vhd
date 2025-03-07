@@ -21,6 +21,7 @@ entity city2077_blink is
 
 	port(
 		MAX10_CLK1_50	: in	std_logic;
+		ADC_CLK_10	: in	std_logic;
 		KEY			: in	std_logic_vector(1 downto 0); -- Reset and toggle buttons
 		LEDR			: out	std_logic_vector(9 downto 0);
 		HEX0			:	out std_logic_vector(7 downto 0);
@@ -78,7 +79,20 @@ component vgaClockPLL
 	);
 end component;
 
-
+component paddle
+    port (
+      CLOCK : in  std_logic := 'X';               -- clk
+      RESET : in  std_logic := 'X';               -- reset
+      CH0   : out std_logic_vector(11 downto 0);  -- CH0
+      CH1   : out std_logic_vector(11 downto 0);  -- CH1
+      CH2   : out std_logic_vector(11 downto 0);  -- CH2
+      CH3   : out std_logic_vector(11 downto 0);  -- CH3
+      CH4   : out std_logic_vector(11 downto 0);  -- CH4
+      CH5   : out std_logic_vector(11 downto 0);  -- CH5
+      CH6   : out std_logic_vector(11 downto 0);  -- CH6
+      CH7   : out std_logic_vector(11 downto 0)   -- CH7
+      );
+  end component paddle;
                             
 
 signal clk			: std_logic;
@@ -112,6 +126,11 @@ signal ballXdir	: integer range -1 to 1 := 1;
 signal ballY		: integer range 0 to 479 := 240;
 signal ballydir	: integer range -1 to 1 := 1;
 signal ballSize	: integer range 1 to 100 := 20;
+
+signal paddlepos1 : std_logic_vector (11 downto 0); -- adc inputs
+signal paddlepos2 : std_logic_vector (11 downto 0);
+signal paddlepos3 : std_logic_vector (11 downto 0);
+signal paddlepos4 : std_logic_vector (11 downto 0);
 
 signal paddle1pos	: integer range 0 to 479 := 240;
 signal paddle1sz	: integer range 0 to 100 := 40;
@@ -266,6 +285,10 @@ begin
 				elsif ballY < 60 then
 					ballYdir <= 1;
 				end if;
+				-- player controlled paddles
+				paddle1pos <= (paddle1pos + (to_integer(unsigned(paddlepos1(11 downto 3)))))/2;
+				paddle2pos <= (paddle2pos + (to_integer(unsigned(paddlepos2(11 downto 3)))))/2;
+
 			end if;
 			
 	end process;
@@ -280,6 +303,19 @@ begin
 	hexmsb2	: hexdisplay port map(plyr2msb, HEX1(7 downto 0));
 	display	: video_sync_generator port map( resetn, vgaClk, blanking, Hsync, Vsync, Xp, Yp );
 	vgaClock	: vgaClockPLL port map( clk, vgaClk);
+	paddling	: paddle
+    port map (
+      CLOCK => ADC_CLK_10,              --      clk.clk
+      RESET => resetn,                     --    reset.reset
+      CH0   => paddlepos1,              -- readings.CH0
+      CH1   => paddlepos2,              --         .CH1
+      CH2   => paddlepos3,              --         .CH2
+      CH3   => paddlepos4               --         .CH3
+--                      CH4   => CONNECTED_TO_CH4,   --         .CH4
+--                      CH5   => CONNECTED_TO_CH5,   --         .CH5
+--                      CH6   => CONNECTED_TO_CH6,   --         .CH6
+--                      CH7   => CONNECTED_TO_CH7    --         .CH7
+      );
 
 	ledState <= state(1);
 	LEDR(0) <= ledState;

@@ -1,8 +1,16 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="4763e88b92bfc81331f2"/>
+    <hash md5_digest_80b="d72a0082d0467bb64cd6"/>
   </project>
   <file_info>
     <file device="10M50DAF484C6GES" path="city2077-blink.sof" usercode="0xFFFFFFFF"/>
   </file_info>
+  <sld_infos>
+    <sld_info hpath="paddle:paddling" name="paddling">
+      <assignment_values>
+        <assignment_value text="QSYS_NAME paddle HAS_SOPCINFO 1 GENERATION_ID 1741267815"/>
+      </assignment_values>
+      <parameters/>
+    </sld_info>
+  </sld_infos>
 </sld_project_info>
