@@ -1,5 +1,5 @@
 Flow report for city2077-blink
-Thu Mar 06 13:56:53 2025
+Sun Mar 09 11:08:29 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Mar 06 13:56:50 2025       ;
+; Flow Status                        ; Successful - Sun Mar 09 11:08:19 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 664 / 49,760 ( 1 % )                        ;
-;     Total combinational functions  ; 639 / 49,760 ( 1 % )                        ;
-;     Dedicated logic registers      ; 231 / 49,760 ( < 1 % )                      ;
-; Total registers                    ; 231                                         ;
+; Total logic elements               ; 1,454 / 49,760 ( 3 % )                      ;
+;     Total combinational functions  ; 1,426 / 49,760 ( 3 % )                      ;
+;     Dedicated logic registers      ; 265 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 265                                         ;
 ; Total pins                         ; 60 / 360 ( 17 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 576 / 1,677,312 ( < 1 % )                   ;
+; Total memory bits                  ; 49,728 / 1,677,312 ( 3 % )                  ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/06/2025 13:56:26 ;
+; Start date & time ; 03/09/2025 11:06:21 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; city2077-blink      ;
 +-------------------+---------------------+
@@ -78,15 +78,21 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
 ; Assignment Name                     ; Value                                                    ; Default Value  ; Entity Name    ; Section Id ;
 +-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 92384141857171.174126938604156                           ; --             ; --             ; --         ;
+; COMPILER_SIGNATURE_ID               ; 181161466796560.174151838142820                          ; --             ; --             ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                       ; --             ; --             ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                        ; --             ; --             ; --         ;
+; MISC_FILE                           ; vidmem.cmp                                               ; --             ; --             ; --         ;
+; MISC_FILE                           ; charrom.cmp                                              ; --             ; --             ; --         ;
 ; MISC_FILE                           ; paddle/synthesis/../paddle.cmp                           ; --             ; --             ; --         ;
 ; MISC_FILE                           ; paddle/synthesis/../../paddle.qsys                       ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vgaClockPLL_inst.v                                       ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vgaClockPLL_bb.v                                         ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vgaClockPLL.cmp                                          ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vgaClockPLL.ppf                                          ; --             ; --             ; --         ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                        ; --             ; --             ; --         ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                        ; --             ; --             ; --         ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                               ; --             ; --             ; --         ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                               ; --             ; --             ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                   ; --             ; city2077_blink ; Top        ;
@@ -106,11 +112,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4822 MB             ; 00:00:21                           ;
-; Fitter               ; 00:00:09     ; 1.1                     ; 5572 MB             ; 00:00:15                           ;
-; Assembler            ; 00:00:02     ; 1.0                     ; 4690 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.3                     ; 4813 MB             ; 00:00:03                           ;
-; Total                ; 00:00:23     ; --                      ; --                  ; 00:00:42                           ;
+; Analysis & Synthesis ; 00:01:05     ; 1.0                     ; 4896 MB             ; 00:01:04                           ;
+; Fitter               ; 00:00:41     ; 1.3                     ; 5807 MB             ; 00:01:09                           ;
+; Assembler            ; 00:00:07     ; 1.0                     ; 4704 MB             ; 00:00:07                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.8                     ; 4866 MB             ; 00:00:11                           ;
+; Total                ; 00:02:01     ; --                      ; --                  ; 00:02:31                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -119,10 +125,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

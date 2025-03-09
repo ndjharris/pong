@@ -94,7 +94,21 @@ component paddle
       );
   end component paddle;
                             
+  component txtScreen
+--       generic(); -- pixel position
+    port(
+      hp, vp :    integer;
+      addr   : in std_logic_vector(11 downto 0);  -- text screen ram
+      data   : in std_logic_vector(7 downto 0);
+      nWr    : in std_logic;
+      pClk   : in std_logic;
+      nblnk  : in std_logic;
 
+      pix : out std_logic
+
+      );
+  end component;
+  
 signal clk			: std_logic;
 signal reset		: std_logic;
 signal resetn		: std_logic;
@@ -102,10 +116,10 @@ signal button		: std_logic;
 signal ledState	: std_logic;
 signal state		: std_logic_vector(1 downto 0);
 
-signal plyr1lsb	: std_logic_vector(3 downto 0);
-signal plyr1msb	: std_logic_vector(3 downto 0);
-signal plyr2lsb	: std_logic_vector(3 downto 0);
-signal plyr2msb	: std_logic_vector(3 downto 0);
+signal plyr1lsb	: std_logic_vector(7 downto 0);
+signal plyr1msb	: std_logic_vector(7 downto 0);
+signal plyr2lsb	: std_logic_vector(7 downto 0);
+signal plyr2msb	: std_logic_vector(7 downto 0);
 
 
 signal blanking	: std_logic;
@@ -139,7 +153,13 @@ signal paddle2pos	: integer range 0 to 479 := 240;
 signal paddle2sz	: integer range 0 to 100 := 40;
 signal player2scr : integer range 0 to 21 := 0;
 
+signal cycle      : integer                 := 0;  -- memory write cycle
+signal charpos 	: integer range 0 to 4191 := 0;  -- character position from start of screen memory
 
+signal txtaddress : std_logic_vector(11 downto 0);
+signal txtdata    : std_logic_vector(7 downto 0);
+signal wren       : std_logic;
+signal txtpixel   : std_logic;
 
 
 begin
@@ -148,11 +168,11 @@ begin
 	resetn <= not reset;
 	button <= key(0);
 
-	plyr1lsb <= std_logic_vector(to_unsigned(player1scr mod 10, 4));
-	plyr1msb <= std_logic_vector(to_unsigned(player1scr / 10, 4));
+	plyr1lsb <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
+	plyr1msb <= std_logic_vector(to_unsigned(player1scr / 10, 8));
 
-	plyr2lsb <= std_logic_vector(to_unsigned(player2scr mod 10, 4));
-	plyr2msb <= std_logic_vector(to_unsigned(player2scr / 10, 4));
+	plyr2lsb <= std_logic_vector(to_unsigned(player2scr mod 10, 8));
+	plyr2msb <= std_logic_vector(to_unsigned(player2scr / 10, 8));
 	
 	Xpi <= to_integer(unsigned(Xp));
 	ypi <= to_integer(unsigned(Yp));
@@ -201,6 +221,53 @@ begin
 			end if;
 		end if;
 	end process;
+	  process(max10_clk1_50)
+  begin  -- update the display with player scores
+    if (rising_edge(clk)) then
+      if resetn = '1' then
+        txtaddress <= "000000000000";
+        txtdata    <= "00000000";
+        wren       <= '0';
+        cycle      <= 0;
+        charpos    <= 0;
+      else
+        if cycle = 0 then               -- state machine for writing to text
+                                     -- memory with ascii code values
+          cycle      <= 1;
+          wren       <= '0';
+          txtAddress <= std_logic_vector(to_unsigned(charpos, txtAddress'length));
+          if charpos = 2 then
+            txtdata <= plyr1lsb or "00110000";  -- write p1 tens to display and convert to ascii
+          elsif charpos = 3 then
+            txtdata <= plyr1msb or "00110000";  -- write p1 units to display and convert to ascii
+--          elsif charpos = 98 then
+--            txtdata <= std_logic_vector(to_unsigned(games1, txtdata'length));  -- write p1 units to display
+--          elsif charpos = 101 then
+--            txtdata <= std_logic_vector(to_unsigned(games2, txtdata'length));  -- write p1 units to display
+          elsif charpos = 36 then
+            txtdata <= plyr2lsb or "00110000";  -- write p2 tens to display and convert to ascii
+          elsif charpos = 37 then
+            txtdata <= plyr2msb or "00110000";  -- write p2 units to display and convert to ascii
+          else cycle <= 2;
+          end if;
+
+        elsif cycle = 1 then            -- strobe wren high for one clock
+          wren  <= '1';
+          cycle <= 2;
+        else                  -- cycle is 2, reset cycle and increment
+                        -- memory address for next
+                                  -- character position
+          wren  <= '0';
+          cycle <= 0;
+          if charpos < 1023 then
+            charpos <= charpos + 1;
+          else
+            charpos <= 0;
+          end if;
+        end if;
+      end if;
+    end if;
+  end process;
 	
 	-- Update Display
 	
@@ -210,9 +277,14 @@ begin
 		RGB_R <= x"0";
 		RGB_G	<= x"0";
 		RGB_B	<= x"0";
-		if (blanking = '1') then
+		if (blanking = '1') then -- Only update display while blanking is high
+			-- Draw Text
+			if txtPixel = '1' then
+				RGB_R <= x"f";
+				RGB_G	<= x"f";
+				RGB_B	<= x"f";			
 			-- Draw Paddles
-			if ((( Xpi> 20) AND (Xpi < 40) AND ( Ypi > (paddle1pos - paddle1sz)) AND (Ypi < (paddle1pos + paddle1sz)))
+			elsif ((( Xpi> 20) AND (Xpi < 40) AND ( Ypi > (paddle1pos - paddle1sz)) AND (Ypi < (paddle1pos + paddle1sz)))
 				or (( Xpi> 600) AND (Xpi < 620) AND ( Ypi > (paddle2pos - paddle2sz)) AND (Ypi < (paddle2pos + paddle2sz))))
 				then
 				RGB_R <= x"f";
@@ -297,10 +369,10 @@ begin
 	
 	-- Instantiate components
 	
-	hexlsb 	: hexdisplay port map(plyr1lsb, HEX4(7 downto 0));
-	hexmsb	: hexdisplay port map(plyr1msb, HEX5(7 downto 0));
-	hexlsb2 	: hexdisplay port map(plyr2lsb, HEX0(7 downto 0));
-	hexmsb2	: hexdisplay port map(plyr2msb, HEX1(7 downto 0));
+	hexlsb 	: hexdisplay port map(plyr1lsb(3 downto 0), HEX4(7 downto 0));
+	hexmsb	: hexdisplay port map(plyr1msb(3 downto 0), HEX5(7 downto 0));
+	hexlsb2 	: hexdisplay port map(plyr2lsb(3 downto 0), HEX0(7 downto 0));
+	hexmsb2	: hexdisplay port map(plyr2msb(3 downto 0), HEX1(7 downto 0));
 	display	: video_sync_generator port map( resetn, vgaClk, blanking, Hsync, Vsync, Xp, Yp );
 	vgaClock	: vgaClockPLL port map( clk, vgaClk);
 	paddling	: paddle
@@ -316,7 +388,16 @@ begin
 --                      CH6   => CONNECTED_TO_CH6,   --         .CH6
 --                      CH7   => CONNECTED_TO_CH7    --         .CH7
       );
-
+	 txtscreenInst : component txtscreen port map (
+		xPi,
+		yPi,
+		txtaddress,
+		txtdata,
+		wren,
+		vgaclk,
+		blanking,
+		txtpixel
+    );
 	ledState <= state(1);
 	LEDR(0) <= ledState;
 
