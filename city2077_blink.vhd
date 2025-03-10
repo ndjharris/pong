@@ -16,7 +16,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
 entity city2077_blink is
 
 	port(
@@ -148,10 +147,10 @@ signal paddlepos4 : std_logic_vector (11 downto 0);
 
 signal paddle1pos	: integer range 0 to 479 := 240;
 signal paddle1sz	: integer range 0 to 100 := 40;
-signal player1scr : integer range 0 to 21 := 0;
+signal player1scr : integer := 0;
 signal paddle2pos	: integer range 0 to 479 := 240;
 signal paddle2sz	: integer range 0 to 100 := 40;
-signal player2scr : integer range 0 to 21 := 0;
+signal player2scr : integer := 0;
 
 signal cycle      : integer                 := 0;  -- memory write cycle
 signal charpos 	: integer range 0 to 4191 := 0;  -- character position from start of screen memory
@@ -168,11 +167,11 @@ begin
 	resetn <= not reset;
 	button <= key(0);
 
-	plyr1lsb <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
-	plyr1msb <= std_logic_vector(to_unsigned(player1scr / 10, 8));
+	plyr1msb <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
+	plyr1lsb <= std_logic_vector(to_unsigned(player1scr / 10, 8));
 
-	plyr2lsb <= std_logic_vector(to_unsigned(player2scr mod 10, 8));
-	plyr2msb <= std_logic_vector(to_unsigned(player2scr / 10, 8));
+	plyr2msb <= std_logic_vector(to_unsigned(player2scr mod 10, 8));
+	plyr2lsb <= std_logic_vector(to_unsigned(player2scr / 10, 8));
 	
 	Xpi <= to_integer(unsigned(Xp));
 	ypi <= to_integer(unsigned(Yp));

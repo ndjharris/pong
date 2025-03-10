@@ -22,7 +22,7 @@ end txtScreen;
 
 architecture RTL of txtScreen is
 
-  component charrom
+  component charrom1
     port
       (
         address : in  std_logic_vector (10 downto 0);
@@ -30,7 +30,7 @@ architecture RTL of txtScreen is
         q       : out std_logic_vector (7 downto 0)
         );
   end component;
-  component vidmem
+  component videoram
     port
       (
         clock     : in  std_logic := '1';
@@ -50,12 +50,12 @@ architecture RTL of txtScreen is
 
 begin
 
-  font8x12_inst : charrom port map (
+  font8x12_inst : charrom1 port map (
     address => char_row_addr,
     clock   => pClk,
     q       => q_8x12
     );
-  vidmem_inst : vidmem port map (
+  vidmem_inst : videoram port map (
     clock     => pClk,
     data      => data,
     rdaddress => vAddr,
