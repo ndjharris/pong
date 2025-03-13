@@ -3,168 +3,168 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'ADC_CLK_10'
-Slack : -926.493
-TNS   : -8337.613
+Slack : -926.604
+TNS   : -8338.247
 
 Type  : Slow 1200mV 85C Model Setup 'MAX10_CLK1_50'
-Slack : -115.428
-TNS   : -686.985
-
-Type  : Slow 1200mV 85C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : -10.529
-TNS   : -62.281
-
-Type  : Slow 1200mV 85C Model Setup 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -5.476
-TNS   : -66.090
+Slack : -114.329
+TNS   : -682.375
 
 Type  : Slow 1200mV 85C Model Setup 'video_sync_generator:display|VS'
-Slack : -5.453
-TNS   : -412.414
+Slack : -12.423
+TNS   : -660.452
+
+Type  : Slow 1200mV 85C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
+Slack : -10.763
+TNS   : -63.224
+
+Type  : Slow 1200mV 85C Model Setup 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -5.425
+TNS   : -61.648
+
+Type  : Slow 1200mV 85C Model Hold 'ADC_CLK_10'
+Slack : 0.253
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'video_sync_generator:display|VS'
-Slack : 0.310
+Slack : 0.309
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'MAX10_CLK1_50'
-Slack : 0.326
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'ADC_CLK_10'
-Slack : 0.330
+Slack : 0.321
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.384
+Slack : 0.655
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : 4.697
+Slack : 4.759
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'video_sync_generator:display|VS'
 Slack : -1.222
-TNS   : -125.866
+TNS   : -138.086
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
 Slack : 4.375
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ADC_CLK_10'
-Slack : 4.462
+Slack : 4.461
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'MAX10_CLK1_50'
-Slack : 9.573
+Slack : 9.559
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.531
+Slack : 19.532
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'ADC_CLK_10'
-Slack : -927.513
-TNS   : -8346.849
+Slack : -927.612
+TNS   : -8347.438
 
 Type  : Slow 1200mV 0C Model Setup 'MAX10_CLK1_50'
-Slack : -104.595
-TNS   : -622.483
-
-Type  : Slow 1200mV 0C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : -9.052
-TNS   : -53.395
+Slack : -103.675
+TNS   : -618.688
 
 Type  : Slow 1200mV 0C Model Setup 'video_sync_generator:display|VS'
-Slack : -4.935
-TNS   : -366.857
+Slack : -11.194
+TNS   : -588.654
+
+Type  : Slow 1200mV 0C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
+Slack : -9.220
+TNS   : -54.205
 
 Type  : Slow 1200mV 0C Model Setup 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -4.550
-TNS   : -52.740
+Slack : -4.498
+TNS   : -50.865
+
+Type  : Slow 1200mV 0C Model Hold 'ADC_CLK_10'
+Slack : 0.246
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'video_sync_generator:display|VS'
 Slack : 0.281
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'MAX10_CLK1_50'
-Slack : 0.295
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'ADC_CLK_10'
-Slack : 0.299
+Slack : 0.293
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.330
+Slack : 0.567
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : 3.290
+Slack : 3.351
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'video_sync_generator:display|VS'
 Slack : -1.222
-TNS   : -125.866
+TNS   : -138.086
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
 Slack : 4.379
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ADC_CLK_10'
-Slack : 4.474
+Slack : 4.477
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'MAX10_CLK1_50'
-Slack : 9.587
+Slack : 9.582
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.541
+Slack : 19.544
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'ADC_CLK_10'
-Slack : -844.169
-TNS   : -7597.121
+Slack : -844.211
+TNS   : -7597.400
 
 Type  : Fast 1200mV 0C Model Setup 'MAX10_CLK1_50'
-Slack : -55.693
-TNS   : -331.474
-
-Type  : Fast 1200mV 0C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : -3.674
-TNS   : -21.591
-
-Type  : Fast 1200mV 0C Model Setup 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -2.633
-TNS   : -30.178
+Slack : -55.177
+TNS   : -328.774
 
 Type  : Fast 1200mV 0C Model Setup 'video_sync_generator:display|VS'
-Slack : -2.143
-TNS   : -149.330
+Slack : -5.404
+TNS   : -268.428
+
+Type  : Fast 1200mV 0C Model Setup 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
+Slack : -3.808
+TNS   : -22.036
+
+Type  : Fast 1200mV 0C Model Setup 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -2.615
+TNS   : -29.121
 
 Type  : Fast 1200mV 0C Model Hold 'paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0]'
-Slack : -0.280
-TNS   : -0.905
+Slack : -0.269
+TNS   : -0.703
+
+Type  : Fast 1200mV 0C Model Hold 'ADC_CLK_10'
+Slack : 0.114
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'video_sync_generator:display|VS'
 Slack : 0.141
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'MAX10_CLK1_50'
-Slack : 0.149
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'ADC_CLK_10'
-Slack : 0.152
+Slack : 0.145
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.187
+Slack : 0.313
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'video_sync_generator:display|VS'
 Slack : -1.000
-TNS   : -103.000
+TNS   : -113.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ADC_CLK_10'
 Slack : 4.272
@@ -175,11 +175,11 @@ Slack : 4.903
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'MAX10_CLK1_50'
-Slack : 9.329
+Slack : 9.302
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vgaClock|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.585
+Slack : 19.579
 TNS   : 0.000
 
 ------------------------------------------------------------

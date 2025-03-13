@@ -25,6 +25,8 @@ entity city2077_blink is
 		LEDR			: out	std_logic_vector(9 downto 0);
 		HEX0			:	out std_logic_vector(7 downto 0);
 		HEX1			:	out std_logic_vector(7 downto 0);
+		HEX2			:	out std_logic_vector(7 downto 0);
+		HEX3			:	out std_logic_vector(7 downto 0);
 		HEX4			:	out std_logic_vector(7 downto 0);
 		HEX5			:	out std_logic_vector(7 downto 0);
 		VGA_R			:	out Std_logic_vector(3 downto 0);
@@ -119,6 +121,8 @@ signal plyr1lsb	: std_logic_vector(7 downto 0);
 signal plyr1msb	: std_logic_vector(7 downto 0);
 signal plyr2lsb	: std_logic_vector(7 downto 0);
 signal plyr2msb	: std_logic_vector(7 downto 0);
+signal debuglsb	: std_logic_vector(7 downto 0);
+signal debugmsb	: std_logic_vector(7 downto 0);
 
 
 signal blanking	: std_logic;
@@ -138,27 +142,33 @@ signal ballX		: integer range 0 to 639 := 320;
 signal ballXdir	: integer range -1 to 1 := 1;
 signal ballY		: integer range 0 to 479 := 240;
 signal ballydir	: integer range -1 to 1 := 1;
-signal ballSize	: integer range 1 to 100 := 20;
+signal ballSize	: integer := 12;
+signal ballspeed	: integer := 2;
 
-signal paddlepos1 : std_logic_vector (11 downto 0); -- adc inputs
-signal paddlepos2 : std_logic_vector (11 downto 0);
-signal paddlepos3 : std_logic_vector (11 downto 0);
-signal paddlepos4 : std_logic_vector (11 downto 0);
+signal paddlepos1 : std_logic_vector (11 downto 0); -- adc player 1 - Y direction
+signal paddlepos2 : std_logic_vector (11 downto 0); -- adc player 2 - Y direction
+signal paddlepos3 : std_logic_vector (11 downto 0); -- adc player 1 - X direction
+signal paddlepos4 : std_logic_vector (11 downto 0); -- adc player 2 - X direction
+signal paddlepos5 : std_logic_vector (11 downto 0); -- adc spare
+signal paddlepos6 : std_logic_vector (11 downto 0); -- adc spare
+signal paddlepos7 : std_logic_vector (11 downto 0); -- adc spare
+signal paddlepos8 : std_logic_vector (11 downto 0); -- adc spare
+signal adcCycle	: integer := 0;
 
 signal paddle1pos	: integer range 0 to 479 := 240;
-signal paddle1sz	: integer range 0 to 100 := 40;
+signal paddle1sz	: integer range 0 to 100 := 20;
 signal player1scr : integer := 0;
 signal paddle2pos	: integer range 0 to 479 := 240;
-signal paddle2sz	: integer range 0 to 100 := 40;
+signal paddle2sz	: integer range 0 to 100 := 20;
 signal player2scr : integer := 0;
 
 signal cycle      : integer                 := 0;  -- memory write cycle
 signal charpos 	: integer range 0 to 4191 := 0;  -- character position from start of screen memory
 
-signal txtaddress : std_logic_vector(11 downto 0);
-signal txtdata    : std_logic_vector(7 downto 0);
-signal wren       : std_logic;
-signal txtpixel   : std_logic;
+signal txtaddress : std_logic_vector(11 downto 0); -- ram address for screen memory
+signal txtdata    : std_logic_vector(7 downto 0);	-- data for screen memory
+signal wren       : std_logic;							-- active low write strobe
+signal txtpixel   : std_logic;							-- output from screen memory to indicate pixel
 
 
 begin
@@ -230,19 +240,15 @@ begin
         cycle      <= 0;
         charpos    <= 0;
       else
-        if cycle = 0 then               -- state machine for writing to text
-                                     -- memory with ascii code values
+        if cycle = 0 then              -- state machine for writing to text
+													-- memory with ascii code values
           cycle      <= 1;
           wren       <= '0';
           txtAddress <= std_logic_vector(to_unsigned(charpos, txtAddress'length));
           if charpos = 2 then
             txtdata <= plyr1lsb or "00110000";  -- write p1 tens to display and convert to ascii
-          elsif charpos = 3 then
+          elsif charpos = 3 then						-- adding 48 to the numeric value eg 3 + 48 = 51 == '3'
             txtdata <= plyr1msb or "00110000";  -- write p1 units to display and convert to ascii
---          elsif charpos = 98 then
---            txtdata <= std_logic_vector(to_unsigned(games1, txtdata'length));  -- write p1 units to display
---          elsif charpos = 101 then
---            txtdata <= std_logic_vector(to_unsigned(games2, txtdata'length));  -- write p1 units to display
           elsif charpos = 36 then
             txtdata <= plyr2lsb or "00110000";  -- write p2 tens to display and convert to ascii
           elsif charpos = 37 then
@@ -270,7 +276,7 @@ begin
 	
 	-- Update Display
 	
-	process(vgaClk, Xpi, Ypi, blanking)
+	process(vgaClk, Xpi, Ypi, blanking, adcCycle)
 	begin
 --		-- clear
 		RGB_R <= x"0";
@@ -281,7 +287,7 @@ begin
 			if txtPixel = '1' then
 				RGB_R <= x"f";
 				RGB_G	<= x"f";
-				RGB_B	<= x"f";			
+				RGB_B	<= x"0";			
 			-- Draw Paddles
 			elsif ((( Xpi> 20) AND (Xpi < 40) AND ( Ypi > (paddle1pos - paddle1sz)) AND (Ypi < (paddle1pos + paddle1sz)))
 				or (( Xpi> 600) AND (Xpi < 620) AND ( Ypi > (paddle2pos - paddle2sz)) AND (Ypi < (paddle2pos + paddle2sz))))
@@ -291,8 +297,8 @@ begin
 				RGB_B	<= x"f";
 				
 				-- Draw the Ball
-			elsif ( (Xpi>ballX-ballSize/2) AND (Xpi<ballX+ballSize/2) AND 
-					  (Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2))	then
+			elsif ( (Xpi>ballX-(ballSize/2)) AND (Xpi<ballX+(ballSize/2)) AND 
+					  (Ypi>ballY-(ballSize/2)) AND (Ypi<ballY+(ballSize/2)))	then
 				RGB_R <= x"f";
 				RGB_G	<= x"f";
 				RGB_B	<= x"0";
@@ -311,18 +317,22 @@ begin
 	end process;
 	
 	-- move Ball - synchronised to Vsync 60Hz
-	process( VSync, ballX, BallY)
+	process( VSync, ballX, BallY, adcCycle)
 		begin
 			if resetn = '1' then
 				ballX <= 320;
 				ballY <= 240;
+				ballspeed <= 2;
 				ballXDir <= 1;
 				ballYDir <= 1;
+				player1scr <= 0;
+				player2scr <= 0;
+				adcCycle <= 0;
 			elsif (rising_edge(VSync)) then 
-				ballx <= ballx + ballXDir;
-				bally	<= bally + BallYDir;
+				ballx <= ballx + ballXDir*ballspeed;
+				bally	<= bally + BallYDir*ballspeed;
 				-- AI player2 control
-				paddle2pos <= bally;
+				-- paddle2pos <= bally;
 
 			   -- player 1 paddle hit
 				if ((ballX < 40 + (ballSize /2)) and 
@@ -357,8 +367,23 @@ begin
 					ballYdir <= 1;
 				end if;
 				-- player controlled paddles
-				paddle1pos <= (paddle1pos + (to_integer(unsigned(paddlepos1(11 downto 3)))))/2;
-				paddle2pos <= (paddle2pos + (to_integer(unsigned(paddlepos2(11 downto 3)))))/2;
+				if (adcCycle = 0)
+				   then -- adcCycle allows time for conversions to complete
+					paddle1pos <= (to_integer(unsigned(paddlepos1(11 downto 3))));
+					adcCycle <= 1;
+					ledr(9) <= '1';
+				
+				elsif adcCycle = 1 then adcCycle <= 2;
+				elsif adcCycle = 2
+				   then
+					paddle2pos <= (to_integer(unsigned(paddlepos2(11 downto 3))));
+					adcCycle <= 3;
+					ledr(9) <= '0';
+				else adcCycle <= 0;
+				end if;
+				
+				debugmsb <= std_logic_vector(to_unsigned(paddle2pos / 10, 8));
+				debuglsb <= std_logic_vector(to_unsigned(paddle2pos mod 10, 8));
 
 			end if;
 			
@@ -368,10 +393,12 @@ begin
 	
 	-- Instantiate components
 	
-	hexlsb 	: hexdisplay port map(plyr1lsb(3 downto 0), HEX4(7 downto 0));
-	hexmsb	: hexdisplay port map(plyr1msb(3 downto 0), HEX5(7 downto 0));
-	hexlsb2 	: hexdisplay port map(plyr2lsb(3 downto 0), HEX0(7 downto 0));
-	hexmsb2	: hexdisplay port map(plyr2msb(3 downto 0), HEX1(7 downto 0));
+	hexlsb 	: hexdisplay port map(plyr1msb(3 downto 0), HEX4(7 downto 0));
+	hexmsb	: hexdisplay port map(plyr1lsb(3 downto 0), HEX5(7 downto 0));
+	hexlsb2 	: hexdisplay port map(plyr2msb(3 downto 0), HEX0(7 downto 0));
+	hexmsb2	: hexdisplay port map(plyr2lsb(3 downto 0), HEX1(7 downto 0));
+	hexlsbd 	: hexdisplay port map(debugmsb(3 downto 0), HEX3(7 downto 0));
+	hexmsbd	: hexdisplay port map(debuglsb(3 downto 0), HEX2(7 downto 0));
 	display	: video_sync_generator port map( resetn, vgaClk, blanking, Hsync, Vsync, Xp, Yp );
 	vgaClock	: vgaClockPLL port map( clk, vgaClk);
 	paddling	: paddle
@@ -381,11 +408,11 @@ begin
       CH0   => paddlepos1,              -- readings.CH0
       CH1   => paddlepos2,              --         .CH1
       CH2   => paddlepos3,              --         .CH2
-      CH3   => paddlepos4               --         .CH3
---                      CH4   => CONNECTED_TO_CH4,   --         .CH4
---                      CH5   => CONNECTED_TO_CH5,   --         .CH5
---                      CH6   => CONNECTED_TO_CH6,   --         .CH6
---                      CH7   => CONNECTED_TO_CH7    --         .CH7
+      CH3   => paddlepos4,               --        .CH3
+      CH4   => paddlepos5,              -- 			.CH4
+      CH5   => paddlepos6,              --         .CH5
+      CH6   => paddlepos7,              --         .CH6 not de10-lite
+      CH7   => paddlepos8               --         .CH7 not de10-lite
       );
 	 txtscreenInst : component txtscreen port map (
 		xPi,
