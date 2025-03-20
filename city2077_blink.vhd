@@ -139,12 +139,15 @@ architecture rtl of city2077_blink is
   signal Yp  : std_logic_vector(9 downto 0);
   signal Ypi : integer range 0 to 479;
 
-  signal ballX     : integer range 0 to 639 := 320;
-  signal ballXdir  : integer range -1 to 1  := 1;
-  signal ballY     : integer range 0 to 479 := 240;
-  signal ballydir  : integer range -1 to 1  := 1;
-  signal ballSize  : integer                := 12;
-  signal ballspeed : integer                := 2;
+  signal ballX        : integer range 0 to 639 := 320;
+  signal ballXdir     : integer range -1 to 1  := 1;
+  signal ballY        : integer range 0 to 479 := 240;
+  signal ballydir     : integer range -1 to 1  := 1;
+  signal ballSize     : integer                := 12;
+  signal ballspeed    : integer                := 2;
+  signal player1Wins  : integer                := 0;
+  signal player2Wins  : integer                := 0;
+
 
   signal paddlepos1 : std_logic_vector (11 downto 0);  -- adc player 1 - Y direction
   signal paddlepos2 : std_logic_vector (11 downto 0);  -- adc player 2 - Y direction
@@ -372,16 +375,18 @@ begin
   process(VSync, ballX, BallY, adcCycle, blipped, blopped, resetn)
   begin
     if resetn = '1' then
-      ballX      <= 320;
-      ballY      <= 240;
-      ballspeed  <= 4;
-      ballXDir   <= 1;
-      ballYDir   <= 1;
-      player1scr <= 0;
-      player2scr <= 0;
-      adcCycle   <= 0;
-      blip       <= '0';
-      blop       <= '0';
+      ballX       <= 320;
+      ballY       <= 240;
+      ballspeed   <= 4;
+      ballXDir    <= 1;
+      ballYDir    <= 1;
+      player1scr  <= 0;
+      player2scr  <= 0;
+      player1Wins <= 0;
+      player1Wins <= 0;
+      adcCycle    <= 0;
+      blip        <= '0';
+      blop        <= '0';
     elsif (rising_edge(VSync)) then
       ballx <= ballx + ballXDir*ballspeed;
       bally <= bally + BallYDir*ballspeed;
@@ -414,13 +419,25 @@ begin
         ballXdir   <= -1;
         ballx      <= 320;
         player1scr <= player1scr + 1;
-        blop       <= '1';
+        if player1scr = 10 then
+          player1Wins <= 1;
+          ballX       <= 320;
+          ballY       <= 240;
+          ballXdir    <= 0;
+        end if;
+        blop        <= '1';
       -- ball hits right edge
       elsif ballX < 20 then
         ballXdir   <= 1;
         ballx      <= 320;
         player2scr <= player2scr + 1;
-        blop       <= '1';
+        if player2scr = 10 then
+          player2Wins <= 1;
+          ballX       <= 320;
+          ballY       <= 240;
+          ballXdir    <= 0;
+        end if;
+        blop        <= '1';
       end if;
       -- ball hits bottom edge
       if ballY > 470 then
