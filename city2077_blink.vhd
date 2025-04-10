@@ -141,12 +141,12 @@ architecture rtl of city2077_blink is
   signal ledState : std_logic;
   signal state    : std_logic_vector(1 downto 0);
 
-  signal plyr1lsb : std_logic_vector(7 downto 0);
-  signal plyr1msb : std_logic_vector(7 downto 0);
-  signal plyr2lsb : std_logic_vector(7 downto 0);
-  signal plyr2msb : std_logic_vector(7 downto 0);
-  signal debuglsb : std_logic_vector(7 downto 0);
-  signal debugmsb : std_logic_vector(7 downto 0);
+  signal plyr1unit : std_logic_vector(7 downto 0);
+  signal plyr1tens : std_logic_vector(7 downto 0);
+  signal plyr1hund : std_logic_vector(7 downto 0);
+  signal plyr1thou : std_logic_vector(7 downto 0);
+  signal liveslsb : std_logic_vector(7 downto 0);
+  signal livesmsb : std_logic_vector(7 downto 0);
 
 
   signal blanking : std_logic;
@@ -162,7 +162,7 @@ architecture rtl of city2077_blink is
   signal Yp  : std_logic_vector(9 downto 0);
   signal Ypi : integer range 0 to 479;
 
-  signal ballX       : integer range 0 to 639 := 320;
+  signal ballX       : integer range -10 to 650 := 320;
   signal ballXdir    : integer range -2 to 2  := 1;
   signal ballY       : integer range 0 to 479 := 240;
   signal ballydir    : integer range -2 to 2  := 1;
@@ -172,6 +172,8 @@ architecture rtl of city2077_blink is
   signal drawbl      : std_logic;
   signal player1Wins : std_logic              := '0';
   signal player2Wins : std_logic              := '0';
+  signal Lives       : integer                := 5;
+  signal GameOver    : std_logic              := '0';
 
 
   signal paddlepos1 : std_logic_vector (11 downto 0);  -- adc player 1 - Y direction
@@ -184,12 +186,12 @@ architecture rtl of city2077_blink is
   signal paddlepos8 : std_logic_vector (11 downto 0);  -- adc spare
   signal adcCycle   : integer := 0;
 
-  signal paddlein1pos : integer range 0 to 479 := 240;
-  signal paddle1pos   : integer range 0 to 479 := 240;
+  signal paddlein1pos : integer range 0 to 650 := 320;
+  signal paddle1pos   : integer range 0 to 650 := 320;
   signal paddle1sz    : integer range 0 to 100 := 40;
   signal player1scr   : integer                := 0;
-  signal paddlein2pos : integer range 0 to 479 := 240;
-  signal paddle2pos   : integer range 0 to 479 := 240;
+  signal paddlein2pos : integer range 0 to 650 := 320;
+  signal paddle2pos   : integer range 0 to 650 := 320;
   signal paddle2sz    : integer range 0 to 100 := 40;
   signal player2scr   : integer                := 0;
 
@@ -217,11 +219,13 @@ begin
   ARDUINO_IO(5) <= audio and ledstate;  -- conect buzzer/speaker to arduino hat
   ARDUINO_IO(7) <= audio and ledstate;  -- digital io D5/D7
 
-  plyr1lsb <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
-  plyr1msb <= std_logic_vector(to_unsigned(player1scr / 10, 8));
+  plyr1unit <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
+  plyr1tens <= std_logic_vector(to_unsigned((player1scr / 10)mod 10, 8));
+  plyr1hund <= std_logic_vector(to_unsigned((player1scr /100)mod 10, 8));
+  plyr1thou <= std_logic_vector(to_unsigned((player1scr /1000)mod 10, 8));
 
-  plyr2lsb <= std_logic_vector(to_unsigned(player2scr mod 10, 8));
-  plyr2msb <= std_logic_vector(to_unsigned(player2scr / 10, 8));
+  liveslsb <= std_logic_vector(to_unsigned(lives mod 10, 8));
+  livesmsb <= std_logic_vector(to_unsigned(lives / 10, 8));
 
   Xpi    <= to_integer(unsigned(Xp));
   ypi    <= to_integer(unsigned(Yp));
@@ -288,35 +292,47 @@ begin
             wren       <= '0';
             txtAddress <= std_logic_vector(to_unsigned(charpos, txtAddress'length));
             if charpos = 2 then
-              txtdata <= plyr1msb or "00110000";  -- write p1 tens to display and convert to ascii
+              txtdata <= livesmsb or "00110000";  -- write p1 lives tens to display and convert to ascii
               wren <= '1';
             elsif charpos = 3 then  -- adding 48 to the numeric value eg 3 + 48 = 51 == '3'
-              txtdata <= plyr1lsb or "00110000";  -- write p1 units to display and convert to ascii
+              txtdata <= liveslsb or "00110000";  -- write p1 lives units to display and convert to ascii
+              wren <= '1';
+            elsif charpos = 34 then
+              txtdata <= plyr1thou or "00110000";  -- write p1 thou to display and convert to ascii
+              wren <= '1';
+            elsif charpos = 35 then
+              txtdata <= plyr1hund or "00110000";  -- write p1 hund to display and convert to ascii
               wren <= '1';
             elsif charpos = 36 then
-              txtdata <= plyr2msb or "00110000";  -- write p2 tens to display and convert to ascii
+              txtdata <= plyr1tens or "00110000";  -- write p1 tens to display and convert to ascii
               wren <= '1';
             elsif charpos = 37 then
-              txtdata <= plyr2lsb or "00110000";  -- write p2 units to display and convert to ascii
+              txtdata <= plyr1unit or "00110000";  -- write p1 units to display and convert to ascii
               wren <= '1';
             elsif charpos = 41 then
-              case player1wins is
+              case GameOver is
                 when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('W');
+                when '1' =>  txtdata <= char2std('L');
               end case;
  --             txtdata <= char2std('W') when player1wins = 1 else char2std(' ');
               wren <= '1';
             elsif charpos = 42 then
-              case player1wins is
+              case gameover is
                 when '0' => txtdata <= char2std(' ');
                 when '1' => txtdata <= char2std('O');
               end case;
  --              txtdata <= char2std('I') when player1wins = 1 else char2std(' ');
               wren <= '1';
             elsif charpos = 43 then
-              case player1wins is
+              case gameover is
                 when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('N');
+                when '1' =>  txtdata <= char2std('S');
+              end case;
+              wren <= '1';
+            elsif charpos = 44 then
+              case gameover is
+                when '0' => txtdata <= char2std(' ');
+                when '1' =>  txtdata <= char2std('E');
               end case;
  --              txtdata <= char2std('N') when player1wins = 1 else char2std(' ');
               wren <= '1';
@@ -837,8 +853,7 @@ begin
         end if;
 
       -- Draw Paddles
-      elsif (((Xpi > 30) and (Xpi < 40) and (Ypi > (paddle1pos - paddle1sz)) and (Ypi < (paddle1pos + paddle1sz)))
-             or ((Xpi > 600) and (Xpi < 610) and (Ypi > (paddle2pos - paddle2sz)) and (Ypi < (paddle2pos + paddle2sz))))
+      elsif (((ypi > 460) and (ypi < 470) and (xpi > (paddle1pos - paddle1sz)) and (xpi < (paddle1pos + paddle1sz))))
       then
         RGB_R <= x"f";
         RGB_G <= x"f";
@@ -919,6 +934,8 @@ begin
       player2scr  <= 0;
       player1Wins <= '0';
       player2Wins <= '0';
+      lives       <= 15;
+      gameOver    <= '0';
       adcCycle    <= 0;
       blip        <= '0';
       blop        <= '0';
@@ -928,8 +945,8 @@ begin
     elsif (rising_edge(VSync)) then
       ballx <= ballx + ballXDir*ballspeed;
       bally <= bally + BallYDir*ballspeed;
-      -- AI player2 control
-      -- paddle2pos <= bally;
+      -- AI player control
+      -- paddle1pos <= ballx;
       if blipped = '1' then             -- noise started
         blip <= '0';
       end if;
@@ -937,72 +954,80 @@ begin
         blop <= '0';
       end if;
       -- player 1 paddle hit
-      if ((ballX < 40 + (ballSize /2)) and
-          ((ballY >= paddle1pos - paddle1sz) and (ballY < paddle1pos + paddle1sz)))
+      if ((bally > 460 - (ballSize /2)) and
+          ((ballx >= paddle1pos - paddle1sz) and (ballx < paddle1pos + paddle1sz)))
       then
-        if (bally > paddle1pos + paddle1sz/2) then
-          ballYdir <= 2;
-        elsif (bally > paddle1pos + paddle1sz/4) then
-          ballydir <= 1;
-        elsif (bally < paddle1pos - paddle1sz/2) then
-          ballydir <= -2;
-        elsif (bally < paddle1pos - paddle1sz/4) then
-          ballydir <= -1;
+        if (ballx > paddle1pos + paddle1sz/2) then
+          ballxdir <= 2;
+        elsif (ballx > paddle1pos + 3 * paddle1sz/4) then
+          ballxdir <= 1;
+        elsif (ballx < paddle1pos - paddle1sz/2) then
+          ballxdir <= -2;
+        elsif (ballx < paddle1pos - 3 * paddle1sz/4) then
+          ballxdir <= -1;
         else
-          ballydir <= 0;
+          ballxdir <= 0;
         end if;
-        ballXdir <= 1;
-        ballx    <= ballX + 1;
+        ballydir <= -1;
+        bally    <= bally - 1;
         blip     <= '1';
 
       -- player 2 paddle hit
-      elsif ((ballX > 600 - (ballSize /2)) and
-             ((ballY >= paddle2pos - paddle2sz) and (ballY < paddle2pos + paddle2sz)))
-      then
-        if (bally > paddle2pos + paddle2sz/2) then
-          ballYdir <= 2;
-        elsif (bally > paddle2pos + paddle2sz/4) then
-          ballydir <= 1;
-        elsif (bally < paddle2pos - paddle2sz/2) then
-          ballydir <= -2;
-        elsif (bally < paddle2pos - paddle2sz/4) then
-          ballydir <= -1;
-        else
-          ballydir <= 0;
-        end if;
-        ballXdir <= -1;
-        ballx    <= ballX - 1;
-        blip     <= '1';
+      -- elsif ((ballX > 600 - (ballSize /2)) and
+      --        ((ballY >= paddle2pos - paddle2sz) and (ballY < paddle2pos + paddle2sz)))
+      -- then
+      --   if (bally > paddle2pos + paddle2sz/2) then
+      --     ballYdir <= 2;
+      --   elsif (bally > paddle2pos + paddle2sz/4) then
+      --     ballydir <= 1;
+      --   elsif (bally < paddle2pos - paddle2sz/2) then
+      --     ballydir <= -2;
+      --   elsif (bally < paddle2pos - paddle2sz/4) then
+      --     ballydir <= -1;
+      --   else
+      --     ballydir <= 0;
+      --   end if;
+      --   ballXdir <= -1;
+      --   ballx    <= ballX - 1;
+      --   blip     <= '1';
 
       -- ball hits left edge
-      elsif ballX > 630 then
-        ballXdir   <= -1;
-        ballx      <= 320;
-        player1scr <= player1scr + 1;
-        if player1scr = 10 then
+      elsif ballX  >= 639 - ballsize/2 then
+        ballXdir   <= -abs(ballxdir);
+        ballx      <= ballx - 1;
+        --player1scr <= player1scr + 1;
+        if player1scr = 100 then
           player1Wins <= '1';
           ballX       <= 320;
           ballY       <= 240;
-          ballXdir    <= 0;
+          ballydir    <= 0;
         end if;
         blop <= '1';
-      -- ball hits right edge
-      elsif ballX < 20 then
-        ballXdir   <= 1;
-        ballx      <= 320;
-        player2scr <= player2scr + 1;
-        if player2scr = 10 then
-          player2Wins <= '1';
-          ballX       <= 320;
-          ballY       <= 240;
-          ballXdir    <= 0;
-        end if;
+      -- ball hits left edge
+      elsif ballX < ballsize/2 then
+        ballXdir   <= abs(ballxdir);
+        ballx      <= ballx + abs(ballxdir);
+--        player2scr <= player2scr + 1;
+--        if player2scr = 10 then
+--          player2Wins <= '1';
+--          ballX       <= 320;
+--          ballY       <= 240;
+--          ballXdir    <= 0;
+--        end if;
         blop <= '1';
       end if;
       -- ball hits bottom edge
-      if ballY > 470 then
+      if ballY > 475 then
         ballYdir <= -ballYdir;
-        bally <= 469;
+        bally <= 240;
+        Lives <= Lives - 1;
+          if Lives = 1 then
+            gameOver <= '1';
+            ballxdir <= 0;
+            ballydir <= 0;
+            ballx <= 320;
+            bally <= 240;
+          end if;
       -- ball hits top edge
       elsif ballY < 60 then
         ballYdir <= -ballydir;
@@ -1016,34 +1041,34 @@ begin
         ledr(9)      <= '1';
 
       elsif adcCycle = 1 then
-        adcCycle <= 2;
-        if paddlein1pos > 460 then
-          paddle1pos <= 460;
-        elsif paddlein1pos < 70 then
-          paddle1pos <= 70;
+        adcCycle <= 0;
+        if paddlein1pos > 640 then
+          paddle1pos <= 640;
+        elsif paddlein1pos < 1 then
+          paddle1pos <= 1;
         else
           paddle1pos <= paddlein1pos;
         end if;
 
-      elsif adcCycle = 2
-      then
-        paddlein2pos <= (to_integer(unsigned(paddlepos2(11 downto 3))));
-        adcCycle     <= 3;
-        ledr(9)      <= '0';
-      else
-        adcCycle <= 0;
-        if paddlein2pos > 460 then
-          paddle2pos <= 460;
-        elsif paddlein2pos < 70 then
-          paddle2pos <= 70;
-        else
-          paddle2pos <= paddlein2pos;
-        end if;
+      -- elsif adcCycle = 2
+      -- then
+      --   paddlein2pos <= (to_integer(unsigned(paddlepos2(11 downto 3))));
+      --   adcCycle     <= 3;
+      --   ledr(9)      <= '0';
+      -- else
+      --   adcCycle <= 0;
+      --   if paddlein2pos > 460 then
+      --     paddle2pos <= 460;
+      --   elsif paddlein2pos < 70 then
+      --     paddle2pos <= 70;
+      --   else
+      --     paddle2pos <= paddlein2pos;
+      --   end if;
 
       end if;
 
-      debugmsb <= std_logic_vector(to_unsigned(paddle2pos / 10, 8));
-      debuglsb <= std_logic_vector(to_unsigned(paddle2pos mod 10, 8));
+      --debugmsb <= std_logic_vector(to_unsigned(paddle2pos / 10, 8));
+      --debuglsb <= std_logic_vector(to_unsigned(paddle2pos mod 10, 8));
 
     end if;
   end process;
@@ -1054,12 +1079,12 @@ begin
 
   
 
-  hexlsb   : hexdisplay port map(plyr1msb(3 downto 0), HEX5(7 downto 0));
-  hexmsb   : hexdisplay port map(plyr1lsb(3 downto 0), HEX4(7 downto 0));
-  hexlsb2  : hexdisplay port map(plyr2msb(3 downto 0), HEX1(7 downto 0));
-  hexmsb2  : hexdisplay port map(plyr2lsb(3 downto 0), HEX0(7 downto 0));
-  hexlsbd  : hexdisplay port map(debugmsb(3 downto 0), HEX3(7 downto 0));
-  hexmsbd  : hexdisplay port map(debuglsb(3 downto 0), HEX2(7 downto 0));
+  hexlsb   : hexdisplay port map(plyr1thou(3 downto 0), HEX3(7 downto 0));
+  hexmsb   : hexdisplay port map(plyr1hund(3 downto 0), HEX2(7 downto 0));
+  hexlsb2  : hexdisplay port map(plyr1tens(3 downto 0), HEX1(7 downto 0));
+  hexmsb2  : hexdisplay port map(plyr1unit(3 downto 0), HEX0(7 downto 0));
+  hexlsbd  : hexdisplay port map(livesmsb(3 downto 0), HEX5(7 downto 0));
+  hexmsbd  : hexdisplay port map(liveslsb(3 downto 0), HEX4(7 downto 0));
   display  : video_sync_generator port map(resetn, vgaClk, blanking, Hsync, Vsync, Xp, Yp);
   vgaClock : vgaClockPLL port map(clk, vgaClk);
   paddling : paddle
