@@ -26,6 +26,7 @@ entity city2077_blink is
     MAX10_CLK1_50 : in  std_logic;
     ADC_CLK_10    : in  std_logic;
     KEY           : in  std_logic_vector(1 downto 0);  -- Reset and toggle buttons
+	 SW				: in  std_logic_vector(9 downto 0);
     LEDR          : out std_logic_vector(9 downto 0);
     HEX0          : out std_logic_vector(7 downto 0);
     HEX1          : out std_logic_vector(7 downto 0);
@@ -46,6 +47,23 @@ end entity;
 
 
 architecture rtl of city2077_blink is
+  -- Define constants for readability
+  constant ASCII_OFFSET : std_logic_vector(7 downto 0) := "00110000"; -- ASCII for '0'
+  constant BLOCK_FULL   : std_logic_vector(7 downto 0) := "10000000";
+  constant BLOCK_MISSING_LAST : std_logic_vector(7 downto 0) := "10000001";
+  constant BLOCK_EMPTY  : std_logic_vector(7 downto 0) := "00000000";
+  constant GAME_OVER_G_ASCII : std_logic_vector(7 downto 0) := "01000111"; -- ASCII for 'G'
+  constant GAME_OVER_A_ASCII : std_logic_vector(7 downto 0) := "01000001"; -- ASCII for 'A'
+  constant GAME_OVER_M_ASCII : std_logic_vector(7 downto 0) := "01001101"; -- ASCII for 'M'
+  constant GAME_OVER_E_ASCII : std_logic_vector(7 downto 0) := "01000101"; -- ASCII for 'E'
+  constant GAME_OVER_O_ASCII : std_logic_vector(7 downto 0) := "01001111"; -- ASCII for 'O'
+  constant GAME_OVER_V_ASCII : std_logic_vector(7 downto 0) := "01010110"; -- ASCII for 'V'
+--  constant GAME_OVER_E_ASCII : std_logic_vector(7 downto 0) := "01000101"; -- ASCII for 'E'
+  constant GAME_OVER_R_ASCII : std_logic_vector(7 downto 0) := "01010010"; -- ASCII for 'R'
+  constant PLAYER2_WIN_W_ASCII : std_logic_vector(7 downto 0) := "01010111"; -- ASCII for 'W'
+  constant PLAYER2_WIN_I_ASCII : std_logic_vector(7 downto 0) := "01001001"; -- ASCII for 'I'
+  constant PLAYER2_WIN_N_ASCII : std_logic_vector(7 downto 0) := "01001110"; -- ASCII for 'N'
+  constant SPACE_ASCII       : std_logic_vector(7 downto 0) := "00100000"; -- ASCII for ' '
 
   component counter is
 
@@ -129,11 +147,14 @@ architecture rtl of city2077_blink is
      '0', '0', '0', '0', '1', '1', '0', '0', '0', '0');
 
   -- Creates a 4x3 array for blocks
-  type t_Row_Col is array (0 to 39) of integer range 0 to 9;
-  signal blockPresent : t_Row_Col := (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                                      1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                                      1,1,1,1,1,1,1,1,1,1);
-
+  type t_Row_Col is array (0 to 39) of std_logic;
+  signal blockPresent : t_Row_Col := ( '1', '1', '1', '1', '1', '1', '1', '1',
+												   '1', '1', '1', '1', '1', '1', '1', '1',
+												   '1', '1', '1', '1', '1', '1', '1', '1',
+												   '1', '1', '1', '1', '1', '1', '1', '1',
+												   '1', '1', '1', '1', '1', '1', '1', '1');
+													
+  --signal blockPresent : function (index : integer) return std_logic; -- Assuming this function exists
   signal clk      : std_logic;
   signal reset    : std_logic;
   signal resetn   : std_logic;
@@ -168,12 +189,13 @@ architecture rtl of city2077_blink is
   signal ballydir    : integer range -2 to 2  := 1;
   signal ballSize    : integer                := 12;
   signal scaleBL     : integer range 1 to 32  := 2;  -- ball sprite scaling
-  signal ballspeed   : integer                := 2;
+  signal ballspeed   : integer                := 1;
   signal drawbl      : std_logic;
   signal player1Wins : std_logic              := '0';
   signal player2Wins : std_logic              := '0';
-  signal Lives       : integer                := 5;
+  signal Lives       : integer                := 25;
   signal GameOver    : std_logic              := '0';
+  signal blockHit		: integer range -40 to 1000 ;
 
 
   signal paddlepos1 : std_logic_vector (11 downto 0);  -- adc player 1 - Y direction
@@ -210,6 +232,16 @@ architecture rtl of city2077_blink is
   signal blop      : std_logic;
   signal blopped   : std_logic;
   signal audio     : std_logic;
+  signal aiControl : std_logic;
+  
+    -- Define an internal state for the writing process
+  type WriteState is (IDLE, WRITE_DATA, WAIT_STROBE);
+  signal write_state : WriteState := IDLE;
+
+  -- Internal signal for character position
+  signal charpos_int : unsigned(11 downto 0) := (others => '0'); -- reAdjusted size
+
+
 
 begin
   clk           <= Max10_clk1_50;
@@ -219,11 +251,17 @@ begin
   ARDUINO_IO(5) <= audio and ledstate;  -- conect buzzer/speaker to arduino hat
   ARDUINO_IO(7) <= audio and ledstate;  -- digital io D5/D7
 
+--  plyr1unit <= std_logic_vector(to_unsigned(blockhit mod 10, 8));
+--  plyr1tens <= std_logic_vector(to_unsigned((blockhit / 10)mod 10, 8));
+--  plyr1hund <= std_logic_vector(to_unsigned((blockhit /100)mod 10, 8));
+--  plyr1thou <= std_logic_vector(to_unsigned((blockhit /1000)mod 10, 8));
   plyr1unit <= std_logic_vector(to_unsigned(player1scr mod 10, 8));
   plyr1tens <= std_logic_vector(to_unsigned((player1scr / 10)mod 10, 8));
   plyr1hund <= std_logic_vector(to_unsigned((player1scr /100)mod 10, 8));
   plyr1thou <= std_logic_vector(to_unsigned((player1scr /1000)mod 10, 8));
 
+--  liveslsb <= std_logic_vector(to_unsigned((((bally*10)/24)+ballx/64) mod 10, 8));
+--  livesmsb <= std_logic_vector(to_unsigned((((bally*10)/24)+ballx/64)/ 10, 8));
   liveslsb <= std_logic_vector(to_unsigned(lives mod 10, 8));
   livesmsb <= std_logic_vector(to_unsigned(lives / 10, 8));
 
@@ -236,7 +274,8 @@ begin
   VGA_B  <= RGB_B;
 
   SP(xpi, ypi, ballx, bally, ball, scaleBL, DRAWBL);
-
+  aiControl <= sw(0);
+  ledr(4) <= aiControl;
 
   -- Logic to toggle Led state
 
@@ -275,551 +314,636 @@ begin
       end if;
     end if;
   end process;
-  process(vgaclk, blanking)
-  begin  -- update the display with player scores
-    if (rising_edge(vgaclk)) then
-      if resetn = '1' then
-        txtaddress <= "000000000000";
-        txtdata    <= "00000000";
-        wren       <= '0';
-        cycle      <= 0;
-        charpos    <= 0;
-      else
-        if blanking = '0' then
-          if cycle = 0 then             -- state machine for writing to text
-            -- memory with ascii code values
-            cycle      <= 1;
-            wren       <= '0';
-            txtAddress <= std_logic_vector(to_unsigned(charpos, txtAddress'length));
-            if charpos = 2 then
-              txtdata <= livesmsb or "00110000";  -- write p1 lives tens to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 3 then  -- adding 48 to the numeric value eg 3 + 48 = 51 == '3'
-              txtdata <= liveslsb or "00110000";  -- write p1 lives units to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 34 then
-              txtdata <= plyr1thou or "00110000";  -- write p1 thou to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 35 then
-              txtdata <= plyr1hund or "00110000";  -- write p1 hund to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 36 then
-              txtdata <= plyr1tens or "00110000";  -- write p1 tens to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 37 then
-              txtdata <= plyr1unit or "00110000";  -- write p1 units to display and convert to ascii
-              wren <= '1';
-            elsif charpos = 41 then
-              case GameOver is
-                when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('L');
-              end case;
- --             txtdata <= char2std('W') when player1wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos = 42 then
-              case gameover is
-                when '0' => txtdata <= char2std(' ');
-                when '1' => txtdata <= char2std('O');
-              end case;
- --              txtdata <= char2std('I') when player1wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos = 43 then
-              case gameover is
-                when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('S');
-              end case;
-              wren <= '1';
-            elsif charpos = 44 then
-              case gameover is
-                when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('E');
-              end case;
- --              txtdata <= char2std('N') when player1wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos = 76 then
-              case player2wins is
-                when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('W');
-              end case;
- --              txtdata <= char2std('W') when player2wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos = 77 then
-              case player2wins is
-                when '0' => txtdata <= char2std(' ');
-                when '1' =>  txtdata <= char2std('I');
-              end case;
- --              txtdata <= char2std('O') when player2wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos = 78 then
-              case player2wins is
-                when '0' => txtdata <= char2std(' ');
-                when '1' => txtdata <= char2std('N');
-              end case;
- --              txtdata <= char2std('N') when player2wins = 1 else char2std(' ');
-              wren <= '1';
-            elsif charpos >= 160 and charpos < 164 then
-              if blockPresent(0) = 1 then
-                if charpos = 163 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 164 and charpos < 168 then
-              if blockPresent(1) = 1 then
-                if charpos = 167 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 168 and charpos < 172 then
-              if blockPresent(2) = 1 then
-                if charpos = 171 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 172 and charpos < 176 then
-              if blockPresent(3) = 1 then
-                if charpos = 175 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 176 and charpos < 180 then
-              if blockPresent(4) = 1 then
-                if charpos = 179 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 180 and charpos < 184 then
-              if blockPresent(5) = 1 then
-                if charpos = 183 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 184 and charpos < 188 then
-              if blockPresent(6) = 1 then
-                if charpos = 187 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 188 and charpos < 192 then
-              if blockPresent(7) = 1 then
-                if charpos = 191 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "10000001";
-              end if;
-              wren <= '1';
-            elsif charpos >= 192 and charpos < 196 then
-              if blockPresent(8) = 1 then
-                if charpos = 195 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 196 and charpos < 200 then
-              if blockPresent(9) = 1 then
-                if charpos = 199 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 200 and charpos < 204 then
-              if blockPresent(10) = 1 then
-                if charpos = 203 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 204 and charpos < 208 then
-              if blockPresent(11) = 1 then
-                if charpos = 207 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 208 and charpos < 212 then
-              if blockPresent(12) = 1 then
-                if charpos = 211 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 212 and charpos < 216 then
-              if blockPresent(13) = 1 then
-                if charpos = 215 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 216 and charpos < 220 then
-              if blockPresent(14) = 1 then
-                if charpos = 219 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 220 and charpos < 224 then
-              if blockPresent(15) = 1 then
-                if charpos = 223 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 224 and charpos < 228 then
-              if blockPresent(16) = 1 then
-                if charpos = 227 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 228 and charpos < 232 then
-              if blockPresent(17) = 1 then
-                if charpos = 231 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 232 and charpos < 236 then
-              if blockPresent(18) = 1 then
-                if charpos = 235 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 236 and charpos < 240 then
-              if blockPresent(19) = 1 then
-                if charpos = 239 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 240 and charpos < 244 then
-              if blockPresent(20) = 1 then
-                if charpos = 243 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 244 and charpos < 248 then
-              if blockPresent(21) = 1 then
-                if charpos = 247 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 248 and charpos < 252 then
-              if blockPresent(22) = 1 then
-                if charpos = 251 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 252 and charpos < 256 then
-              if blockPresent(23) = 1 then
-                if charpos = 255 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "10000001";
-              end if;
-              wren <= '1';
-            elsif charpos >= 256 and charpos < 260 then
-              if blockPresent(24) = 1 then
-                if charpos = 259 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 260 and charpos < 264 then
-              if blockPresent(25) = 1 then
-                if charpos = 263 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 264 and charpos < 268 then
-              if blockPresent(26) = 1 then
-                if charpos = 267 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 268 and charpos < 272 then
-              if blockPresent(27) = 1 then
-                if charpos = 271 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 272 and charpos < 276 then
-              if blockPresent(28) = 1 then
-                if charpos = 275 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 276 and charpos < 280 then
-              if blockPresent(29) = 1 then
-                if charpos = 279 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 280 and charpos < 284 then
-              if blockPresent(30) = 1 then
-                if charpos = 283 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 284 and charpos < 288 then
-              if blockPresent(31) = 1 then
-                if charpos = 287 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 288 and charpos < 292 then
-              if blockPresent(32) = 1 then
-                if charpos = 291 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 292 and charpos < 296 then
-              if blockPresent(33) = 1 then
-                if charpos = 295 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 296 and charpos < 300 then
-              if blockPresent(34) = 1 then
-                if charpos = 299 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 300 and charpos < 304 then
-              if blockPresent(35) = 1 then
-                if charpos = 303 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 304 and charpos < 308 then
-              if blockPresent(36) = 1 then
-                if charpos = 307 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 308 and charpos < 312 then
-              if blockPresent(37) = 1 then
-                if charpos = 311 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 312 and charpos < 316 then
-              if blockPresent(38) = 1 then
-                if charpos = 315 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "00000000";
-              end if;
-              wren <= '1';
-            elsif charpos >= 316 and charpos < 320 then
-              if blockPresent(39) = 1 then
-                if charpos = 319 then
-                  txtdata <= "10000001"; -- missing last column block
-                else
-                  txtdata <= "10000000"; -- full block
-                end if;  
-              else
-                txtdata <= "10000001";
-              end if;
-              wren <= '1';
-            else
-              wren <= '0';
-            end if;
 
-          elsif cycle = 1 then          -- strobe wren high for one clock
---            wren  <= '0';
-            cycle <= 2;
-          else                              -- cycle is 2, reset cycle and increment
-                                            -- memory address for next
-                                            -- character position
-            wren  <= '0';
-            cycle <= 0;
-            if charpos < 1023 then
-              charpos <= charpos + 1;
-            else
-              charpos <= 0;
-            end if;
-          end if;
+
+
+  process (vgaclk)
+  begin
+    if rising_edge(vgaclk) then
+      if resetn = '1' then -- Active high reset
+        txtaddress  <= (others => '0');
+        txtdata     <= (others => '0');
+        wren        <= '0';
+        write_state <= IDLE;
+        charpos_int <= (others => '0');
+      else
+        if blanking = '1' then
+          case write_state is
+            when IDLE =>
+              -- Start writing if not blanking
+              write_state <= WRITE_DATA;
+
+            when WRITE_DATA =>
+              wren <= '0'; -- Default to no write
+
+              case to_integer(charpos_int) is
+                when 2 =>
+                  txtdata <= livesmsb or ASCII_OFFSET;
+                  wren <= '1';
+                when 3 =>
+                  txtdata <= liveslsb or ASCII_OFFSET;
+                  wren <= '1';
+                when 34 =>
+                  txtdata <= plyr1thou or ASCII_OFFSET;
+                  wren <= '1';
+                when 35 =>
+                  txtdata <= plyr1hund or ASCII_OFFSET;
+                  wren <= '1';
+                when 36 =>
+                  txtdata <= plyr1tens or ASCII_OFFSET;
+                  wren <= '1';
+                when 37 =>
+                  txtdata <= plyr1unit or ASCII_OFFSET;
+                  wren <= '1';
+                when 41 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_G_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 42 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_A_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 43 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_M_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 44 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_E_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 46 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_O_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 47 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_V_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 48 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_E_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 49 =>
+                  if GameOver = '1' then
+                    txtdata <= GAME_OVER_R_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 76 =>
+                  if player2wins = '1' then
+                    txtdata <= PLAYER2_WIN_W_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 77 =>
+                  if player2wins = '1' then
+                    txtdata <= PLAYER2_WIN_I_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 78 =>
+                  if player2wins = '1' then
+                    txtdata <= PLAYER2_WIN_N_ASCII;
+                    wren <= '1';
+                  else
+                    txtdata <= SPACE_ASCII;
+                    wren <= '1';
+                  end if;
+                when 160 to 163 =>
+                  if blockPresent(0) = '1' then
+                    if to_integer(charpos_int) = 163 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 164 to 167 =>
+                  if blockPresent(1) = '1' then
+                    if to_integer(charpos_int) = 167 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 168 to 171 =>
+                  if blockPresent(2) = '1' then
+                    if to_integer(charpos_int) = 171 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 172 to 175 =>
+                  if blockPresent(3) = '1' then
+                    if to_integer(charpos_int) = 175 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 176 to 179 =>
+                  if blockPresent(4) = '1' then
+                    if to_integer(charpos_int) = 179 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 180 to 183 =>
+                  if blockPresent(5) = '1' then
+                    if to_integer(charpos_int) = 183 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 184 to 187 =>
+                  if blockPresent(6) = '1' then
+                    if to_integer(charpos_int) = 187 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 188 to 191 =>
+                  if blockPresent(7) = '1' then
+                    if to_integer(charpos_int) = 191 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY; 
+                    wren <= '1';
+                  end if;
+                when 192 to 195 =>
+                  if blockPresent(8) = '1' then
+                    if to_integer(charpos_int) = 195 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 196 to 199 =>
+                  if blockPresent(9) = '1' then
+                    if to_integer(charpos_int) = 199 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 200 to 203 =>
+                  if blockPresent(10) = '1' then
+                    if to_integer(charpos_int) = 203 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 204 to 207 =>
+                  if blockPresent(11) = '1' then
+                    if to_integer(charpos_int) = 207 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 208 to 211 =>
+                  if blockPresent(12) = '1' then
+                    if to_integer(charpos_int) = 211 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 212 to 215 =>
+                  if blockPresent(13) = '1' then
+                    if to_integer(charpos_int) = 215 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 216 to 219 =>
+                  if blockPresent(14) = '1' then
+                    if to_integer(charpos_int) = 219 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 220 to 223 =>
+                  if blockPresent(15) = '1' then
+                    if to_integer(charpos_int) = 223 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 224 to 227 =>
+                  if blockPresent(16) = '1' then
+                    if to_integer(charpos_int) = 227 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 228 to 231 =>
+                  if blockPresent(17) = '1' then
+                    if to_integer(charpos_int) = 231 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 232 to 235 =>
+                  if blockPresent(18) = '1' then
+                    if to_integer(charpos_int) = 235 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 236 to 239 =>
+                  if blockPresent(19) = '1' then
+                    if to_integer(charpos_int) = 239 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 240 to 243 =>
+                  if blockPresent(20) = '1' then
+                    if to_integer(charpos_int) = 243 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 244 to 247 =>
+                  if blockPresent(21) = '1' then
+                    if to_integer(charpos_int) = 247 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 248 to 251 =>
+                  if blockPresent(22) = '1' then
+                    if to_integer(charpos_int) = 251 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 252 to 255 =>
+                  if blockPresent(23) = '1' then
+                    if to_integer(charpos_int) = 255 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY; 
+                    wren <= '1';
+                  end if;
+                when 256 to 259 =>
+                  if blockPresent(24) = '1' then
+                    if to_integer(charpos_int) = 259 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 260 to 263 =>
+                  if blockPresent(25) = '1' then
+                    if to_integer(charpos_int) = 263 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 264 to 267 =>
+                  if blockPresent(26) = '1' then
+                    if to_integer(charpos_int) = 267 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 268 to 271 =>
+                  if blockPresent(27) = '1' then
+                    if to_integer(charpos_int) = 271 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 272 to 275 =>
+                  if blockPresent(28) = '1' then
+                    if to_integer(charpos_int) = 275 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 276 to 279 =>
+                  if blockPresent(29) = '1' then
+                    if to_integer(charpos_int) = 279 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 280 to 283 =>
+                  if blockPresent(30) = '1' then
+                    if to_integer(charpos_int) = 283 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 284 to 287 =>
+                  if blockPresent(31) = '1' then
+                    if to_integer(charpos_int) = 287 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 288 to 291 =>
+                  if blockPresent(32) = '1' then
+                    if to_integer(charpos_int) = 291 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 292 to 295 =>
+                  if blockPresent(33) = '1' then
+                    if to_integer(charpos_int) = 295 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 296 to 299 =>
+                  if blockPresent(34) = '1' then
+                    if to_integer(charpos_int) = 299 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 300 to 303 =>
+                  if blockPresent(35) = '1' then
+                    if to_integer(charpos_int) = 303 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 304 to 307 =>
+                  if blockPresent(36) = '1' then
+                    if to_integer(charpos_int) = 307 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 308 to 311 =>
+                  if blockPresent(37) = '1' then
+                    if to_integer(charpos_int) = 311 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 312 to 315 =>
+                  if blockPresent(38) = '1' then
+                    if to_integer(charpos_int) = 315 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when 316 to 319 =>
+                  if blockPresent(39) = '1' then
+                    if to_integer(charpos_int) = 319 then
+                      txtdata <= BLOCK_MISSING_LAST;
+                    else
+                      txtdata <= BLOCK_FULL;
+                    end if;
+                    wren <= '1';
+                  else
+                    txtdata <= BLOCK_EMPTY;
+                    wren <= '1';
+                  end if;
+                when others =>
+                  wren <= '0';
+              end case;
+              txtAddress <= std_logic_vector(charpos_int);
+              write_state <= WAIT_STROBE;
+
+            when WAIT_STROBE =>
+              -- Strobe wren high for one clock cycle
+              wren <= '0';
+              write_state <= IDLE;
+              if charpos_int < 1023 then
+                charpos_int <= charpos_int + 1;
+              else
+                charpos_int <= (others => '0');
+              end if;
+          end case;
         end if;
       end if;
     end if;
   end process;
-
+  
   -- Update Display
 
   process(vgaClk, Xpi, Ypi, blanking, adcCycle)
@@ -920,6 +1044,7 @@ begin
     end if;
   end process;
 
+ 
 
   -- move Ball - synchronised to Vsync 60Hz
   process(VSync, ballX, BallY, adcCycle, blipped, blopped, resetn)
@@ -927,7 +1052,7 @@ begin
     if resetn = '1' then
       ballX       <= 320;
       ballY       <= 240;
-      ballspeed   <= 4;
+      ballspeed   <= 1;
       ballXDir    <= 1;
       ballYDir    <= 1;
       player1scr  <= 0;
@@ -939,12 +1064,17 @@ begin
       adcCycle    <= 0;
       blip        <= '0';
       blop        <= '0';
-      blockPresent <= (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                       1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                       1,1,1,1,1,1,1,1,1,1);      
+      blockPresent <= ( '1', '1', '1', '1', '1', '1', '1', '1',
+								'1', '1', '1', '1', '1', '1', '1', '1',
+								'1', '1', '1', '1', '1', '1', '1', '1',
+								'1', '1', '1', '1', '1', '1', '1', '1',
+								'1', '1', '1', '1', '1', '1', '1', '1');      
     elsif (rising_edge(VSync)) then
       ballx <= ballx + ballXDir*ballspeed;
       bally <= bally + BallYDir*ballspeed;
+ 		-- which block is ball hitting?
+		blockHit <= (((ballY - 96 - ballydir * 12 + ballydir*scalebl*6) / 24) * 10) + (ballX/64); -- Block 0 at 120, 0 and ten blocks (24 x 64) per row
+
       -- AI player control
       -- paddle1pos <= ballx;
       if blipped = '1' then             -- noise started
@@ -953,118 +1083,102 @@ begin
       if blopped = '1' then             -- noise started
         blop <= '0';
       end if;
+		case bally is
+			when 0 to 59 =>
+				-- ball hits top edge
+				ballYdir <= 1;--abs (ballydir);
+				bally <= 59 + scalebl*4;
+
+			when 96 to 216 =>
+			  if blockPresent(blockHit) = '1' then
+			     blockPresent(blockHit) <= '0';
+				  if abs(ballx + scalebl) mod 64 < 6 then
+				    ballxdir <= - abs(ballxdir);
+ 				  elsif abs(ballx - scalebl) mod 64 > 58 then
+				    ballxdir <= abs(ballxdir);
+				  else 
+				    ballYdir <= - ballydir;
+				  end if;
+				  player1Scr <= player1Scr + (8 - (bally / 24)) * 10;
+				  blip <= '1';
+				end if;
+			when 460 - scalebl*3 to 470 - scalebl*3 => -- line of paddle vertically
+			
       -- player 1 paddle hit
-      if ((bally > 460 - (ballSize /2)) and
-          ((ballx >= paddle1pos - paddle1sz) and (ballx < paddle1pos + paddle1sz)))
-      then
-        if (ballx > paddle1pos + paddle1sz/2) then
-          ballxdir <= 2;
-        elsif (ballx > paddle1pos + 3 * paddle1sz/4) then
-          ballxdir <= 1;
-        elsif (ballx < paddle1pos - paddle1sz/2) then
-          ballxdir <= -2;
-        elsif (ballx < paddle1pos - 3 * paddle1sz/4) then
-          ballxdir <= -1;
-        else
-          ballxdir <= 0;
-        end if;
-        ballydir <= -1;
-        bally    <= bally - 1;
-        blip     <= '1';
+				
+			if ballx > paddle1pos - paddle1sz and ballx < (paddle1pos - 3*(paddle1sz) /4)then 
+					ballxdir <= -2;
+					ballydir <= -1;
+					blip <= '1';
+					bally <= bally - 1;
+			elsif ballx > paddle1pos - 3* (paddle1sz)/4 and ballx < (paddle1pos) then
+					ballxdir <= -1;
+					ballydir <= -1;
+					blip <= '1';
+					bally <= bally - 1;
+--			elsif ballx > paddle1pos - (paddle1sz)/2 and ballx < (paddle1pos + paddle1sz/2) then
+--					ballxdir <= 0;
+--					ballydir <= -1;
+--					blip <= '1';
+--					bally <= bally - 1;
+			elsif ballx > paddle1pos and ballx < paddle1pos + (3* (paddle1sz)/4) then
+					ballxdir <= 1;
+					ballydir <= -1;
+					blip <= '1';
+					bally <= bally - 1;
+			elsif ballx > paddle1pos + 3*(paddle1sz) /4 and ballx < paddle1pos + paddle1sz then
+					ballxdir <= 2;
+					ballydir <= -1;
+					blip <= '1';
+					bally <= bally - 1;
+			else 
+				ballxdir <= ballxdir; -- paddle missed
+			end if;
 
-      -- player 2 paddle hit
-      -- elsif ((ballX > 600 - (ballSize /2)) and
-      --        ((ballY >= paddle2pos - paddle2sz) and (ballY < paddle2pos + paddle2sz)))
-      -- then
-      --   if (bally > paddle2pos + paddle2sz/2) then
-      --     ballYdir <= 2;
-      --   elsif (bally > paddle2pos + paddle2sz/4) then
-      --     ballydir <= 1;
-      --   elsif (bally < paddle2pos - paddle2sz/2) then
-      --     ballydir <= -2;
-      --   elsif (bally < paddle2pos - paddle2sz/4) then
-      --     ballydir <= -1;
-      --   else
-      --     ballydir <= 0;
-      --   end if;
-      --   ballXdir <= -1;
-      --   ballx    <= ballX - 1;
-      --   blip     <= '1';
+			when 475 to 479 =>
+				Lives <= Lives - 1;
+				blop <= '1';
+				if Lives = 1 then
+					gameOver <= '1';
+					ballxdir <= 0;
+					ballydir <= 0;
+					ballx <= 320;
+					bally <= 240;
+          end if;
+			 when others =>
+				ballydir <= ballydir;
 
-      -- ball hits left edge
-      elsif ballX  >= 639 - ballsize/2 then
+		end case;
+
+      -- ball hits right edge
+      if ballX  >= 639 - ballsize/2 then
         ballXdir   <= -abs(ballxdir);
-        ballx      <= ballx - 1;
-        --player1scr <= player1scr + 1;
-        if player1scr = 100 then
-          player1Wins <= '1';
-          ballX       <= 320;
-          ballY       <= 240;
-          ballydir    <= 0;
-        end if;
-        blop <= '1';
-      -- ball hits left edge
+--        blop <= '1'; 
+		-- ball hits left edge
       elsif ballX < ballsize/2 then
         ballXdir   <= abs(ballxdir);
         ballx      <= ballx + abs(ballxdir);
---        player2scr <= player2scr + 1;
---        if player2scr = 10 then
---          player2Wins <= '1';
---          ballX       <= 320;
---          ballY       <= 240;
---          ballXdir    <= 0;
---        end if;
-        blop <= '1';
+--        blop <= '1';
       end if;
-      -- ball hits bottom edge
-      if ballY > 475 then
-        ballYdir <= -ballYdir;
-        bally <= 240;
-        Lives <= Lives - 1;
-          if Lives = 1 then
-            gameOver <= '1';
-            ballxdir <= 0;
-            ballydir <= 0;
-            ballx <= 320;
-            bally <= 240;
-          end if;
-      -- ball hits top edge
-      elsif ballY < 60 then
-        ballYdir <= -ballydir;
-        bally <= 61;
-      end if;
+		if aicontrol = '1' then
+			paddle1pos <= ballx + 30 - player1scr mod 60;
+		else
       -- player controlled paddles
-      if (adcCycle = 0)
-      then  -- adcCycle allows time for conversions to complete
-        paddlein1pos <= (to_integer(unsigned(paddlepos1(11 downto 3))));
-        adcCycle     <= 1;
-        ledr(9)      <= '1';
-
-      elsif adcCycle = 1 then
-        adcCycle <= 0;
-        if paddlein1pos > 640 then
-          paddle1pos <= 640;
-        elsif paddlein1pos < 1 then
-          paddle1pos <= 1;
-        else
-          paddle1pos <= paddlein1pos;
-        end if;
-
-      -- elsif adcCycle = 2
-      -- then
-      --   paddlein2pos <= (to_integer(unsigned(paddlepos2(11 downto 3))));
-      --   adcCycle     <= 3;
-      --   ledr(9)      <= '0';
-      -- else
-      --   adcCycle <= 0;
-      --   if paddlein2pos > 460 then
-      --     paddle2pos <= 460;
-      --   elsif paddlein2pos < 70 then
-      --     paddle2pos <= 70;
-      --   else
-      --     paddle2pos <= paddlein2pos;
-      --   end if;
-
+			if (adcCycle = 0) then  -- adcCycle allows time for conversions to complete
+			  paddlein1pos <= (to_integer(unsigned(paddlepos1(11 downto 3))));
+			  adcCycle     <= 1;
+			  ledr(9)      <= '1';
+	
+			elsif adcCycle = 1 then
+			  adcCycle <= 0;
+			  if paddlein1pos > 640 then
+				 paddle1pos <= 640;
+			  elsif paddlein1pos < 1 then
+				 paddle1pos <= 1;
+			  else
+				 paddle1pos <= paddlein1pos;
+			  end if;
+			end if;
       end if;
 
       --debugmsb <= std_logic_vector(to_unsigned(paddle2pos / 10, 8));
