@@ -1,5 +1,5 @@
 Timing Analyzer report for city2077-blink
-Tue Apr 15 18:10:09 2025
+Wed Apr 16 16:32:35 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -89,17 +89,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 6           ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 3.56        ;
-; Maximum used               ; 6           ;
+; Average used               ; 2.63        ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  52.3%      ;
-;     Processor 3            ;  50.9%      ;
-;     Processors 4-6         ;  50.9%      ;
+;     Processor 2            ;  55.0%      ;
+;     Processor 3            ;  54.1%      ;
+;     Processor 4            ;  53.8%      ;
 +----------------------------+-------------+
 
 
@@ -121,10 +121,10 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 9.25 MHz   ; 9.25 MHz        ; video_sync_generator:display|VS                      ;      ;
-; 12.37 MHz  ; 12.37 MHz       ; MAX10_CLK1_50                                        ;      ;
-; 26.77 MHz  ; 26.77 MHz       ; vgaClock|altpll_component|auto_generated|pll1|clk[0] ;      ;
-; 195.01 MHz ; 195.01 MHz      ; ADC_CLK_10                                           ;      ;
+; 8.58 MHz   ; 8.58 MHz        ; video_sync_generator:display|VS                      ;      ;
+; 11.52 MHz  ; 11.52 MHz       ; MAX10_CLK1_50                                        ;      ;
+; 27.55 MHz  ; 27.55 MHz       ; vgaClock|altpll_component|auto_generated|pll1|clk[0] ;      ;
+; 213.27 MHz ; 213.27 MHz      ; ADC_CLK_10                                           ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -134,11 +134,11 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------+----------+---------------+
 ; Clock                                                           ; Slack    ; End Point TNS ;
 +-----------------------------------------------------------------+----------+---------------+
-; ADC_CLK_10                                                      ; -926.528 ; -8338.031     ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -189.606 ; -1141.837     ;
-; video_sync_generator:display|VS                                 ; -107.055 ; -2618.365     ;
-; MAX10_CLK1_50                                                   ; -60.862  ; -61.244       ;
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -10.616  ; -62.881       ;
+; ADC_CLK_10                                                      ; -926.493 ; -8337.716     ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -190.328 ; -1149.627     ;
+; video_sync_generator:display|VS                                 ; -115.492 ; -2761.488     ;
+; MAX10_CLK1_50                                                   ; -66.833  ; -69.037       ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -10.614  ; -62.662       ;
 +-----------------------------------------------------------------+----------+---------------+
 
 
@@ -147,11 +147,11 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------+-------+---------------+
 ; Clock                                                           ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------+-------+---------------+
-; ADC_CLK_10                                                      ; 0.239 ; 0.000         ;
+; ADC_CLK_10                                                      ; 0.199 ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 0.232 ; 0.000         ;
 ; video_sync_generator:display|VS                                 ; 0.309 ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 0.312 ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.314 ; 0.000         ;
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 4.892 ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.417 ; 0.000         ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 4.855 ; 0.000         ;
 +-----------------------------------------------------------------+-------+---------------+
 
 
@@ -172,11 +172,11 @@ No paths to report.
 +-----------------------------------------------------------------+--------+---------------+
 ; Clock                                                           ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------+--------+---------------+
-; video_sync_generator:display|VS                                 ; -1.222 ; -210.184      ;
+; video_sync_generator:display|VS                                 ; -1.222 ; -211.406      ;
 ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 4.375  ; 0.000         ;
 ; ADC_CLK_10                                                      ; 4.466  ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 9.557  ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.531 ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 9.435  ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.529 ; 0.000         ;
 +-----------------------------------------------------------------+--------+---------------+
 
 
@@ -189,7 +189,7 @@ Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-Worst Case Available Settling Time: 14.858 ns
+Worst Case Available Settling Time: 14.578 ns
 
 Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -203,10 +203,10 @@ Typical MTBF values are calculated based on the nominal silicon characteristics,
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 10.21 MHz  ; 10.21 MHz       ; video_sync_generator:display|VS                      ;      ;
-; 13.63 MHz  ; 13.63 MHz       ; MAX10_CLK1_50                                        ;      ;
-; 29.47 MHz  ; 29.47 MHz       ; vgaClock|altpll_component|auto_generated|pll1|clk[0] ;      ;
-; 211.46 MHz ; 211.46 MHz      ; ADC_CLK_10                                           ;      ;
+; 9.47 MHz   ; 9.47 MHz        ; video_sync_generator:display|VS                      ;      ;
+; 12.7 MHz   ; 12.7 MHz        ; MAX10_CLK1_50                                        ;      ;
+; 30.36 MHz  ; 30.36 MHz       ; vgaClock|altpll_component|auto_generated|pll1|clk[0] ;      ;
+; 234.03 MHz ; 234.03 MHz      ; ADC_CLK_10                                           ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -216,11 +216,11 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------+----------+---------------+
 ; Clock                                                           ; Slack    ; End Point TNS ;
 +-----------------------------------------------------------------+----------+---------------+
-; ADC_CLK_10                                                      ; -927.547 ; -8347.245     ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -171.753 ; -1033.388     ;
-; video_sync_generator:display|VS                                 ; -96.957  ; -2356.122     ;
-; MAX10_CLK1_50                                                   ; -53.362  ; -53.481       ;
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -9.122   ; -53.915       ;
+; ADC_CLK_10                                                      ; -927.514 ; -8346.954     ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -172.301 ; -1039.952     ;
+; video_sync_generator:display|VS                                 ; -104.624 ; -2492.913     ;
+; MAX10_CLK1_50                                                   ; -58.722  ; -60.069       ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -9.127   ; -53.779       ;
 +-----------------------------------------------------------------+----------+---------------+
 
 
@@ -229,11 +229,11 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------+-------+---------------+
 ; Clock                                                           ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------+-------+---------------+
-; ADC_CLK_10                                                      ; 0.233 ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.276 ; 0.000         ;
-; video_sync_generator:display|VS                                 ; 0.281 ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 0.282 ; 0.000         ;
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 3.473 ; 0.000         ;
+; ADC_CLK_10                                                      ; 0.204 ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 0.237 ; 0.000         ;
+; video_sync_generator:display|VS                                 ; 0.280 ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.346 ; 0.000         ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 3.445 ; 0.000         ;
 +-----------------------------------------------------------------+-------+---------------+
 
 
@@ -254,11 +254,11 @@ No paths to report.
 +-----------------------------------------------------------------+--------+---------------+
 ; Clock                                                           ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------+--------+---------------+
-; video_sync_generator:display|VS                                 ; -1.222 ; -210.184      ;
+; video_sync_generator:display|VS                                 ; -1.222 ; -211.406      ;
 ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 4.379  ; 0.000         ;
 ; ADC_CLK_10                                                      ; 4.474  ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 9.582  ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.541 ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 9.450  ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.543 ; 0.000         ;
 +-----------------------------------------------------------------+--------+---------------+
 
 
@@ -271,7 +271,7 @@ Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-Worst Case Available Settling Time: 15.298 ns
+Worst Case Available Settling Time: 15.050 ns
 
 Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -285,11 +285,11 @@ Typical MTBF values are calculated based on the nominal silicon characteristics,
 +-----------------------------------------------------------------+----------+---------------+
 ; Clock                                                           ; Slack    ; End Point TNS ;
 +-----------------------------------------------------------------+----------+---------------+
-; ADC_CLK_10                                                      ; -844.185 ; -7597.315     ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -91.396  ; -550.539      ;
-; video_sync_generator:display|VS                                 ; -51.411  ; -1197.476     ;
-; MAX10_CLK1_50                                                   ; -19.120  ; -19.120       ;
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -3.693   ; -21.848       ;
+; ADC_CLK_10                                                      ; -844.169 ; -7597.171     ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -91.841  ; -555.041      ;
+; video_sync_generator:display|VS                                 ; -55.819  ; -1265.550     ;
+; MAX10_CLK1_50                                                   ; -22.364  ; -22.364       ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -3.727   ; -21.711       ;
 +-----------------------------------------------------------------+----------+---------------+
 
 
@@ -298,11 +298,11 @@ Typical MTBF values are calculated based on the nominal silicon characteristics,
 +-----------------------------------------------------------------+--------+---------------+
 ; Clock                                                           ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------+--------+---------------+
-; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -0.176 ; -0.755        ;
-; ADC_CLK_10                                                      ; 0.111  ; 0.000         ;
+; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -0.251 ; -1.234        ;
+; ADC_CLK_10                                                      ; 0.087  ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 0.102  ; 0.000         ;
 ; video_sync_generator:display|VS                                 ; 0.141  ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 0.142  ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.162  ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 0.209  ; 0.000         ;
 +-----------------------------------------------------------------+--------+---------------+
 
 
@@ -323,11 +323,11 @@ No paths to report.
 +-----------------------------------------------------------------+--------+---------------+
 ; Clock                                                           ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------+--------+---------------+
-; video_sync_generator:display|VS                                 ; -1.000 ; -172.000      ;
+; video_sync_generator:display|VS                                 ; -1.000 ; -173.000      ;
 ; ADC_CLK_10                                                      ; 4.272  ; 0.000         ;
 ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 4.903  ; 0.000         ;
-; MAX10_CLK1_50                                                   ; 9.304  ; 0.000         ;
-; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.585 ; 0.000         ;
+; MAX10_CLK1_50                                                   ; 9.266  ; 0.000         ;
+; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; 19.580 ; 0.000         ;
 +-----------------------------------------------------------------+--------+---------------+
 
 
@@ -340,7 +340,7 @@ Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
 Number of Synchronizer Chains Found: 2
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-Worst Case Available Settling Time: 17.480 ns
+Worst Case Available Settling Time: 17.351 ns
 
 Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -349,24 +349,24 @@ Typical MTBF values are calculated based on the nominal silicon characteristics,
 
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                               ;
-+------------------------------------------------------------------+------------+--------+----------+---------+---------------------+
-; Clock                                                            ; Setup      ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------------------------------------------------------+------------+--------+----------+---------+---------------------+
-; Worst-case Slack                                                 ; -927.547   ; -0.176 ; N/A      ; N/A     ; -1.222              ;
-;  ADC_CLK_10                                                      ; -927.547   ; 0.111  ; N/A      ; N/A     ; 4.272               ;
-;  MAX10_CLK1_50                                                   ; -60.862    ; 0.142  ; N/A      ; N/A     ; 9.304               ;
-;  paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -10.616    ; -0.176 ; N/A      ; N/A     ; 4.375               ;
-;  vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -189.606   ; 0.162  ; N/A      ; N/A     ; 19.531              ;
-;  video_sync_generator:display|VS                                 ; -107.055   ; 0.141  ; N/A      ; N/A     ; -1.222              ;
-; Design-wide TNS                                                  ; -12222.358 ; -0.755 ; 0.0      ; 0.0     ; -210.184            ;
-;  ADC_CLK_10                                                      ; -8347.245  ; 0.000  ; N/A      ; N/A     ; 0.000               ;
-;  MAX10_CLK1_50                                                   ; -61.244    ; 0.000  ; N/A      ; N/A     ; 0.000               ;
-;  paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -62.881    ; -0.755 ; N/A      ; N/A     ; 0.000               ;
-;  vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -1141.837  ; 0.000  ; N/A      ; N/A     ; 0.000               ;
-;  video_sync_generator:display|VS                                 ; -2618.365  ; 0.000  ; N/A      ; N/A     ; -210.184            ;
-+------------------------------------------------------------------+------------+--------+----------+---------+---------------------+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                                              ;
++------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
+; Clock                                                            ; Setup     ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
+; Worst-case Slack                                                 ; -927.514  ; -0.251 ; N/A      ; N/A     ; -1.222              ;
+;  ADC_CLK_10                                                      ; -927.514  ; 0.087  ; N/A      ; N/A     ; 4.272               ;
+;  MAX10_CLK1_50                                                   ; -66.833   ; 0.102  ; N/A      ; N/A     ; 9.266               ;
+;  paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -10.614   ; -0.251 ; N/A      ; N/A     ; 4.375               ;
+;  vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -190.328  ; 0.209  ; N/A      ; N/A     ; 19.529              ;
+;  video_sync_generator:display|VS                                 ; -115.492  ; 0.141  ; N/A      ; N/A     ; -1.222              ;
+; Design-wide TNS                                                  ; -12380.53 ; -1.234 ; 0.0      ; 0.0     ; -211.406            ;
+;  ADC_CLK_10                                                      ; -8346.954 ; 0.000  ; N/A      ; N/A     ; 0.000               ;
+;  MAX10_CLK1_50                                                   ; -69.037   ; 0.000  ; N/A      ; N/A     ; 0.000               ;
+;  paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; -62.662   ; -1.234 ; N/A      ; N/A     ; 0.000               ;
+;  vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; -1149.627 ; 0.000  ; N/A      ; N/A     ; 0.000               ;
+;  video_sync_generator:display|VS                                 ; -2761.488 ; 0.000  ; N/A      ; N/A     ; -211.406            ;
++------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -990,12 +990,12 @@ Typical MTBF values are calculated based on the nominal silicon characteristics,
 ; ADC_CLK_10                                                      ; ADC_CLK_10                                                      ; 923          ; 0        ; 0        ; 0        ;
 ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; ADC_CLK_10                                                      ; 11           ; 1        ; 0        ; 0        ;
 ; MAX10_CLK1_50                                                   ; MAX10_CLK1_50                                                   ; > 2147483647 ; 0        ; 0        ; 0        ;
-; video_sync_generator:display|VS                                 ; MAX10_CLK1_50                                                   ; 2            ; 0        ; 0        ; 0        ;
+; video_sync_generator:display|VS                                 ; MAX10_CLK1_50                                                   ; 6            ; 0        ; 0        ; 0        ;
 ; ADC_CLK_10                                                      ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 21           ; 0        ; 0        ; 0        ;
 ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; > 2147483647 ; 332      ; 0        ; 344      ;
 ; video_sync_generator:display|VS                                 ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; > 2147483647 ; 0        ; 0        ; 0        ;
 ; ADC_CLK_10                                                      ; video_sync_generator:display|VS                                 ; 9            ; 0        ; 0        ; 0        ;
-; MAX10_CLK1_50                                                   ; video_sync_generator:display|VS                                 ; 15317        ; 0        ; 0        ; 0        ;
+; MAX10_CLK1_50                                                   ; video_sync_generator:display|VS                                 ; 11047        ; 0        ; 0        ; 0        ;
 ; video_sync_generator:display|VS                                 ; video_sync_generator:display|VS                                 ; > 2147483647 ; 0        ; 0        ; 0        ;
 +-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
@@ -1009,12 +1009,12 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; ADC_CLK_10                                                      ; ADC_CLK_10                                                      ; 923          ; 0        ; 0        ; 0        ;
 ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; ADC_CLK_10                                                      ; 11           ; 1        ; 0        ; 0        ;
 ; MAX10_CLK1_50                                                   ; MAX10_CLK1_50                                                   ; > 2147483647 ; 0        ; 0        ; 0        ;
-; video_sync_generator:display|VS                                 ; MAX10_CLK1_50                                                   ; 2            ; 0        ; 0        ; 0        ;
+; video_sync_generator:display|VS                                 ; MAX10_CLK1_50                                                   ; 6            ; 0        ; 0        ; 0        ;
 ; ADC_CLK_10                                                      ; paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] ; 21           ; 0        ; 0        ; 0        ;
 ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; > 2147483647 ; 332      ; 0        ; 344      ;
 ; video_sync_generator:display|VS                                 ; vgaClock|altpll_component|auto_generated|pll1|clk[0]            ; > 2147483647 ; 0        ; 0        ; 0        ;
 ; ADC_CLK_10                                                      ; video_sync_generator:display|VS                                 ; 9            ; 0        ; 0        ; 0        ;
-; MAX10_CLK1_50                                                   ; video_sync_generator:display|VS                                 ; 15317        ; 0        ; 0        ; 0        ;
+; MAX10_CLK1_50                                                   ; video_sync_generator:display|VS                                 ; 11047        ; 0        ; 0        ; 0        ;
 ; video_sync_generator:display|VS                                 ; video_sync_generator:display|VS                                 ; > 2147483647 ; 0        ; 0        ; 0        ;
 +-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
@@ -1040,9 +1040,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 7     ; 7    ;
-; Unconstrained Input Port Paths  ; 451   ; 451  ;
-; Unconstrained Output Ports      ; 61    ; 61   ;
-; Unconstrained Output Port Paths ; 1965  ; 1965 ;
+; Unconstrained Input Port Paths  ; 501   ; 501  ;
+; Unconstrained Output Ports      ; 64    ; 64   ;
+; Unconstrained Output Port Paths ; 1970  ; 1970 ;
 +---------------------------------+-------+------+
 
 
@@ -1126,6 +1126,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; LEDR[0]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LEDR[4]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LEDR[5]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[6]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[7]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[8]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1210,6 +1213,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; LEDR[0]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LEDR[4]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LEDR[5]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[6]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[7]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LEDR[8]       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; VGA_B[2]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1233,11 +1239,11 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 15 18:09:42 2025
+    Info: Processing started: Wed Apr 16 16:32:25 2025
 Info: Command: quartus_sta city2077-blink -c city2077-blink
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Info (332164): Evaluating HDL-embedded SDC commands
@@ -1261,32 +1267,32 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -926.528
+Info (332146): Worst-case setup slack is -926.493
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):  -926.528           -8338.031 ADC_CLK_10 
-    Info (332119):  -189.606           -1141.837 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):  -107.055           -2618.365 video_sync_generator:display|VS 
-    Info (332119):   -60.862             -61.244 MAX10_CLK1_50 
-    Info (332119):   -10.616             -62.881 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
-Info (332146): Worst-case hold slack is 0.239
+    Info (332119):  -926.493           -8337.716 ADC_CLK_10 
+    Info (332119):  -190.328           -1149.627 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):  -115.492           -2761.488 video_sync_generator:display|VS 
+    Info (332119):   -66.833             -69.037 MAX10_CLK1_50 
+    Info (332119):   -10.614             -62.662 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case hold slack is 0.199
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.239               0.000 ADC_CLK_10 
+    Info (332119):     0.199               0.000 ADC_CLK_10 
+    Info (332119):     0.232               0.000 MAX10_CLK1_50 
     Info (332119):     0.309               0.000 video_sync_generator:display|VS 
-    Info (332119):     0.312               0.000 MAX10_CLK1_50 
-    Info (332119):     0.314               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     4.892               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+    Info (332119):     0.417               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     4.855               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -1.222
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.222            -210.184 video_sync_generator:display|VS 
+    Info (332119):    -1.222            -211.406 video_sync_generator:display|VS 
     Info (332119):     4.375               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
     Info (332119):     4.466               0.000 ADC_CLK_10 
-    Info (332119):     9.557               0.000 MAX10_CLK1_50 
-    Info (332119):    19.531               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     9.435               0.000 MAX10_CLK1_50 
+    Info (332119):    19.529               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Worst-Case MTBF of Design is 1e+09 years or 3.15e+16 seconds.
     Info (332114): Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
@@ -1294,7 +1300,7 @@ Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-    Info (332114): Worst Case Available Settling Time: 14.858 ns
+    Info (332114): Worst Case Available Settling Time: 14.578 ns
     Info (332114): 
     Info (332114): Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
     Info (332114):   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -1308,32 +1314,32 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): From: paddling|adc_mega_0|ADC_CTRL|max10_adc_core|control_internal|adc_inst|adcblock_instance|primitive_instance|clkin_from_pll_c0  to: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance|eoc
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -927.547
+Info (332146): Worst-case setup slack is -927.514
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):  -927.547           -8347.245 ADC_CLK_10 
-    Info (332119):  -171.753           -1033.388 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):   -96.957           -2356.122 video_sync_generator:display|VS 
-    Info (332119):   -53.362             -53.481 MAX10_CLK1_50 
-    Info (332119):    -9.122             -53.915 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
-Info (332146): Worst-case hold slack is 0.233
+    Info (332119):  -927.514           -8346.954 ADC_CLK_10 
+    Info (332119):  -172.301           -1039.952 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):  -104.624           -2492.913 video_sync_generator:display|VS 
+    Info (332119):   -58.722             -60.069 MAX10_CLK1_50 
+    Info (332119):    -9.127             -53.779 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case hold slack is 0.204
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.233               0.000 ADC_CLK_10 
-    Info (332119):     0.276               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):     0.281               0.000 video_sync_generator:display|VS 
-    Info (332119):     0.282               0.000 MAX10_CLK1_50 
-    Info (332119):     3.473               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+    Info (332119):     0.204               0.000 ADC_CLK_10 
+    Info (332119):     0.237               0.000 MAX10_CLK1_50 
+    Info (332119):     0.280               0.000 video_sync_generator:display|VS 
+    Info (332119):     0.346               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     3.445               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -1.222
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.222            -210.184 video_sync_generator:display|VS 
+    Info (332119):    -1.222            -211.406 video_sync_generator:display|VS 
     Info (332119):     4.379               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
     Info (332119):     4.474               0.000 ADC_CLK_10 
-    Info (332119):     9.582               0.000 MAX10_CLK1_50 
-    Info (332119):    19.541               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     9.450               0.000 MAX10_CLK1_50 
+    Info (332119):    19.543               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Worst-Case MTBF of Design is 1e+09 years or 3.15e+16 seconds.
     Info (332114): Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
@@ -1341,7 +1347,7 @@ Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-    Info (332114): Worst Case Available Settling Time: 15.298 ns
+    Info (332114): Worst Case Available Settling Time: 15.050 ns
     Info (332114): 
     Info (332114): Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
     Info (332114):   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -1352,32 +1358,32 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): From: paddling|adc_mega_0|ADC_CTRL|max10_adc_core|control_internal|adc_inst|adcblock_instance|primitive_instance|clkin_from_pll_c0  to: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance|eoc
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -844.185
+Info (332146): Worst-case setup slack is -844.169
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):  -844.185           -7597.315 ADC_CLK_10 
-    Info (332119):   -91.396            -550.539 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
-    Info (332119):   -51.411           -1197.476 video_sync_generator:display|VS 
-    Info (332119):   -19.120             -19.120 MAX10_CLK1_50 
-    Info (332119):    -3.693             -21.848 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
-Info (332146): Worst-case hold slack is -0.176
+    Info (332119):  -844.169           -7597.171 ADC_CLK_10 
+    Info (332119):   -91.841            -555.041 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):   -55.819           -1265.550 video_sync_generator:display|VS 
+    Info (332119):   -22.364             -22.364 MAX10_CLK1_50 
+    Info (332119):    -3.727             -21.711 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+Info (332146): Worst-case hold slack is -0.251
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.176              -0.755 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
-    Info (332119):     0.111               0.000 ADC_CLK_10 
+    Info (332119):    -0.251              -1.234 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
+    Info (332119):     0.087               0.000 ADC_CLK_10 
+    Info (332119):     0.102               0.000 MAX10_CLK1_50 
     Info (332119):     0.141               0.000 video_sync_generator:display|VS 
-    Info (332119):     0.142               0.000 MAX10_CLK1_50 
-    Info (332119):     0.162               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     0.209               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -1.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.000            -172.000 video_sync_generator:display|VS 
+    Info (332119):    -1.000            -173.000 video_sync_generator:display|VS 
     Info (332119):     4.272               0.000 ADC_CLK_10 
     Info (332119):     4.903               0.000 paddling|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] 
-    Info (332119):     9.304               0.000 MAX10_CLK1_50 
-    Info (332119):    19.585               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
+    Info (332119):     9.266               0.000 MAX10_CLK1_50 
+    Info (332119):    19.580               0.000 vgaClock|altpll_component|auto_generated|pll1|clk[0] 
 Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Worst-Case MTBF of Design is 1e+09 years or 3.15e+16 seconds.
     Info (332114): Typical MTBF of Design is 1e+09 years or 3.15e+16 seconds.
@@ -1385,7 +1391,7 @@ Info (332114): Report Metastability: Found 2 synchronizer chains.
     Info (332114): Number of Synchronizer Chains Found: 2
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 0.000
-    Info (332114): Worst Case Available Settling Time: 17.480 ns
+    Info (332114): Worst Case Available Settling Time: 17.351 ns
     Info (332114): 
     Info (332114): Worst-Case MTBF values are calculated based on the worst-case silicon characteristics, with worst-case operating conditions.
     Info (332114):   - Under worst-case conditions, an increase of 100ps in available settling time will increase MTBF values by a factor of 2.4
@@ -1394,9 +1400,9 @@ Info (332114): Report Metastability: Found 2 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 4952 megabytes
-    Info: Processing ended: Tue Apr 15 18:10:09 2025
-    Info: Elapsed time: 00:00:27
-    Info: Total CPU time (on all processors): 00:01:13
+    Info: Peak virtual memory: 4913 megabytes
+    Info: Processing ended: Wed Apr 16 16:32:35 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:24
 
 

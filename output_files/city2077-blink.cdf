@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484ES) Path("C:/Users/eleceng/Documents/GitHub/city2077-blink/output_files/") File("city2077-blink.sof") MfrSpec(OpMask(1));
+		Device PartName(10M50DAF484ES) Path("D:/GitHub/city2077-blink/output_files/") File("city2077-blink.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

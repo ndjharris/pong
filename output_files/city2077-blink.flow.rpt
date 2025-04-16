@@ -1,5 +1,5 @@
 Flow report for city2077-blink
-Tue Apr 15 18:10:08 2025
+Wed Apr 16 16:32:35 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Apr 15 18:09:41 2025       ;
+; Flow Status                        ; Successful - Wed Apr 16 16:32:24 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 16,945 / 49,760 ( 34 % )                    ;
-;     Total combinational functions  ; 16,889 / 49,760 ( 34 % )                    ;
-;     Dedicated logic registers      ; 494 / 49,760 ( < 1 % )                      ;
-; Total registers                    ; 494                                         ;
+; Total logic elements               ; 17,015 / 49,760 ( 34 % )                    ;
+;     Total combinational functions  ; 16,950 / 49,760 ( 34 % )                    ;
+;     Dedicated logic registers      ; 544 / 49,760 ( 1 % )                        ;
+; Total registers                    ; 544                                         ;
 ; Total pins                         ; 138 / 360 ( 38 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 49,728 / 1,677,312 ( 3 % )                  ;
+; Total memory bits                  ; 57,920 / 1,677,312 ( 3 % )                  ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/15/2025 18:02:56 ;
+; Start date & time ; 04/16/2025 16:30:02 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; city2077-blink      ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
 ; Assignment Name                     ; Value                                                    ; Default Value  ; Entity Name    ; Section Id ;
 +-------------------------------------+----------------------------------------------------------+----------------+----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 181161466796560.174473657521516                          ; --             ; --             ; --         ;
+; COMPILER_SIGNATURE_ID               ; 92384141857171.174481740218536                           ; --             ; --             ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                       ; --             ; --             ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                        ; --             ; --             ; --         ;
 ; MISC_FILE                           ; vidmem.cmp                                               ; --             ; --             ; --         ;
@@ -92,6 +92,8 @@ https://fpgasoftware.intel.com/eula.
 ; MISC_FILE                           ; videoram.cmp                                             ; --             ; --             ; --         ;
 ; MISC_FILE                           ; charrom1_bb.v                                            ; --             ; --             ; --         ;
 ; MISC_FILE                           ; charrom1.cmp                                             ; --             ; --             ; --         ;
+; MISC_FILE                           ; soundrom_inst.vhd                                        ; --             ; --             ; --         ;
+; MISC_FILE                           ; soundrom.cmp                                             ; --             ; --             ; --         ;
 ; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                        ; --             ; --             ; --         ;
 ; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                        ; --             ; --             ; --         ;
 ; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                               ; --             ; --             ; --         ;
@@ -115,11 +117,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:31     ; 1.0                     ; 5009 MB             ; 00:02:01                           ;
-; Fitter               ; 00:04:53     ; 1.6                     ; 5938 MB             ; 00:13:54                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4742 MB             ; 00:00:09                           ;
-; Timing Analyzer      ; 00:00:26     ; 3.6                     ; 4952 MB             ; 00:01:13                           ;
-; Total                ; 00:06:59     ; --                      ; --                  ; 00:17:17                           ;
+; Analysis & Synthesis ; 00:00:33     ; 1.0                     ; 4975 MB             ; 00:00:47                           ;
+; Fitter               ; 00:01:41     ; 1.4                     ; 5734 MB             ; 00:04:22                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4735 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:10     ; 2.6                     ; 4913 MB             ; 00:00:24                           ;
+; Total                ; 00:02:27     ; --                      ; --                  ; 00:05:36                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -128,10 +130,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; Laptop1          ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; PF2J42TX         ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

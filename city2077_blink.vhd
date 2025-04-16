@@ -158,9 +158,10 @@ component pwm_sound
     port (
         clk_i       : in  std_logic;                     -- System clock input
         reset_i     : in  std_logic;
-        sound_addr_i  : in  std_logic_vector(sound_addr_width - 1 downto 0);  -- Address of sound to play
+        tune_addr_i  : in  std_logic_vector(sound_addr_width - 1 downto 0);  -- Address of sound to play
         sound_strobe_i: in  std_logic;                     -- Strobe signal to trigger sound playback
-        gpio_o      : out std_logic                      -- PWM output to GPIO pin
+        gpio_o      : out std_logic;                      -- PWM output to GPIO pin
+        working     : out std_logic
     );
 end component;
 
@@ -280,6 +281,9 @@ end component;
                                                    -- 1024 bytes
   signal playTune  : std_logic;                    -- sound_strobe
   signal pwmOut    : std_logic;
+  signal bang      : std_logic;
+  signal banged    : std_logic;
+  signal playing   : std_logic;
 
   signal aiControl : std_logic;
 
@@ -297,8 +301,8 @@ begin
   reset         <= key(1);
   resetn        <= not reset;
   button        <= key(0);
-  ARDUINO_IO(5) <= (audio exor pwmOut) and ledstate;  -- conect buzzer/speaker to arduino hat
-  ARDUINO_IO(7) <= (audio exor pwmOut) and ledstate;  -- digital io D5/D7
+  ARDUINO_IO(5) <= (audio xor pwmOut) and ledstate;  -- conect buzzer/speaker to arduino hat
+  ARDUINO_IO(7) <= (audio xor pwmOut) and ledstate;  -- digital io D5/D7
 
   encoder1(0) <= gpio(1);
   encoder1(1) <= gpio(3);
@@ -332,7 +336,8 @@ begin
   SP(xpi, ypi, ballx, bally, ball, scaleBL, DRAWBL);
   aiControl <= sw(0);
   paddleSel <= SW(1);
-  ledr(4)   <= aiControl;
+  ledr(6)   <= aiControl;
+  ledr(4)   <= playing;
 
   -- Logic to toggle Led state
 
@@ -1109,7 +1114,27 @@ begin
     if resetn = '1' then
       blipped <= '0';
       audio   <= '0';
+      playtune <= '0';
+      ledr(7) <= '0';
+      ledr(8) <= '0';
+      banged <= '0';
     elsif (rising_edge(clk)) then
+      if bang = '1' then
+        tune <= "0000";  -- an explosion sound
+        playtune <= '1'; -- set sound going in PWM
+        banged <= '1';
+        --ledr(7) <= '1';
+      elsif banged <= '1' then
+        tune <= "0000";
+        if playing = '0' then
+          playtune <= '0';
+          ledr(7) <= '1';
+        else
+          playtune <= '1';
+          ledr(8) <= '1';
+
+        end if;
+      end if;
       if (blip = '1') then
         blipped <= '1';
       end if;
@@ -1165,6 +1190,7 @@ begin
       adcCycle        <= 0;
       blip            <= '0';
       blop            <= '0';
+      bang            <= '0';
       tilesHit        <= 0;
       newTiles        <= '1';
       blockHit        <= -1;
@@ -1174,6 +1200,9 @@ begin
       end if;
       if blopped = '1' then           -- noise started
           blop <= '0';                -- cancel request
+      end if;
+      if banged = '1' then           -- noise started
+          bang <= '0';                -- cancel request
       end if;
       if served = '0' and WaitingForServe = '1' then
 	     if newTiles = '1' then
@@ -1224,7 +1253,7 @@ begin
                 WaitingForServe <= '1';
               end if;
 
-              blip <= '1';
+              bang <= '1';
             end if;
           when 460 - scalebl*3 to 470 - scalebl*3 =>  -- line of paddle vertically
 
@@ -1333,11 +1362,11 @@ begin
     port map(
         clk_i => clk,
         reset_i => not resetn,
-        sound_addr_i => tune,
+        tune_addr_i => tune,
         sound_strobe_i => playTune,
-        gpio_o => pwmOut
+        gpio_o => pwmOut,
+        working => playing
     );
-end component;
 
   hexlsb    : hexdisplay port map(plyr1thou(3 downto 0), HEX3(7 downto 0));
   hexmsb    : hexdisplay port map(plyr1hund(3 downto 0), HEX2(7 downto 0));
