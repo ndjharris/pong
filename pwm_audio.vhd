@@ -13,7 +13,7 @@ entity pwm_sound is
     );
     port (
         clk_i       : in  std_logic;                     -- System clock input
-        reset_i     : in  std_logic;
+        reset_i     : in  std_logic;                    -- reset active High
         tune_addr_i  : in  std_logic_vector(sound_addr_width - 1 downto 0);  -- Address of
                                                                              -- sound sample to play
         sound_strobe_i: in  std_logic;                     -- Strobe signal to trigger sound playback
@@ -114,7 +114,7 @@ begin
                 else
                     current_sound_addr <= (others => '0');
                     is_playing <= '0';  -- Stop playing at the end of the sound data
-                    --working <= '0';
+                    working <= '0';
                 end if;
               end if;
             else

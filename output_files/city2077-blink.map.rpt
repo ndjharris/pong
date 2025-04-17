@@ -1,5 +1,5 @@
 Analysis & Synthesis report for city2077-blink
-Wed Apr 16 16:30:36 2025
+Thu Apr 17 14:18:37 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -15,82 +15,81 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
- 10. State Machine - |city2077_blink|write_state
- 11. State Machine - |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|currState
- 12. State Machine - |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|ctrl_state
- 13. Registers Protected by Synthesis
- 14. Registers Removed During Synthesis
- 15. Removed Registers Triggering Further Register Optimizations
- 16. General Register Statistics
- 17. Inverted Register Statistics
- 18. Multiplexer Restructuring Statistics (Restructuring Performed)
- 19. Source assignments for pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated
- 20. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_clk_dft_synchronizer
- 21. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_eoc_synchronizer
- 22. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|altsyncram_rqn1:FIFOram
- 23. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated
- 24. Source assignments for txtScreen:txtscreenInst|charrom1:font8x12_inst|altsyncram:altsyncram_component|altsyncram_pe91:auto_generated
- 25. Source assignments for txtScreen:txtscreenInst|videoram:vidmem_inst|altsyncram:altsyncram_component|altsyncram_cdq3:auto_generated
- 26. Parameter Settings for User Entity Instance: pwm_sound:pwmAudio
- 27. Parameter Settings for User Entity Instance: pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component
- 28. Parameter Settings for User Entity Instance: video_sync_generator:display
- 29. Parameter Settings for User Entity Instance: vgaClockPLL:vgaClock|altpll:altpll_component
- 30. Parameter Settings for User Entity Instance: quadrature_decoder:paddleone
- 31. Parameter Settings for User Entity Instance: quadrature_decoder:paddletwo
- 32. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0
- 33. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL
- 34. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|altpll:adc_pll
- 35. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core
- 36. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal
- 37. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm
- 38. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_clk_dft_synchronizer
- 39. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_eoc_synchronizer
- 40. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component
- 41. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst
- 42. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|chsel_code_converter_sw_to_hw:decoder
- 43. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance
- 44. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal
- 45. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl
- 46. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal
- 47. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram
- 48. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component
- 49. Parameter Settings for User Entity Instance: txtScreen:txtscreenInst|charrom1:font8x12_inst|altsyncram:altsyncram_component
- 50. Parameter Settings for User Entity Instance: txtScreen:txtscreenInst|videoram:vidmem_inst|altsyncram:altsyncram_component
- 51. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
- 52. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
- 53. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
- 54. Parameter Settings for Inferred Entity Instance: lpm_divide:Div1
- 55. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod2
- 56. Parameter Settings for Inferred Entity Instance: lpm_divide:Div2
- 57. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod3
- 58. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod4
- 59. Parameter Settings for Inferred Entity Instance: lpm_divide:Div3
- 60. Parameter Settings for Inferred Entity Instance: lpm_divide:Div5
- 61. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod5
- 62. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod6
- 63. Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Mod0
+ 10. State Machine - |city2077_blink|Sound_State
+ 11. State Machine - |city2077_blink|write_state
+ 12. State Machine - |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|currState
+ 13. State Machine - |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|ctrl_state
+ 14. Registers Protected by Synthesis
+ 15. Registers Removed During Synthesis
+ 16. Removed Registers Triggering Further Register Optimizations
+ 17. General Register Statistics
+ 18. Inverted Register Statistics
+ 19. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 20. Source assignments for pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated
+ 21. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_clk_dft_synchronizer
+ 22. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_eoc_synchronizer
+ 23. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|altsyncram_rqn1:FIFOram
+ 24. Source assignments for paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated
+ 25. Source assignments for txtScreen:txtscreenInst|charrom1:font8x12_inst|altsyncram:altsyncram_component|altsyncram_pe91:auto_generated
+ 26. Source assignments for txtScreen:txtscreenInst|videoram:vidmem_inst|altsyncram:altsyncram_component|altsyncram_cdq3:auto_generated
+ 27. Parameter Settings for User Entity Instance: pwm_sound:pwmAudio
+ 28. Parameter Settings for User Entity Instance: pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component
+ 29. Parameter Settings for User Entity Instance: video_sync_generator:display
+ 30. Parameter Settings for User Entity Instance: vgaClockPLL:vgaClock|altpll:altpll_component
+ 31. Parameter Settings for User Entity Instance: quadrature_decoder:paddleone
+ 32. Parameter Settings for User Entity Instance: quadrature_decoder:paddletwo
+ 33. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0
+ 34. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL
+ 35. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|altpll:adc_pll
+ 36. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core
+ 37. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal
+ 38. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm
+ 39. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_clk_dft_synchronizer
+ 40. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_eoc_synchronizer
+ 41. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component
+ 42. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst
+ 43. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|chsel_code_converter_sw_to_hw:decoder
+ 44. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance
+ 45. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal
+ 46. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl
+ 47. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal
+ 48. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram
+ 49. Parameter Settings for User Entity Instance: paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component
+ 50. Parameter Settings for User Entity Instance: txtScreen:txtscreenInst|charrom1:font8x12_inst|altsyncram:altsyncram_component
+ 51. Parameter Settings for User Entity Instance: txtScreen:txtscreenInst|videoram:vidmem_inst|altsyncram:altsyncram_component
+ 52. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 53. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
+ 54. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
+ 55. Parameter Settings for Inferred Entity Instance: lpm_divide:Div1
+ 56. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod2
+ 57. Parameter Settings for Inferred Entity Instance: lpm_divide:Div2
+ 58. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod3
+ 59. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod4
+ 60. Parameter Settings for Inferred Entity Instance: lpm_divide:Div3
+ 61. Parameter Settings for Inferred Entity Instance: lpm_divide:Div5
+ 62. Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Mod0
+ 63. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod6
  64. Parameter Settings for Inferred Entity Instance: lpm_divide:Div4
- 65. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod8
- 66. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod7
- 67. Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Div0
- 68. altsyncram Parameter Settings by Entity Instance
- 69. altpll Parameter Settings by Entity Instance
- 70. scfifo Parameter Settings by Entity Instance
- 71. Port Connectivity Checks: "txtScreen:txtscreenInst"
- 72. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram"
- 73. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal"
- 74. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo"
- 75. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal"
- 76. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core"
- 77. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0"
- 78. Port Connectivity Checks: "paddle:paddling"
- 79. Port Connectivity Checks: "quadrature_decoder:paddletwo"
- 80. Port Connectivity Checks: "quadrature_decoder:paddleone"
- 81. Port Connectivity Checks: "video_sync_generator:display"
- 82. Post-Synthesis Netlist Statistics for Top Partition
- 83. Elapsed Time Per Partition
- 84. Analysis & Synthesis Messages
- 85. Analysis & Synthesis Suppressed Messages
+ 65. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod5
+ 66. Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Div0
+ 67. altsyncram Parameter Settings by Entity Instance
+ 68. altpll Parameter Settings by Entity Instance
+ 69. scfifo Parameter Settings by Entity Instance
+ 70. Port Connectivity Checks: "txtScreen:txtscreenInst"
+ 71. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram"
+ 72. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal"
+ 73. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo"
+ 74. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal"
+ 75. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core"
+ 76. Port Connectivity Checks: "paddle:paddling|paddle_adc_mega_0:adc_mega_0"
+ 77. Port Connectivity Checks: "paddle:paddling"
+ 78. Port Connectivity Checks: "quadrature_decoder:paddletwo"
+ 79. Port Connectivity Checks: "quadrature_decoder:paddleone"
+ 80. Port Connectivity Checks: "video_sync_generator:display"
+ 81. Post-Synthesis Netlist Statistics for Top Partition
+ 82. Elapsed Time Per Partition
+ 83. Analysis & Synthesis Messages
+ 84. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -117,18 +116,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Apr 16 16:30:36 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 17 14:18:37 2025       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; city2077-blink                              ;
 ; Top-level Entity Name              ; city2077_blink                              ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 16,998                                      ;
-;     Total combinational functions  ; 16,950                                      ;
-;     Dedicated logic registers      ; 544                                         ;
-; Total registers                    ; 544                                         ;
+; Total logic elements               ; 14,109                                      ;
+;     Total combinational functions  ; 14,060                                      ;
+;     Dedicated logic registers      ; 479                                         ;
+; Total registers                    ; 479                                         ;
 ; Total pins                         ; 138                                         ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 57,920                                      ;
+; Total memory bits                  ; 82,496                                      ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
 ; Total PLLs                         ; 2                                           ;
 ; UFM blocks                         ; 0                                           ;
@@ -236,7 +235,7 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.2%      ;
-;     Processor 3            ;   0.2%      ;
+;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.1%      ;
 +----------------------------+-------------+
 
@@ -351,24 +350,24 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 16,998         ;
+; Estimated Total logic elements              ; 14,109         ;
 ;                                             ;                ;
-; Total combinational functions               ; 16950          ;
+; Total combinational functions               ; 14060          ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 5387           ;
-;     -- 3 input functions                    ; 5293           ;
-;     -- <=2 input functions                  ; 6270           ;
+;     -- 4 input functions                    ; 4414           ;
+;     -- 3 input functions                    ; 4475           ;
+;     -- <=2 input functions                  ; 5171           ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 11388          ;
-;     -- arithmetic mode                      ; 5562           ;
+;     -- normal mode                          ; 9412           ;
+;     -- arithmetic mode                      ; 4648           ;
 ;                                             ;                ;
-; Total registers                             ; 544            ;
-;     -- Dedicated logic registers            ; 544            ;
+; Total registers                             ; 479            ;
+;     -- Dedicated logic registers            ; 479            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 138            ;
-; Total memory bits                           ; 57920          ;
+; Total memory bits                           ; 82496          ;
 ;                                             ;                ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
@@ -377,8 +376,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; player1scr[31] ;
 ; Maximum fan-out                             ; 410            ;
-; Total fan-out                               ; 51844          ;
-; Average fan-out                             ; 2.91           ;
+; Total fan-out                               ; 43134          ;
+; Average fan-out                             ; 2.90           ;
 +---------------------------------------------+----------------+
 
 
@@ -387,7 +386,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+--------------+
 ; Compilation Hierarchy Node                                                      ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                                                                                                                                                                                              ; Entity Name                            ; Library Name ;
 +---------------------------------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------+--------------+
-; |city2077_blink                                                                 ; 16950 (1505)        ; 544 (282)                 ; 57920       ; 0          ; 0            ; 0       ; 0         ; 138  ; 0            ; 0          ; |city2077_blink                                                                                                                                                                                                                                                                                                  ; city2077_blink                         ; work         ;
+; |city2077_blink                                                                 ; 14060 (1246)        ; 479 (218)                 ; 82496       ; 0          ; 0            ; 0       ; 0         ; 138  ; 0            ; 0          ; |city2077_blink                                                                                                                                                                                                                                                                                                  ; city2077_blink                         ; work         ;
 ;    |hexdisplay:hexlsb2|                                                         ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|hexdisplay:hexlsb2                                                                                                                                                                                                                                                                               ; hexdisplay                             ; work         ;
 ;    |hexdisplay:hexlsbd|                                                         ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|hexdisplay:hexlsbd                                                                                                                                                                                                                                                                               ; hexdisplay                             ; work         ;
 ;    |hexdisplay:hexlsb|                                                          ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|hexdisplay:hexlsb                                                                                                                                                                                                                                                                                ; hexdisplay                             ; work         ;
@@ -448,24 +447,14 @@ https://fpgasoftware.intel.com/eula.
 ;          |abs_divider_4dg:divider|                                              ; 1547 (16)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod4|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
 ;             |alt_u_div_ske:divider|                                             ; 1518 (1518)         ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod4|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
 ;             |lpm_abs_8b9:my_abs_num|                                            ; 13 (13)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod4|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|lpm_abs_8b9:my_abs_num                                                                                                                                                                                                     ; lpm_abs_8b9                            ; work         ;
-;    |lpm_divide:Mod5|                                                            ; 1332 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
-;       |lpm_divide_25o:auto_generated|                                           ; 1332 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
-;          |abs_divider_4dg:divider|                                              ; 1332 (61)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
-;             |alt_u_div_ske:divider|                                             ; 1221 (1221)         ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
-;             |lpm_abs_8b9:my_abs_num|                                            ; 50 (50)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|lpm_abs_8b9:my_abs_num                                                                                                                                                                                                     ; lpm_abs_8b9                            ; work         ;
-;    |lpm_divide:Mod6|                                                            ; 1311 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
-;       |lpm_divide_25o:auto_generated|                                           ; 1311 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
-;          |abs_divider_4dg:divider|                                              ; 1311 (58)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
-;             |alt_u_div_ske:divider|                                             ; 1219 (1219)         ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
-;             |lpm_abs_8b9:my_abs_num|                                            ; 34 (34)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|lpm_abs_8b9:my_abs_num                                                                                                                                                                                                     ; lpm_abs_8b9                            ; work         ;
-;    |lpm_divide:Mod7|                                                            ; 1436 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod7                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
-;       |lpm_divide_25o:auto_generated|                                           ; 1436 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod7|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
-;          |abs_divider_4dg:divider|                                              ; 1436 (20)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod7|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
-;             |alt_u_div_ske:divider|                                             ; 1416 (1416)         ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod7|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
-;    |lpm_divide:Mod8|                                                            ; 80 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod8                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
-;       |lpm_divide_25o:auto_generated|                                           ; 80 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod8|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
-;          |abs_divider_4dg:divider|                                              ; 80 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod8|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
-;             |alt_u_div_ske:divider|                                             ; 80 (80)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod8|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
+;    |lpm_divide:Mod5|                                                            ; 1436 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
+;       |lpm_divide_25o:auto_generated|                                           ; 1436 (0)            ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
+;          |abs_divider_4dg:divider|                                              ; 1436 (20)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
+;             |alt_u_div_ske:divider|                                             ; 1416 (1416)         ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod5|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
+;    |lpm_divide:Mod6|                                                            ; 93 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6                                                                                                                                                                                                                                                                                  ; lpm_divide                             ; work         ;
+;       |lpm_divide_25o:auto_generated|                                           ; 93 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated                                                                                                                                                                                                                                                    ; lpm_divide_25o                         ; work         ;
+;          |abs_divider_4dg:divider|                                              ; 93 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider                                                                                                                                                                                                                            ; abs_divider_4dg                        ; work         ;
+;             |alt_u_div_ske:divider|                                             ; 93 (93)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider                                                                                                                                                                                                      ; alt_u_div_ske                          ; work         ;
 ;    |paddle:paddling|                                                            ; 129 (0)             ; 119 (0)                   ; 576         ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling                                                                                                                                                                                                                                                                                  ; paddle                                 ; paddle       ;
 ;       |paddle_adc_mega_0:adc_mega_0|                                            ; 129 (11)            ; 119 (10)                  ; 576         ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0                                                                                                                                                                                                                                                     ; paddle_adc_mega_0                      ; paddle       ;
 ;          |altera_up_avalon_adv_adc:ADC_CTRL|                                    ; 118 (21)            ; 109 (20)                  ; 576         ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL                                                                                                                                                                                                                   ; altera_up_avalon_adv_adc               ; paddle       ;
@@ -486,10 +475,10 @@ https://fpgasoftware.intel.com/eula.
 ;                   |altera_modular_adc_sequencer_ctrl:u_seq_ctrl|                ; 13 (13)             ; 9 (9)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl                                                                      ; altera_modular_adc_sequencer_ctrl      ; paddle       ;
 ;             |altpll:adc_pll|                                                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|altpll:adc_pll                                                                                                                                                                                                    ; altpll                                 ; work         ;
 ;                |MAX10_ADC_PLL_altpll:auto_generated|                            ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|altpll:adc_pll|MAX10_ADC_PLL_altpll:auto_generated                                                                                                                                                                ; MAX10_ADC_PLL_altpll                   ; work         ;
-;    |pwm_sound:pwmAudio|                                                         ; 73 (73)             ; 45 (45)                   ; 8192        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio                                                                                                                                                                                                                                                                               ; pwm_sound                              ; work         ;
-;       |soundrom:soundrom_inst|                                                  ; 0 (0)               ; 0 (0)                     ; 8192        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst                                                                                                                                                                                                                                                        ; soundrom                               ; work         ;
-;          |altsyncram:altsyncram_component|                                      ; 0 (0)               ; 0 (0)                     ; 8192        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component                                                                                                                                                                                                                        ; altsyncram                             ; work         ;
-;             |altsyncram_91r3:auto_generated|                                    ; 0 (0)               ; 0 (0)                     ; 8192        ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated                                                                                                                                                                                         ; altsyncram_91r3                        ; work         ;
+;    |pwm_sound:pwmAudio|                                                         ; 72 (72)             ; 44 (44)                   ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio                                                                                                                                                                                                                                                                               ; pwm_sound                              ; work         ;
+;       |soundrom:soundrom_inst|                                                  ; 0 (0)               ; 0 (0)                     ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst                                                                                                                                                                                                                                                        ; soundrom                               ; work         ;
+;          |altsyncram:altsyncram_component|                                      ; 0 (0)               ; 0 (0)                     ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component                                                                                                                                                                                                                        ; altsyncram                             ; work         ;
+;             |altsyncram_91r3:auto_generated|                                    ; 0 (0)               ; 0 (0)                     ; 32768       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated                                                                                                                                                                                         ; altsyncram_91r3                        ; work         ;
 ;    |quadrature_decoder:paddleone|                                               ; 101 (101)           ; 54 (54)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|quadrature_decoder:paddleone                                                                                                                                                                                                                                                                     ; quadrature_decoder                     ; work         ;
 ;    |txtScreen:txtscreenInst|                                                    ; 584 (89)            ; 1 (1)                     ; 49152       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|txtScreen:txtscreenInst                                                                                                                                                                                                                                                                          ; txtScreen                              ; work         ;
 ;       |charrom1:font8x12_inst|                                                  ; 0 (0)               ; 0 (0)                     ; 16384       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |city2077_blink|txtScreen:txtscreenInst|charrom1:font8x12_inst                                                                                                                                                                                                                                                   ; charrom1                               ; work         ;
@@ -539,6 +528,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Altera ; RAM: 2-PORT  ; 20.1    ; N/A          ; N/A          ; |city2077_blink|txtScreen:txtscreenInst|videoram:vidmem_inst   ; videoram.vhd    ;
 ; Altera ; ALTPLL       ; 20.1    ; N/A          ; N/A          ; |city2077_blink|vgaClockPLL:vgaClock                           ; vgaClockPLL.v   ;
 +--------+--------------+---------+--------------+--------------+----------------------------------------------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------+
+; State Machine - |city2077_blink|Sound_State                                              ;
++-----------------------+-----------------------+-----------------------+------------------+
+; Name                  ; Sound_State.PLAY_DONE ; Sound_State.PLAY_TUNE ; Sound_State.IDLE ;
++-----------------------+-----------------------+-----------------------+------------------+
+; Sound_State.IDLE      ; 0                     ; 0                     ; 0                ;
+; Sound_State.PLAY_TUNE ; 0                     ; 1                     ; 1                ;
+; Sound_State.PLAY_DONE ; 1                     ; 0                     ; 1                ;
++-----------------------+-----------------------+-----------------------+------------------+
 
 
 Encoding Type:  One-Hot
@@ -616,17 +617,17 @@ Encoding Type:  One-Hot
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Register name                                                                                                                                                                                                                                                                                                                                                                                                        ; Reason for Removal                                                                                                                                                                                                                                     ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; tune[0..3]                                                                                                                                                                                                                                                                                                                                                                                                           ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|e_eop                                                                                                                                                                                                                           ; Stuck at VCC due to stuck port data_in                                                                                                                                                                                                                 ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|csr_readdata[3..11]                                                                                                                                                                                                             ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|rsp_data[0..2]                                                                                                                                                                               ; Lost fanout                                                                                                                                                                                                                                            ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_csr:u_seq_csr|mode[0..2]                                                                                                                                                                                 ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
+; tune[2,3]                                                                                                                                                                                                                                                                                                                                                                                                            ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
+; paddlein1pos[9]                                                                                                                                                                                                                                                                                                                                                                                                      ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
+; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_csr:u_seq_csr|sw_clr_run                                                                                                                                                                                 ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
 ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|address_reg_a[0]                                                                                                                                                                                                                                                                                            ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
 ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|out_address_reg_a[0]                                                                                                                                                                                                                                                                                        ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
-; paddlein1pos[9]                                                                                                                                                                                                                                                                                                                                                                                                      ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
-; LEDR[9]~reg0                                                                                                                                                                                                                                                                                                                                                                                                         ; Stuck at VCC due to stuck port data_in                                                                                                                                                                                                                 ;
-; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_csr:u_seq_csr|sw_clr_run                                                                                                                                                                                 ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl|cmd_channel[3]                                                                                                                                                                           ; Merged with paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl|cmd_channel[4] ;
+; pwm_sound:pwmAudio|is_playing                                                                                                                                                                                                                                                                                                                                                                                        ; Merged with pwm_sound:pwmAudio|working                                                                                                                                                                                                                 ;
 ; adcCycle[1..9,11..31]                                                                                                                                                                                                                                                                                                                                                                                                ; Merged with adcCycle[10]                                                                                                                                                                                                                               ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|chsel[4]                                                                                                                                                                                     ; Merged with paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|chsel[3]           ;
 ; adcCycle[10]                                                                                                                                                                                                                                                                                                                                                                                                         ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
@@ -655,7 +656,7 @@ Encoding Type:  One-Hot
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|ctrl_state.PUTRESP                                                                                                                                                                           ; Merged with paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|conv_dly1_s_flp    ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|ctrl_state.PUTRESP_DLY1                                                                                                                                                                      ; Merged with paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|cmd_ready          ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|cmd_fetched                                                                                                                                                                                  ; Stuck at GND due to stuck port data_in                                                                                                                                                                                                                 ;
-; Total Number of Removed Registers = 118                                                                                                                                                                                                                                                                                                                                                                              ;                                                                                                                                                                                                                                                        ;
+; Total Number of Removed Registers = 116                                                                                                                                                                                                                                                                                                                                                                              ;                                                                                                                                                                                                                                                        ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -696,10 +697,10 @@ Encoding Type:  One-Hot
 ;                                                                                                                                                                                                                                                                                                                                                                                  ;                           ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|avrg_sum[0],                                                                                                                                                                               ;
 ;                                                                                                                                                                                                                                                                                                                                                                                  ;                           ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|tsen,                                                                                                                                                                                      ;
 ;                                                                                                                                                                                                                                                                                                                                                                                  ;                           ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|avrg_cnt_done                                                                                                                                                                              ;
-; tune[3]                                                                                                                                                                                                                                                                                                                                                                          ; Stuck at GND              ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|address_reg_a[0],                                                                                                                                                                                                                                                                                         ;
-;                                                                                                                                                                                                                                                                                                                                                                                  ; due to stuck port data_in ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|out_address_reg_a[0]                                                                                                                                                                                                                                                                                      ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_csr:u_seq_csr|mode[2]                                                                                                                                                ; Stuck at GND              ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_csr:u_seq_csr|sw_clr_run,                                                                                                                                                                              ;
 ;                                                                                                                                                                                                                                                                                                                                                                                  ; due to stuck port data_in ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl|cmd_channel[4]                                                                                                                                                                         ;
+; tune[3]                                                                                                                                                                                                                                                                                                                                                                          ; Stuck at GND              ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|address_reg_a[0],                                                                                                                                                                                                                                                                                         ;
+;                                                                                                                                                                                                                                                                                                                                                                                  ; due to stuck port data_in ; pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|out_address_reg_a[0]                                                                                                                                                                                                                                                                                      ;
 ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|a_fefifo_c6e:fifo_state|b_full ; Stuck at GND              ; paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|a_fefifo_c6e:fifo_state|b_non_empty                              ;
 ;                                                                                                                                                                                                                                                                                                                                                                                  ; due to stuck port data_in ;                                                                                                                                                                                                                                                                                                                                                                                                                    ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -710,12 +711,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 544   ;
-; Number of registers using Synchronous Clear  ; 202   ;
-; Number of registers using Synchronous Load   ; 8     ;
-; Number of registers using Asynchronous Clear ; 277   ;
+; Total registers                              ; 479   ;
+; Number of registers using Synchronous Clear  ; 138   ;
+; Number of registers using Synchronous Load   ; 7     ;
+; Number of registers using Asynchronous Clear ; 274   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 313   ;
+; Number of registers using Clock Enable       ; 250   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -785,7 +786,7 @@ Encoding Type:  One-Hot
 ; blockPresent[38]                                                                                                                                                                                                                 ; 3       ;
 ; blockPresent[36]                                                                                                                                                                                                                 ; 3       ;
 ; blockPresent[39]                                                                                                                                                                                                                 ; 3       ;
-; waitingForServe                                                                                                                                                                                                                  ; 51      ;
+; waitingForServe                                                                                                                                                                                                                  ; 50      ;
 ; paddlein1pos[8]                                                                                                                                                                                                                  ; 2       ;
 ; paddlein1pos[6]                                                                                                                                                                                                                  ; 2       ;
 ; ballXdir[0]                                                                                                                                                                                                                      ; 8       ;
@@ -805,24 +806,24 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|channel[0]                                                                                                                                                   ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|CH0[10]                                                                                                                                                                                        ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|CH0[3]                                                                                                                                                                                         ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|int_timer[6]        ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|debounce_cnt[13]                                                                                                                                                                                               ;
-; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|set_origin_cnt[9]                                                                                                                                                                                              ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|debounce_cnt[14]                                                                                                                                                                                               ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|set_origin_cnt[7]                                                                                                                                                                                              ;
 ; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |city2077_blink|txtaddress[4]                                                                                                                                                                                                                               ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |city2077_blink|pwm_sound:pwmAudio|pwm_counter[25]                                                                                                                                                                                                          ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |city2077_blink|pwm_sound:pwmAudio|current_sound_addr[4]                                                                                                                                                                                                    ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |city2077_blink|ballX[10]                                                                                                                                                                                                                                   ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |city2077_blink|charpos_int[1]                                                                                                                                                                                                                              ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |city2077_blink|paddle1pos[1]                                                                                                                                                                                                                               ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |city2077_blink|pwm_sound:pwmAudio|pwm_counter[3]                                                                                                                                                                                                           ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |city2077_blink|pwm_sound:pwmAudio|current_sound_addr[7]                                                                                                                                                                                                    ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |city2077_blink|ballX[9]                                                                                                                                                                                                                                    ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |city2077_blink|charpos_int[6]                                                                                                                                                                                                                              ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |city2077_blink|paddle1pos[3]                                                                                                                                                                                                                               ;
 ; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl|cmd_channel[2]  ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|position[7]                                                                                                                                                                                                    ;
-; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |city2077_blink|ballydir[1]                                                                                                                                                                                                                                 ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |city2077_blink|ballXdir[1]                                                                                                                                                                                                                                 ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 30 LEs               ; 10 LEs                 ; Yes        ; |city2077_blink|quadrature_decoder:paddleone|position[6]                                                                                                                                                                                                    ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; Yes        ; |city2077_blink|ballydir[2]                                                                                                                                                                                                                                 ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |city2077_blink|ballXdir[2]                                                                                                                                                                                                                                 ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |city2077_blink|ballX[6]                                                                                                                                                                                                                                    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|chsel[1]            ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |city2077_blink|paddle1pos[8]                                                                                                                                                                                                                               ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |city2077_blink|ballY[2]                                                                                                                                                                                                                                    ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |city2077_blink|ballY[4]                                                                                                                                                                                                                                    ;
 ; 8:1                ; 3 bits    ; 15 LEs        ; 9 LEs                ; 6 LEs                  ; Yes        ; |city2077_blink|ballY[5]                                                                                                                                                                                                                                    ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |city2077_blink|write_state                                                                                                                                                                                                                                 ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |city2077_blink|paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sequencer:sequencer_internal|altera_modular_adc_sequencer_ctrl:u_seq_ctrl|slot_sel_nxt[2] ;
@@ -2641,26 +2642,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod5 ;
-+------------------------+----------------+------------------------+
-; Parameter Name         ; Value          ; Type                   ;
-+------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 32             ; Untyped                ;
-; LPM_WIDTHD             ; 32             ; Untyped                ;
-; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_PIPELINE           ; 0              ; Untyped                ;
-; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_25o ; Untyped                ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
-+------------------------+----------------+------------------------+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Mod0 ;
++------------------------+----------------+------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                           ;
++------------------------+----------------+------------------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                                        ;
+; LPM_WIDTHD             ; 32             ; Untyped                                        ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                        ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                        ;
+; LPM_PIPELINE           ; 0              ; Untyped                                        ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                        ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                        ;
+; CBXI_PARAMETER         ; lpm_divide_25o ; Untyped                                        ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                        ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                        ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                     ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                   ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                   ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                 ;
++------------------------+----------------+------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -2684,29 +2685,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
 ; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
 +------------------------+----------------+------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: txtScreen:txtscreenInst|lpm_divide:Mod0 ;
-+------------------------+----------------+------------------------------------------------+
-; Parameter Name         ; Value          ; Type                                           ;
-+------------------------+----------------+------------------------------------------------+
-; LPM_WIDTHN             ; 32             ; Untyped                                        ;
-; LPM_WIDTHD             ; 32             ; Untyped                                        ;
-; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                        ;
-; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                        ;
-; LPM_PIPELINE           ; 0              ; Untyped                                        ;
-; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                        ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                                        ;
-; CBXI_PARAMETER         ; lpm_divide_25o ; Untyped                                        ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                                        ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                        ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                     ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                   ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                   ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                 ;
-+------------------------+----------------+------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -2734,30 +2712,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod8 ;
-+------------------------+----------------+------------------------+
-; Parameter Name         ; Value          ; Type                   ;
-+------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 32             ; Untyped                ;
-; LPM_WIDTHD             ; 32             ; Untyped                ;
-; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
-; LPM_PIPELINE           ; 0              ; Untyped                ;
-; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
-; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_25o ; Untyped                ;
-; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
-; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
-; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
-; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
-; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
-; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
-+------------------------+----------------+------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod7 ;
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod5 ;
 +------------------------+----------------+------------------------+
 ; Parameter Name         ; Value          ; Type                   ;
 +------------------------+----------------+------------------------+
@@ -3027,34 +2982,34 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 138                         ;
-; cycloneiii_ff         ; 544                         ;
-;     CLR               ; 106                         ;
+; cycloneiii_ff         ; 479                         ;
+;     CLR               ; 103                         ;
 ;     CLR SCLR          ; 42                          ;
-;     ENA               ; 58                          ;
+;     ENA               ; 60                          ;
 ;     ENA CLR           ; 109                         ;
 ;     ENA CLR SCLR      ; 20                          ;
-;     ENA SCLR          ; 118                         ;
-;     ENA SLD           ; 8                           ;
+;     ENA SCLR          ; 54                          ;
+;     ENA SLD           ; 7                           ;
 ;     SCLR              ; 22                          ;
-;     plain             ; 61                          ;
+;     plain             ; 62                          ;
 ; cycloneiii_io_obuf    ; 36                          ;
-; cycloneiii_lcell_comb ; 16960                       ;
-;     arith             ; 5562                        ;
+; cycloneiii_lcell_comb ; 14072                       ;
+;     arith             ; 4648                        ;
 ;         1 data inputs ; 51                          ;
-;         2 data inputs ; 631                         ;
-;         3 data inputs ; 4880                        ;
-;     normal            ; 11398                       ;
-;         0 data inputs ; 357                         ;
-;         1 data inputs ; 54                          ;
-;         2 data inputs ; 5187                        ;
-;         3 data inputs ; 413                         ;
-;         4 data inputs ; 5387                        ;
+;         2 data inputs ; 505                         ;
+;         3 data inputs ; 4092                        ;
+;     normal            ; 9424                        ;
+;         0 data inputs ; 320                         ;
+;         1 data inputs ; 52                          ;
+;         2 data inputs ; 4255                        ;
+;         3 data inputs ; 383                         ;
+;         4 data inputs ; 4414                        ;
 ; cycloneiii_pll        ; 2                           ;
 ; cycloneiii_ram_block  ; 33                          ;
 ; fiftyfivenm_adcblock  ; 1                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 208.50                      ;
-; Average LUT depth     ; 126.54                      ;
+; Average LUT depth     ; 134.99                      ;
 +-----------------------+-----------------------------+
 
 
@@ -3063,7 +3018,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:21     ;
+; Top            ; 00:00:19     ;
 +----------------+--------------+
 
 
@@ -3073,7 +3028,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Apr 16 16:30:02 2025
+    Info: Processing started: Thu Apr 17 14:18:07 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off city2077-blink -c city2077-blink
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -3171,26 +3126,30 @@ Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(257): object 
 Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(260): object "direction1" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 260
 Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(261): object "direction2" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 261
 Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(263): object "position2" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 263
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(351): signal "MAX10_CLK1_50" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 351
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(389): signal "VSync" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 389
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1062): signal "txtpixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1062
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1085): signal "paddle1pos" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1085
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1085): signal "paddle1sz" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1085
-Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1092): signal "drawbl" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1092
-Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1175): inferring latch(es) for signal or variable "ballspeed", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1175): inferring latch(es) for signal or variable "player1Wins", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1175): inferring latch(es) for signal or variable "player2Wins", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Warning (10873): Using initial value X (don't care) for net "LEDR[3]" at city2077_blink.vhd(30) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
+Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(275): object "blipped" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 275
+Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(278): object "blopped" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 278
+Warning (10036): Verilog HDL or VHDL warning at city2077_blink.vhd(280): object "banged" assigned a value but never read File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 280
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(360): signal "MAX10_CLK1_50" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 360
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(398): signal "VSync" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 398
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1071): signal "txtpixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1071
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1094): signal "paddle1pos" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1094
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1094): signal "paddle1sz" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1094
+Warning (10492): VHDL Process Statement warning at city2077_blink.vhd(1101): signal "drawbl" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1101
+Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1121): inferring latch(es) for signal or variable "audio", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1121
+Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1218): inferring latch(es) for signal or variable "ballspeed", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1218): inferring latch(es) for signal or variable "player1Wins", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Warning (10631): VHDL Process Statement warning at city2077_blink.vhd(1218): inferring latch(es) for signal or variable "player2Wins", which holds its previous value in one or more paths through the process File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
 Warning (10873): Using initial value X (don't care) for net "ARDUINO_IO[15..8]" at city2077_blink.vhd(43) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 43
 Warning (10873): Using initial value X (don't care) for net "ARDUINO_IO[6]" at city2077_blink.vhd(43) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 43
 Warning (10873): Using initial value X (don't care) for net "ARDUINO_IO[4..0]" at city2077_blink.vhd(43) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 43
-Info (10041): Inferred latch for "player2Wins" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (10041): Inferred latch for "player1Wins" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (10041): Inferred latch for "ballspeed[0]" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (10041): Inferred latch for "ballspeed[1]" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (10041): Inferred latch for "ballspeed[2]" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (10041): Inferred latch for "ballspeed[3]" at city2077_blink.vhd(1175) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1175
-Info (12128): Elaborating entity "pwm_sound" for hierarchy "pwm_sound:pwmAudio" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1356
+Info (10041): Inferred latch for "player2Wins" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "player1Wins" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "ballspeed[0]" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "ballspeed[1]" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "ballspeed[2]" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "ballspeed[3]" at city2077_blink.vhd(1218) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1218
+Info (10041): Inferred latch for "audio" at city2077_blink.vhd(1121) File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1121
+Info (12128): Elaborating entity "pwm_sound" for hierarchy "pwm_sound:pwmAudio" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1404
 Info (12128): Elaborating entity "soundrom" for hierarchy "pwm_sound:pwmAudio|soundrom:soundrom_inst" File: D:/GitHub/city2077-blink/pwm_audio.vhd Line: 129
 Info (12128): Elaborating entity "altsyncram" for hierarchy "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component" File: D:/GitHub/city2077-blink/soundrom.vhd Line: 60
 Info (12130): Elaborated megafunction instantiation "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component" File: D:/GitHub/city2077-blink/soundrom.vhd Line: 60
@@ -3254,13 +3213,13 @@ Info (12128): Elaborating entity "decode_2j9" for hierarchy "pwm_sound:pwmAudio|
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_p1b.tdf
     Info (12023): Found entity 1: mux_p1b File: D:/GitHub/city2077-blink/db/mux_p1b.tdf Line: 23
 Info (12128): Elaborating entity "mux_p1b" for hierarchy "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|mux_p1b:mux2" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 42
-Info (12128): Elaborating entity "hexdisplay" for hierarchy "hexdisplay:hexlsb" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1371
-Info (12128): Elaborating entity "video_sync_generator" for hierarchy "video_sync_generator:display" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1377
+Info (12128): Elaborating entity "hexdisplay" for hierarchy "hexdisplay:hexlsb" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1419
+Info (12128): Elaborating entity "video_sync_generator" for hierarchy "video_sync_generator:display" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1425
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(86): truncated value with size 32 to match size of target (10) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 86
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(89): truncated value with size 32 to match size of target (11) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 89
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(95): truncated value with size 32 to match size of target (11) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 95
 Warning (10230): Verilog HDL assignment warning at VGAclockgen.v(99): truncated value with size 32 to match size of target (10) File: D:/GitHub/city2077-blink/output_files/VGAclockgen.v Line: 99
-Info (12128): Elaborating entity "vgaClockPLL" for hierarchy "vgaClockPLL:vgaClock" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1378
+Info (12128): Elaborating entity "vgaClockPLL" for hierarchy "vgaClockPLL:vgaClock" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1426
 Info (12128): Elaborating entity "altpll" for hierarchy "vgaClockPLL:vgaClock|altpll:altpll_component" File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
 Info (12130): Elaborated megafunction instantiation "vgaClockPLL:vgaClock|altpll:altpll_component" File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
 Info (12133): Instantiated megafunction "vgaClockPLL:vgaClock|altpll:altpll_component" with the following parameter: File: D:/GitHub/city2077-blink/vgaClockPLL.v Line: 91
@@ -3321,8 +3280,8 @@ Info (12133): Instantiated megafunction "vgaClockPLL:vgaClock|altpll:altpll_comp
 Info (12021): Found 1 design units, including 1 entities, in source file db/vgaclockpll_altpll.v
     Info (12023): Found entity 1: vgaClockPLL_altpll File: D:/GitHub/city2077-blink/db/vgaclockpll_altpll.v Line: 30
 Info (12128): Elaborating entity "vgaClockPLL_altpll" for hierarchy "vgaClockPLL:vgaClock|altpll:altpll_component|vgaClockPLL_altpll:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "quadrature_decoder" for hierarchy "quadrature_decoder:paddleone" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1381
-Info (12128): Elaborating entity "paddle" for hierarchy "paddle:paddling" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1385
+Info (12128): Elaborating entity "quadrature_decoder" for hierarchy "quadrature_decoder:paddleone" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1429
+Info (12128): Elaborating entity "paddle" for hierarchy "paddle:paddling" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1433
 Info (12128): Elaborating entity "paddle_adc_mega_0" for hierarchy "paddle:paddling|paddle_adc_mega_0:adc_mega_0" File: D:/GitHub/city2077-blink/paddle/synthesis/paddle.vhd Line: 54
 Info (12128): Elaborating entity "altera_up_avalon_adv_adc" for hierarchy "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL" File: D:/GitHub/city2077-blink/paddle/synthesis/submodules/paddle_adc_mega_0.v Line: 58
 Info (12128): Elaborating entity "altpll" for hierarchy "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|altpll:adc_pll" File: D:/GitHub/city2077-blink/paddle/synthesis/submodules/altera_up_avalon_adv_adc.v Line: 105
@@ -3462,7 +3421,7 @@ Info (12133): Instantiated megafunction "paddle:paddling|paddle_adc_mega_0:adc_m
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_v5s1.tdf
     Info (12023): Found entity 1: altsyncram_v5s1 File: D:/GitHub/city2077-blink/db/altsyncram_v5s1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_v5s1" for hierarchy "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "txtScreen" for hierarchy "txtScreen:txtscreenInst" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1398
+Info (12128): Elaborating entity "txtScreen" for hierarchy "txtScreen:txtscreenInst" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1446
 Warning (10492): VHDL Process Statement warning at txtscreen.vhd(71): signal "q_8x12" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 71
 Info (12128): Elaborating entity "charrom1" for hierarchy "txtScreen:txtscreenInst|charrom1:font8x12_inst" File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 53
 Info (12128): Elaborating entity "altsyncram" for hierarchy "txtScreen:txtscreenInst|charrom1:font8x12_inst|altsyncram:altsyncram_component" File: D:/GitHub/city2077-blink/charrom1.v Line: 82
@@ -3552,6 +3511,8 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated|q_b[13]" File: D:/GitHub/city2077-blink/db/altsyncram_v5s1.tdf Line: 416
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated|q_b[14]" File: D:/GitHub/city2077-blink/db/altsyncram_v5s1.tdf Line: 445
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_sample_store:sample_store_internal|altera_modular_adc_sample_store_ram:u_ss_ram|altsyncram:altsyncram_component|altsyncram_v5s1:auto_generated|q_b[15]" File: D:/GitHub/city2077-blink/db/altsyncram_v5s1.tdf Line: 474
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|ram_block1a8" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 227
         Warning (14320): Synthesized away node "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|ram_block1a9" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 250
         Warning (14320): Synthesized away node "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|ram_block1a10" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 273
@@ -3588,26 +3549,24 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|altsyncram_rqn1:FIFOram|q_b[9]" File: D:/GitHub/city2077-blink/db/altsyncram_rqn1.tdf Line: 310
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|altsyncram_rqn1:FIFOram|q_b[10]" File: D:/GitHub/city2077-blink/db/altsyncram_rqn1.tdf Line: 340
         Warning (14320): Synthesized away node "paddle:paddling|paddle_adc_mega_0:adc_mega_0|altera_up_avalon_adv_adc:ADC_CTRL|DE10_Lite_ADC_Core_modular_adc_0:max10_adc_core|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_ds61:auto_generated|a_dpfifo_3o41:dpfifo|altsyncram_rqn1:FIFOram|q_b[11]" File: D:/GitHub/city2077-blink/db/altsyncram_rqn1.tdf Line: 370
-Info (278001): Inferred 17 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 318
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 319
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 319
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 320
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 320
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 321
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 321
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 325
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 326
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1244
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1144
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod6" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1160
+Info (278001): Inferred 15 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 322
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 323
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 323
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 324
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 324
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 325
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 325
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 329
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 330
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1292
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "txtScreen:txtscreenInst|Mod0" File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 67
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1225
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod8" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1341
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod7" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1321
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod6" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1389
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1273
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1369
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "txtScreen:txtscreenInst|Div0" File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 66
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 318
-Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 318
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 322
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 322
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "32"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3625,8 +3584,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/add_
     Info (12023): Found entity 1: add_sub_u3c File: D:/GitHub/city2077-blink/db/add_sub_u3c.tdf Line: 23
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_8b9.tdf
     Info (12023): Found entity 1: lpm_abs_8b9 File: D:/GitHub/city2077-blink/db/lpm_abs_8b9.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 319
-Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 319
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 323
+Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 323
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "5"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3640,8 +3599,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alt_
     Info (12023): Found entity 1: alt_u_div_she File: D:/GitHub/city2077-blink/db/alt_u_div_she.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_o99.tdf
     Info (12023): Found entity 1: lpm_abs_o99 File: D:/GitHub/city2077-blink/db/lpm_abs_o99.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 320
-Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 320
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 324
+Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 324
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "8"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3655,8 +3614,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alt_
     Info (12023): Found entity 1: alt_u_div_2ie File: D:/GitHub/city2077-blink/db/alt_u_div_2ie.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_r99.tdf
     Info (12023): Found entity 1: lpm_abs_r99 File: D:/GitHub/city2077-blink/db/lpm_abs_r99.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 321
-Info (12133): Instantiated megafunction "lpm_divide:Div2" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 321
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div2" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 325
+Info (12133): Instantiated megafunction "lpm_divide:Div2" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 325
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "11"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3670,15 +3629,15 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alt_
     Info (12023): Found entity 1: alt_u_div_mke File: D:/GitHub/city2077-blink/db/alt_u_div_mke.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_5b9.tdf
     Info (12023): Found entity 1: lpm_abs_5b9 File: D:/GitHub/city2077-blink/db/lpm_abs_5b9.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 326
-Info (12133): Instantiated megafunction "lpm_divide:Div3" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 326
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div3" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 330
+Info (12133): Instantiated megafunction "lpm_divide:Div3" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 330
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "5"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1244
-Info (12133): Instantiated megafunction "lpm_divide:Div5" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1244
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1292
+Info (12133): Instantiated megafunction "lpm_divide:Div5" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1292
     Info (12134): Parameter "LPM_WIDTHN" = "9"
     Info (12134): Parameter "LPM_WIDTHD" = "5"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -3689,20 +3648,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_ekh File: D:/GitHub/city2077-blink/db/sign_div_unsign_ekh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_5fe.tdf
     Info (12023): Found entity 1: alt_u_div_5fe File: D:/GitHub/city2077-blink/db/alt_u_div_5fe.tdf Line: 27
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1144
-Info (12133): Instantiated megafunction "lpm_divide:Mod5" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1144
-    Info (12134): Parameter "LPM_WIDTHN" = "32"
-    Info (12134): Parameter "LPM_WIDTHD" = "32"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod6" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1160
-Info (12133): Instantiated megafunction "lpm_divide:Mod6" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1160
-    Info (12134): Parameter "LPM_WIDTHN" = "32"
-    Info (12134): Parameter "LPM_WIDTHD" = "32"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
 Info (12130): Elaborated megafunction instantiation "txtScreen:txtscreenInst|lpm_divide:Mod0" File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 67
 Info (12133): Instantiated megafunction "txtScreen:txtscreenInst|lpm_divide:Mod0" with the following parameter: File: D:/GitHub/city2077-blink/txtscreen.vhd Line: 67
     Info (12134): Parameter "LPM_WIDTHN" = "32"
@@ -3710,8 +3655,15 @@ Info (12133): Instantiated megafunction "txtScreen:txtscreenInst|lpm_divide:Mod0
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
     Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1225
-Info (12133): Instantiated megafunction "lpm_divide:Div4" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1225
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod6" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1389
+Info (12133): Instantiated megafunction "lpm_divide:Mod6" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1389
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "32"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div4" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1273
+Info (12133): Instantiated megafunction "lpm_divide:Div4" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1273
     Info (12134): Parameter "LPM_WIDTHN" = "13"
     Info (12134): Parameter "LPM_WIDTHD" = "6"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3727,15 +3679,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_
     Info (12023): Found entity 1: lpm_abs_p99 File: D:/GitHub/city2077-blink/db/lpm_abs_p99.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_7b9.tdf
     Info (12023): Found entity 1: lpm_abs_7b9 File: D:/GitHub/city2077-blink/db/lpm_abs_7b9.tdf Line: 25
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod8" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1341
-Info (12133): Instantiated megafunction "lpm_divide:Mod8" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1341
-    Info (12134): Parameter "LPM_WIDTHN" = "32"
-    Info (12134): Parameter "LPM_WIDTHD" = "32"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
-    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod7" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1321
-Info (12133): Instantiated megafunction "lpm_divide:Mod7" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1321
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod5" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1369
+Info (12133): Instantiated megafunction "lpm_divide:Mod5" with the following parameter: File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1369
     Info (12134): Parameter "LPM_WIDTHN" = "32"
     Info (12134): Parameter "LPM_WIDTHD" = "32"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -3754,8 +3699,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/abs_
     Info (12023): Found entity 1: abs_divider_lbg File: D:/GitHub/city2077-blink/db/abs_divider_lbg.tdf Line: 29
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uhe.tdf
     Info (12023): Found entity 1: alt_u_div_uhe File: D:/GitHub/city2077-blink/db/alt_u_div_uhe.tdf Line: 27
-Info (13014): Ignored 394 buffer(s)
-    Info (13016): Ignored 394 CARRY_SUM buffer(s)
+Info (13014): Ignored 332 buffer(s)
+    Info (13016): Ignored 332 CARRY_SUM buffer(s)
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "GPIO[0]" has no driver File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 42
     Warning (13040): bidirectional pin "GPIO[1]" has no driver File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 42
@@ -3793,13 +3738,13 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "GPIO[33]" has no driver File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 42
     Warning (13040): bidirectional pin "GPIO[34]" has no driver File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 42
     Warning (13040): bidirectional pin "GPIO[35]" has no driver File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 42
-Info (13000): Registers with preset signals will power-up high File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
+Info (13000): Registers with preset signals will power-up high File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[1]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
     Warning (13410): Pin "LEDR[2]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
-    Warning (13410): Pin "LEDR[9]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
     Warning (13410): Pin "HEX0[7]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 31
     Warning (13410): Pin "HEX1[7]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 32
     Warning (13410): Pin "HEX2[7]" is stuck at VCC File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 33
@@ -3821,24 +3766,26 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "ARDUINO_IO[14]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 43
     Warning (13410): Pin "ARDUINO_IO[15]" is stuck at GND File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 43
 Info (286030): Timing-Driven Synthesis is running
-Warning (14632): Output pin "LEDR[5]" driven by bidirectional pin "GPIO[5]" cannot be tri-stated File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
+Warning (14632): Output pin "LEDR[3]" driven by bidirectional pin "GPIO[5]" cannot be tri-stated File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 30
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register Lives[1] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register Lives[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register Lives[4] will power up to Low File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register ballY[5] will power up to Low File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register ballY[3] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register ballY[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register blockHit[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register blockHit[0] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register blockHit[1] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
-    Critical Warning (18010): Register blockHit[5] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1177
+    Critical Warning (18010): Register Lives[1] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register Lives[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register Lives[4] will power up to Low File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register ballY[5] will power up to Low File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register ballY[3] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register ballY[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register blockHit[2] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register blockHit[0] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register blockHit[1] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
+    Critical Warning (18010): Register blockHit[5] will power up to High File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 1220
 Info (17049): 18 registers lost all their fanouts during netlist optimizations.
-Info (17036): Removed 3 MSB VCC or GND address nodes from RAM block "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|ALTSYNCRAM" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 204
+Info (17036): Removed 1 MSB VCC or GND address nodes from RAM block "pwm_sound:pwmAudio|soundrom:soundrom_inst|altsyncram:altsyncram_component|altsyncram_91r3:auto_generated|ALTSYNCRAM" File: D:/GitHub/city2077-blink/db/altsyncram_91r3.tdf Line: 204
 Info (17016): Found the following redundant logic cells in design
-    Info (17048): Logic cell "lpm_divide:Mod8|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~18"
-    Info (17048): Logic cell "lpm_divide:Mod8|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~20"
-    Info (17048): Logic cell "lpm_divide:Mod8|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~22"
+    Info (17048): Logic cell "lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~18"
+    Info (17048): Logic cell "lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~20"
+    Info (17048): Logic cell "lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~22"
+    Info (17048): Logic cell "lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~24"
+    Info (17048): Logic cell "lpm_divide:Mod6|lpm_divide_25o:auto_generated|abs_divider_4dg:divider|alt_u_div_ske:divider|op_21~26"
 Info (144001): Generated suppressed messages file D:/GitHub/city2077-blink/output_files/city2077-blink.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 2 node(s), including 0 DDIO, 2 PLL, 0 transceiver and 0 LCELL
@@ -3851,18 +3798,18 @@ Warning (21074): Design contains 8 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
     Warning (15610): No output dependent on input pin "SW[8]" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
     Warning (15610): No output dependent on input pin "SW[9]" File: D:/GitHub/city2077-blink/city2077_blink.vhd Line: 29
-Info (21057): Implemented 17190 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 14304 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 88 output pins
     Info (21060): Implemented 36 bidirectional pins
-    Info (21061): Implemented 17016 logic cells
+    Info (21061): Implemented 14130 logic cells
     Info (21064): Implemented 33 RAM segments
     Info (21065): Implemented 2 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 164 warnings
-    Info: Peak virtual memory: 4975 megabytes
-    Info: Processing ended: Wed Apr 16 16:30:36 2025
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:00:49
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 169 warnings
+    Info: Peak virtual memory: 4965 megabytes
+    Info: Processing ended: Thu Apr 17 14:18:37 2025
+    Info: Elapsed time: 00:00:30
+    Info: Total CPU time (on all processors): 00:00:42
 
 
 +------------------------------------------+

@@ -1,15 +1,15 @@
-Analysis & Synthesis Status : Successful - Wed Apr 16 16:30:36 2025
+Analysis & Synthesis Status : Successful - Thu Apr 17 14:18:37 2025
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : city2077-blink
 Top-level Entity Name : city2077_blink
 Family : MAX 10
-Total logic elements : 16,998
-    Total combinational functions : 16,950
-    Dedicated logic registers : 544
-Total registers : 544
+Total logic elements : 14,109
+    Total combinational functions : 14,060
+    Dedicated logic registers : 479
+Total registers : 479
 Total pins : 138
 Total virtual pins : 0
-Total memory bits : 57,920
+Total memory bits : 82,496
 Embedded Multiplier 9-bit elements : 0
 Total PLLs : 2
 UFM blocks : 0

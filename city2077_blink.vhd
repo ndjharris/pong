@@ -276,14 +276,18 @@ end component;
   signal blopcount : integer := 0;
   signal blop      : std_logic;
   signal blopped   : std_logic;
+  signal bang      : std_logic;
+  signal banged    : std_logic;
+  signal playing   : std_logic;
+  signal played    : std_logic := '0';
   signal audio     : std_logic;
   signal tune      : std_logic_vector(3 downto 0); -- room for 16 sounds of
                                                    -- 1024 bytes
   signal playTune  : std_logic;                    -- sound_strobe
   signal pwmOut    : std_logic;
-  signal bang      : std_logic;
-  signal banged    : std_logic;
-  signal playing   : std_logic;
+
+  type SoundState is (IDLE, PLAY_TUNE, PLAY_DONE);
+  signal Sound_State: SoundState := IDLE; -- machine to drive sound generator
 
   signal aiControl : std_logic;
 
@@ -336,8 +340,13 @@ begin
   SP(xpi, ypi, ballx, bally, ball, scaleBL, DRAWBL);
   aiControl <= sw(0);
   paddleSel <= SW(1);
-  ledr(6)   <= aiControl;
-  ledr(4)   <= playing;
+  ledr(4)   <= playtune;  -- Debug LEDS
+  ledr(5)   <= playing;
+  ledr(6)   <= tune(0);
+  ledr(7)   <= tune(1);
+  ledr(8)   <= tune(2);
+  ledr(9)   <= tune(3);
+  
 
   -- Logic to toggle Led state
 
@@ -1113,59 +1122,93 @@ begin
   begin
     if resetn = '1' then
       blipped <= '0';
+      blopped <= '0';
+      banged <= '0';
       audio   <= '0';
       playtune <= '0';
-      ledr(7) <= '0';
-      ledr(8) <= '0';
-      banged <= '0';
+      Sound_State <= IDLE;
     elsif (rising_edge(clk)) then
-      if bang = '1' then
-        tune <= "0000";  -- an explosion sound
-        playtune <= '1'; -- set sound going in PWM
-        banged <= '1';
-        --ledr(7) <= '1';
-      elsif banged <= '1' then
-        tune <= "0000";
-        if playing = '0' then
-          playtune <= '0';
-          ledr(7) <= '1';
-        else
+
+      case Sound_State is
+        when IDLE =>
+          playtune <='0';
+          if bang = '1' or blip = '1' or blop = '1' then
+            sound_State <= PLAY_TUNE;
+            if bang = '1' then
+              tune <= "0000";
+            elsif blip = '1' then
+              tune <= "0001";
+            else tune <= "0010";
+            end if;
+          else
+            sound_State <= IDLE;
+          end if;
+        when PLAY_TUNE =>
           playtune <= '1';
-          ledr(8) <= '1';
+          if playing = '1' then
+            Sound_State <= PLAY_DONE;
+          else
+            Sound_State <= PLAY_TUNE;
+          end if;
+        when PLAY_DONE =>
+          playtune <= '0';
+          if playing = '0' then
+            played <= '1';
+            Sound_State <= IDLE;
+          else
+            sound_State <= PLAY_DONE;
+          end if;
+      end case;
+          
+            
+      
+      -- if bang = '1' then
+      --   tune <= "0000";  -- an explosion sound
+      --   playtune <= '1'; -- set sound going in PWM
+      --   banged <= '1';
+      --   --ledr(7) <= '1';
+      -- elsif banged <= '1' then
+      --   tune <= "0000";
+      --   if playing = '0' then
+      --     playtune <= '0';
+      --     ledr(7) <= '1';
+      --   else
+      --     playtune <= '1';
+      --     ledr(8) <= '1';
 
-        end if;
-      end if;
-      if (blip = '1') then
-        blipped <= '1';
-      end if;
+      --   end if;
+      -- end if;
+      -- if (blip = '1') then
+      --   blipped <= '1';
+      -- end if;
 
-      if blipped = '1' then
-        blipcount <= blipcount + 1;
-        if (blipcount mod 25000) = 1 then
-          audio <= not audio;           -- 800 Hz
-        end if;
-        if (blipcount > 5000000) then
-          blipped   <= '0';
-          blipcount <= 0;
-          audio     <= '0';             -- silence beeper
-        end if;
-      end if;
+      -- if blipped = '1' then
+      --   blipcount <= blipcount + 1;
+      --   if (blipcount mod 25000) = 1 then
+      --     audio <= not audio;           -- 800 Hz
+      --   end if;
+      --   if (blipcount > 5000000) then
+      --     blipped   <= '0';
+      --     blipcount <= 0;
+      --     audio     <= '0';             -- silence beeper
+      --   end if;
+      -- end if;
 
-      if (blop = '1') then
-        blopped <= '1';
-      end if;
+      -- if (blop = '1') then
+      --   blopped <= '1';
+      -- end if;
 
-      if blopped = '1' then
-        blopcount <= blopcount + 1;
-        if (blopcount mod 40000) = 1 then
-          audio <= not audio;           -- 500 Hz
-        end if;
-        if (blopcount > 5000000) then
-          blopped   <= '0';
-          blopcount <= 0;
-          audio     <= '0';             -- silence beeper
-        end if;
-      end if;
+      -- if blopped = '1' then
+      --   blopcount <= blopcount + 1;
+      --   if (blopcount mod 40000) = 1 then
+      --     audio <= not audio;           -- 500 Hz
+      --   end if;
+      --   if (blopcount > 5000000) then
+      --     blopped   <= '0';
+      --     blopcount <= 0;
+      --     audio     <= '0';             -- silence beeper
+      --   end if;
+      -- end if;
     end if;
   end process;
 
@@ -1195,15 +1238,20 @@ begin
       newTiles        <= '1';
       blockHit        <= -1;
     elsif (rising_edge(VSync)) then
-      if blipped = '1' then           -- noise started
-          blip <= '0';                -- cancel request
+      if played = '1' then
+        blip <= '0';
+        blop <= '0';
+        bang <= '0';
       end if;
-      if blopped = '1' then           -- noise started
-          blop <= '0';                -- cancel request
-      end if;
-      if banged = '1' then           -- noise started
-          bang <= '0';                -- cancel request
-      end if;
+      -- if blipped = '1' then           -- noise started
+      --     blip <= '0';                -- cancel request
+      -- end if;
+      -- if blopped = '1' then           -- noise started
+      --     blop <= '0';                -- cancel request
+      -- end if;
+      -- if banged = '1' then           -- noise started
+      --     bang <= '0';                -- cancel request
+      -- end if;
       if served = '0' and WaitingForServe = '1' then
 	     if newTiles = '1' then
 		     blockPresent <= ('1', '1', '1', '1', '1', '1', '1', '1',
@@ -1325,7 +1373,7 @@ begin
           if (adcCycle = 0) then  -- adcCycle allows time for conversions to complete
             paddlein1pos <= (to_integer(unsigned(paddlepos1(11 downto 3))));
             adcCycle     <= 1;
-            ledr(9)      <= '1';
+            -- ledr(9)      <= '1';
 
           elsif adcCycle = 1 then
             adcCycle <= 0;
@@ -1361,7 +1409,7 @@ begin
     )
     port map(
         clk_i => clk,
-        reset_i => not resetn,
+        reset_i => resetn,
         tune_addr_i => tune,
         sound_strobe_i => playTune,
         gpio_o => pwmOut,
@@ -1410,5 +1458,5 @@ begin
   ledr(1)  <= not player1wins;
   ledr(2)  <= not player2wins;
 
-  ledr(5) <= encoder1(2);
+  ledr(3) <= encoder1(2);
 end rtl;
