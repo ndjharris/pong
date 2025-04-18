@@ -65,11 +65,11 @@ architecture rtl of city2077_blink is
   constant PLAYER2_WIN_I_ASCII : std_logic_vector(7 downto 0) := "01001001";  -- ASCII for 'I'
   constant PLAYER2_WIN_N_ASCII : std_logic_vector(7 downto 0) := "01001110";  -- ASCII for 'N'
   constant SPACE_ASCII         : std_logic_vector(7 downto 0) := "00100000";  -- ASCII for ' '
-  constant clk_frequency_hz : integer := 50000000; -- 50 MHz main clock
-  constant pwm_frequency_hz : integer := 20000; -- 20 KHz
-  constant sound_addr_width : integer := 4; -- 16 different tunes/samples
+  constant clk_frequency_hz    : integer                      := 50000000;  -- 50 MHz main clock
+  constant pwm_frequency_hz    : integer                      := 20000;  -- 20 KHz
+  constant sound_addr_width    : integer                      := 4;  -- 16 different tunes/samples
 
-  
+
   component counter is
 
     port(
@@ -149,21 +149,21 @@ architecture rtl of city2077_blink is
       );
   end component;
 
-component pwm_sound
+  component pwm_sound
     generic (
-            clk_frequency_hz : integer;
-            pwm_frequency_hz : integer;
-            sound_addr_width : integer
-    );
+      clk_frequency_hz : integer;
+      pwm_frequency_hz : integer;
+      sound_addr_width : integer
+      );
     port (
-        clk_i       : in  std_logic;                     -- System clock input
-        reset_i     : in  std_logic;
-        tune_addr_i  : in  std_logic_vector(sound_addr_width - 1 downto 0);  -- Address of sound to play
-        sound_strobe_i: in  std_logic;                     -- Strobe signal to trigger sound playback
-        gpio_o      : out std_logic;                      -- PWM output to GPIO pin
-        working     : out std_logic
-    );
-end component;
+      clk_i          : in  std_logic;   -- System clock input
+      reset_i        : in  std_logic;
+      tune_addr_i    : in  std_logic_vector(sound_addr_width - 1 downto 0);  -- Address of sound to play
+      sound_strobe_i : in  std_logic;  -- Strobe signal to trigger sound playback
+      gpio_o         : out std_logic;   -- PWM output to GPIO pin
+      working        : out std_logic
+      );
+  end component;
 
   -- sprite for ball
   signal ball : std_logic_vector(99 downto 0) :=
@@ -251,6 +251,8 @@ end component;
   signal paddle1pos   : integer range 0 to 650 := 320;
   signal paddle1sz    : integer range 0 to 100 := 40;
   signal player1scr   : integer                := 0;
+  signal scoreAdded   : integer := 0;
+  signal acknowledged : std_logic := '0';
   signal paddlein2pos : integer range 0 to 650 := 320;
   signal paddle2pos   : integer range 0 to 650 := 320;
   signal paddle2sz    : integer range 0 to 100 := 40;
@@ -270,10 +272,10 @@ end component;
   signal wren       : std_logic;        -- active low write strobe
   signal txtpixel   : std_logic;  -- output from screen memory to indicate pixel
 
-  signal blipcount : integer := 0;
+  signal blipcount : integer   := 0;
   signal blip      : std_logic;
   signal blipped   : std_logic;
-  signal blopcount : integer := 0;
+  signal blopcount : integer   := 0;
   signal blop      : std_logic;
   signal blopped   : std_logic;
   signal bang      : std_logic;
@@ -281,13 +283,13 @@ end component;
   signal playing   : std_logic;
   signal played    : std_logic := '0';
   signal audio     : std_logic;
-  signal tune      : std_logic_vector(3 downto 0); -- room for 16 sounds of
-                                                   -- 1024 bytes
-  signal playTune  : std_logic;                    -- sound_strobe
+  signal tune      : std_logic_vector(3 downto 0);  -- room for 16 sounds of
+                                                    -- 1024 bytes
+  signal playTune  : std_logic;                     -- sound_strobe
   signal pwmOut    : std_logic;
 
   type SoundState is (IDLE, PLAY_TUNE, PLAY_DONE);
-  signal Sound_State: SoundState := IDLE; -- machine to drive sound generator
+  signal Sound_State : SoundState := IDLE;  -- machine to drive sound generator
 
   signal aiControl : std_logic;
 
@@ -305,8 +307,8 @@ begin
   reset         <= key(1);
   resetn        <= not reset;
   button        <= key(0);
-  ARDUINO_IO(5) <= (audio xor pwmOut) and ledstate;  -- conect buzzer/speaker to arduino hat
-  ARDUINO_IO(7) <= (audio xor pwmOut) and ledstate;  -- digital io D5/D7
+  ARDUINO_IO(5) <= pwmOut and not ledstate;  -- conect buzzer/speaker to arduino hat
+  ARDUINO_IO(7) <= pwmOut and not ledstate;  -- digital io D5/D7
 
   encoder1(0) <= gpio(1);
   encoder1(1) <= gpio(3);
@@ -340,13 +342,13 @@ begin
   SP(xpi, ypi, ballx, bally, ball, scaleBL, DRAWBL);
   aiControl <= sw(0);
   paddleSel <= SW(1);
-  ledr(4)   <= playtune;  -- Debug LEDS
+  ledr(4)   <= playtune;                -- Debug LEDS
   ledr(5)   <= playing;
   ledr(6)   <= tune(0);
   ledr(7)   <= tune(1);
   ledr(8)   <= tune(2);
   ledr(9)   <= tune(3);
-  
+
 
   -- Logic to toggle Led state
 
@@ -396,7 +398,7 @@ begin
       serveState <= "00";
       served     <= '0';
     elsif (rising_edge(Vsync)) then
-      if waitingForServe = '1' then     -- waiting for button press to serve ball
+      if waitingForServe = '1' then  -- waiting for button press to serve ball
         if (serveState = "00") then
           if (encoder1(2) = '0') then
             serveState <= "01";
@@ -416,9 +418,9 @@ begin
             serveState <= "11";
           end if;
         elsif (serveState = "11") then  -- One clock here after button released
-            serveState <= "00";
-            served     <= '1';  -- could be in state '10' or here for served on
-                                -- release of the button
+          serveState <= "00";
+          served     <= '1';  -- could be in state '10' or here for served on
+        -- release of the button
         end if;
       else
         served <= '0';
@@ -1121,17 +1123,17 @@ begin
   process(clk, resetn, blip, blop)
   begin
     if resetn = '1' then
-      blipped <= '0';
-      blopped <= '0';
-      banged <= '0';
-      audio   <= '0';
-      playtune <= '0';
+      blipped     <= '0';
+      blopped     <= '0';
+      banged      <= '0';
+      audio       <= '0';
+      playtune    <= '0';
       Sound_State <= IDLE;
     elsif (rising_edge(clk)) then
 
       case Sound_State is
         when IDLE =>
-          playtune <='0';
+          playtune <= '0';
           if bang = '1' or blip = '1' or blop = '1' then
             sound_State <= PLAY_TUNE;
             if bang = '1' then
@@ -1153,66 +1155,17 @@ begin
         when PLAY_DONE =>
           playtune <= '0';
           if playing = '0' then
-            played <= '1';
+            played      <= '1';
             Sound_State <= IDLE;
           else
             sound_State <= PLAY_DONE;
           end if;
       end case;
-          
-            
-      
-      -- if bang = '1' then
-      --   tune <= "0000";  -- an explosion sound
-      --   playtune <= '1'; -- set sound going in PWM
-      --   banged <= '1';
-      --   --ledr(7) <= '1';
-      -- elsif banged <= '1' then
-      --   tune <= "0000";
-      --   if playing = '0' then
-      --     playtune <= '0';
-      --     ledr(7) <= '1';
-      --   else
-      --     playtune <= '1';
-      --     ledr(8) <= '1';
-
-      --   end if;
-      -- end if;
-      -- if (blip = '1') then
-      --   blipped <= '1';
-      -- end if;
-
-      -- if blipped = '1' then
-      --   blipcount <= blipcount + 1;
-      --   if (blipcount mod 25000) = 1 then
-      --     audio <= not audio;           -- 800 Hz
-      --   end if;
-      --   if (blipcount > 5000000) then
-      --     blipped   <= '0';
-      --     blipcount <= 0;
-      --     audio     <= '0';             -- silence beeper
-      --   end if;
-      -- end if;
-
-      -- if (blop = '1') then
-      --   blopped <= '1';
-      -- end if;
-
-      -- if blopped = '1' then
-      --   blopcount <= blopcount + 1;
-      --   if (blopcount mod 40000) = 1 then
-      --     audio <= not audio;           -- 500 Hz
-      --   end if;
-      --   if (blopcount > 5000000) then
-      --     blopped   <= '0';
-      --     blopcount <= 0;
-      --     audio     <= '0';             -- silence beeper
-      --   end if;
-      -- end if;
     end if;
   end process;
 
 
+  blockHit <= (((ballY - 96) / 24) * 10) + (ballX/64);  -- Block 0 at 120, 0 and ten blocks (24 x 64) per row
 
   -- move Ball - synchronised to Vsync 60Hz
   process(VSync, ballX, BallY, adcCycle, blipped, blopped, resetn)
@@ -1225,6 +1178,7 @@ begin
       ballXDir        <= 1;
       ballYDir        <= 1;
       player1scr      <= 0;
+      scoreAdded      <= 0;
       player2scr      <= 0;
       player1Wins     <= '0';
       player2Wins     <= '0';
@@ -1236,72 +1190,117 @@ begin
       bang            <= '0';
       tilesHit        <= 0;
       newTiles        <= '1';
-      blockHit        <= -1;
+    -- blockHit        <= -1;
     elsif (rising_edge(VSync)) then
       if played = '1' then
         blip <= '0';
         blop <= '0';
         bang <= '0';
       end if;
-      -- if blipped = '1' then           -- noise started
-      --     blip <= '0';                -- cancel request
-      -- end if;
-      -- if blopped = '1' then           -- noise started
-      --     blop <= '0';                -- cancel request
-      -- end if;
-      -- if banged = '1' then           -- noise started
-      --     bang <= '0';                -- cancel request
-      -- end if;
+      if scoreAdded > 0 and acknowledged = '0' then
+        player1scr <= player1scr + scoreAdded;
+        acknowledged <= '1';
+        scoreAdded <= 0;
+      else acknowledged <= '0';
+      end if;
       if served = '0' and WaitingForServe = '1' then
-	     if newTiles = '1' then
-		     blockPresent <= ('1', '1', '1', '1', '1', '1', '1', '1',
-								    '1', '1', '1', '1', '1', '1', '1', '1',
-							       '1', '1', '1', '1', '1', '1', '1', '1',
-								    '1', '1', '1', '1', '1', '1', '1', '1',
-								    '1', '1', '1', '1', '1', '1', '1', '1');
-		     newTiles <= '0';
-		  end if;
-        ballX <= 320;
-        ballY <= 220;
-		  ballydir <= 1;
+        if newTiles = '1' then
+          blockPresent <= ('1', '1', '1', '1', '1', '1', '1', '1',
+                           '1', '1', '1', '1', '1', '1', '1', '1',
+                           '1', '1', '1', '1', '1', '1', '1', '1',
+                           '1', '1', '1', '1', '1', '1', '1', '1',
+                           '1', '1', '1', '1', '1', '1', '1', '1');
+          newTiles <= '0';
+        end if;
+        ballX    <= 320;
+        ballY    <= 220;
+        ballydir <= 1;
 
       else
         waitingForServe <= '0';
+        scoreAdded <= 0;
         ballx           <= ballx + ballXDir*ballspeed;
         bally           <= bally + BallYDir*ballspeed;
         -- which block is ball hitting?
-        blockHit        <= (((ballY - 96 - ballydir * 12 + ballydir*scalebl*6) / 24) * 10) + (ballX/64);  -- Block 0 at 120, 0 and ten blocks (24 x 64) per row
+--        blockHit        <= (((ballY - 96 - ballydir * 12 + ballydir*scalebl*6) / 24) * 10) + (ballX/64);  -- Block 0 at 120, 0 and ten blocks (24 x 64) per row
+--        blockHit        <= (((ballY - 96) / 24) * 10) + (ballX/64);  -- Block 0 at 120, 0 and ten blocks (24 x 64) per row
         -- AI player control
         -- paddle1pos <= ballx;
         case bally is
-          when 0 to 59 =>
+          when 0 to 60 =>
             -- ball hits top edge
             ballYdir <= 1;              --abs (ballydir);
-            bally    <= 59 + scalebl*4;
+            bally    <= 60 + scalebl*2;
 
-          when 96 to 216 =>
+
+          when 96 to 192 =>
             if blockPresent(blockHit) = '1' and blockHit >= 0 then
               blockPresent(blockHit) <= '0';
-              if abs(ballx + scalebl*4) mod 64 < 3 then
-                ballxdir <= - abs(ballxdir);
-              elsif abs(ballx - scalebl*4) mod 64 > 61 then
-                ballxdir <= abs(ballxdir);
+              if acknowledged = '0' then
+                scoreAdded             <= 8 - (bally) / 24;
               else
-                ballYdir <= - ballydir;
+                scoreAdded <= 0;
               end if;
-              player1Scr <= player1Scr + (8 - (bally / 24));
-              tilesHit   <= tilesHit + 1;
+              tilesHit               <= tilesHit + 1;
               if tilesHit = 39 then
                 tilesHit        <= 0;
-                blockHit        <= -5;
+                --blockHit        <= -5;
                 newTiles        <= '1';
                 blop            <= '1';
                 bally           <= 220;
                 ballydir        <= 1;
                 WaitingForServe <= '1';
               end if;
-
               bang <= '1';
+              if bally < 99 then
+                ballYdir <= -abs(ballydir);
+                bally    <= bally - scalebl *4;
+              elsif bally < 116 then
+                if ballx mod 64 > 60 then
+                  ballxdir <= abs(ballxdir);
+                elsif ballx mod 64 < 4 then
+                  ballxdir <= - abs(ballxdir);
+                end if;
+              elsif bally < 119 then
+                ballYdir <= abs(ballydir);
+                bally    <= bally + scalebl *4;
+              elsif bally < 122 then
+                ballYdir <= -abs(ballydir);
+                bally    <= bally - scalebl *4;
+              elsif bally < 140 then
+                if ballx mod 64 > 60 then
+                  ballxdir <= abs(ballxdir);
+                elsif ballx mod 64 < 4 then
+                  ballxdir <= - abs(ballxdir);
+                end if;
+              elsif bally < 143 then
+                ballYdir <= abs(ballydir);
+                bally    <= bally + scalebl *4;
+              elsif bally < 146 then
+                ballYdir <= -abs(ballydir);
+                bally    <= bally - scalebl *4;
+              elsif bally < 164 then
+                if ballx mod 64 > 60 then
+                  ballxdir <= abs(ballxdir);
+                elsif ballx mod 64 < 4 then
+                  ballxdir <= - abs(ballxdir);
+                end if;
+              elsif bally < 167 then
+                ballYdir <= abs(ballydir);
+                bally    <= bally + scalebl *4;
+              elsif bally < 170 then
+                ballYdir <= -abs(ballydir);
+                bally    <= bally - scalebl *4;
+              elsif bally < 188 then
+                if ballx mod 64 > 60 then
+                  ballxdir <= abs(ballxdir);
+                elsif ballx mod 64 < 4 then
+                  ballxdir <= - abs(ballxdir);
+                end if;
+              elsif bally < 191 then
+                ballYdir <= abs(ballydir);
+                bally    <= bally + scalebl *4;
+              end if;
             end if;
           when 460 - scalebl*3 to 470 - scalebl*3 =>  -- line of paddle vertically
 
@@ -1401,20 +1400,20 @@ begin
 
   -- Instantiate components
 
-  pwmAudio  : pwm_sound
+  pwmAudio : pwm_sound
     generic map (
-        clk_frequency_hz => clk_frequency_hz,
-        pwm_frequency_hz => pwm_frequency_hz,
-        sound_addr_width => sound_addr_width
-    )
+      clk_frequency_hz => clk_frequency_hz,
+      pwm_frequency_hz => pwm_frequency_hz,
+      sound_addr_width => sound_addr_width
+      )
     port map(
-        clk_i => clk,
-        reset_i => resetn,
-        tune_addr_i => tune,
-        sound_strobe_i => playTune,
-        gpio_o => pwmOut,
-        working => playing
-    );
+      clk_i          => clk,
+      reset_i        => resetn,
+      tune_addr_i    => tune,
+      sound_strobe_i => playTune,
+      gpio_o         => pwmOut,
+      working        => playing
+      );
 
   hexlsb    : hexdisplay port map(plyr1thou(3 downto 0), HEX3(7 downto 0));
   hexmsb    : hexdisplay port map(plyr1hund(3 downto 0), HEX2(7 downto 0));
