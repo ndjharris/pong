@@ -160,6 +160,12 @@ signal txtdata    : std_logic_vector(7 downto 0);
 signal wren       : std_logic;
 signal txtpixel   : std_logic;
 
+signal ball_speed_multiplier : integer range 1 to 5 := 1;
+signal ball_base_speed : integer range 1 to 3 := 1;
+signal speed_level : integer range 1 to 10 := 1;
+signal speed_level_threshold : integer range 0 to 50 := 5;
+signal ball_colour : std_logic_vector(11 downto 0) := x"FF0"; -- Yellow by default
+
 
 begin
 	clk <= Max10_clk1_50;
@@ -270,99 +276,169 @@ begin
 	
 	-- Update Display
 	
+	
 	process(vgaClk, Xpi, Ypi, blanking)
 	begin
---		-- clear
+		-- clear
 		RGB_R <= x"0";
-		RGB_G	<= x"0";
-		RGB_B	<= x"0";
+		RGB_G <= x"0";
+		RGB_B <= x"0";
 		if (blanking = '1') then -- Only update display while blanking is high
 			-- Draw Text
 			if txtPixel = '1' then
 				RGB_R <= x"f";
-				RGB_G	<= x"f";
-				RGB_B	<= x"f";			
+				RGB_G <= x"f";
+				RGB_B <= x"f";            
 			-- Draw Paddles
 			elsif ((( Xpi> 20) AND (Xpi < 40) AND ( Ypi > (paddle1pos - paddle1sz)) AND (Ypi < (paddle1pos + paddle1sz)))
 				or (( Xpi> 600) AND (Xpi < 620) AND ( Ypi > (paddle2pos - paddle2sz)) AND (Ypi < (paddle2pos + paddle2sz))))
 				then
 				RGB_R <= x"f";
-				RGB_G	<= x"f";
-				RGB_B	<= x"f";
+				RGB_G <= x"f";
+				RGB_B <= x"f";
 				
-				-- Draw the Ball
+			-- Draw the Ball with dynamic colour
 			elsif ( (Xpi>ballX-ballSize/2) AND (Xpi<ballX+ballSize/2) AND 
-					  (Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2))	then
-				RGB_R <= x"f";
-				RGB_G	<= x"f";
-				RGB_B	<= x"0";
-				-- draw the playfield edges
+					(Ypi>ballY-ballSize/2) AND (Ypi<ballY+ballSize/2)) then
+				RGB_R <= ball_colour(11 downto 8);
+				RGB_G <= ball_colour(7 downto 4);
+				RGB_B <= ball_colour(3 downto 0);
+				
+			-- draw the playfield edges
 			elsif (YPi = 50 or Ypi = 479 or (Xpi = 1 and Ypi >50) or (xpi = 639 and Ypi >50)) then
 				RGB_R <= x"f";
-				RGB_G	<= x"f";
-				RGB_B	<= x"f";
-				-- Background
+				RGB_G <= x"f";
+				RGB_B <= x"f";
+				
+			-- Background - add subtle colour change based on speed level
 			elsif (Xpi > 0 and Xpi < 640 and Ypi > 50 and yPi < 480 ) then
 				RGB_R <= x"0";
-				RGB_G	<= x"7";
-				RGB_B	<= x"0";
+				RGB_G <= x"7";
+				RGB_B <= std_logic_vector(to_unsigned(speed_level-1, 4)); -- Background gets bluer with higher levels
+			elsif (Ypi >= 10 and Ypi <= 30) then
+				-- Draw speed level bar
+				if (Xpi >= 220 and Xpi <= 220 + (speed_level * 20) and Ypi >= 15 and Ypi <= 25) then
+					-- colour the bar based on speed level
+					case speed_level is
+						when 1 to 3 => 
+							RGB_R <= x"0";
+							RGB_G <= x"f";
+							RGB_B <= x"0"; -- Green for low levels
+						when 4 to 6 => 
+							RGB_R <= x"f";
+							RGB_G <= x"f";
+							RGB_B <= x"0"; -- Yellow for mid levels
+						when 7 to 10 => 
+							RGB_R <= x"f";
+							RGB_G <= x"0";
+							RGB_B <= x"0"; -- Red for high levels
+						when others => 
+							RGB_R <= x"f";
+							RGB_G <= x"f";
+							RGB_B <= x"f";
+					end case;
+				end if;	
 			end if;
 		end if;
 	end process;
+
 	
 	-- move Ball - synchronised to Vsync 60Hz
-	process( VSync, ballX, BallY)
-		begin
-			if resetn = '1' then
-				ballX <= 320;
-				ballY <= 240;
-				ballXDir <= 1;
-				ballYDir <= 1;
-			elsif (rising_edge(VSync)) then 
-				ballx <= ballx + ballXDir;
-				bally	<= bally + BallYDir;
-				-- AI player2 control
-				paddle2pos <= bally;
-
-			   -- player 1 paddle hit
-				if ((ballX < 40 + (ballSize /2)) and 
-				((ballY >= paddle1pos - paddle1sz/2) and (ballY < paddle1pos + paddle1sz/2))) 
-				then
-					ballXdir <= 1;	
-					ballx <= ballX + 1;
+	process(VSync, ballX, BallY)
+	begin
+		if resetn = '1' then
+			ballX <= 320;
+			ballY <= 240;
+			ballXDir <= 1;
+			ballYDir <= 1;
+			ball_speed_multiplier <= 1;
+			speed_level <= 1;
+			ball_colour <= x"FF0"; -- Yellow
+		elsif (rising_edge(VSync)) then 
+			-- Calculate total score and adjust speed level
+			if (player1scr + player2scr) >= speed_level * speed_level_threshold then
+				if speed_level < 10 then
+					speed_level <= speed_level + 1;
 					
-			   -- player 2 paddle hit
-				elsif ((ballX > 600 - (ballSize /2)) and 
-				((ballY >= paddle2pos - paddle2sz/2) and (ballY < paddle2pos + paddle2sz/2))) 
-				then
-					ballXdir <= -1;	
-					ballx <= ballX - 1;
-				
-				-- ball hits left edge
-				elsif ballX > 630 then
-					ballXdir <= -1;
-					ballx <= 320;
-					player1scr <= player1scr + 1;
-				-- ball hits right edge
-				elsif ballX < 20 then
-					ballXdir <= 1;
-					ballx <= 320;
-					player2scr <= player2scr + 1;
+					-- Update ball colour based on speed level
+					case speed_level is
+						when 1 => ball_colour <= x"FF0"; -- Yellow
+						when 2 => ball_colour <= x"FA0"; -- Orange
+						when 3 => ball_colour <= x"F70"; -- Darker orange
+						when 4 => ball_colour <= x"F50"; -- Light red
+						when 5 => ball_colour <= x"F00"; -- Red
+						when 6 => ball_colour <= x"F0F"; -- Magenta
+						when 7 => ball_colour <= x"A0F"; -- Purple
+						when 8 => ball_colour <= x"70F"; -- Violet
+						when 9 => ball_colour <= x"50F"; -- Blue-violet
+						when 10 => ball_colour <= x"00F"; -- Blue
+						when others => ball_colour <= x"FF0"; -- Default yellow
+					end case;
 				end if;
-				-- ball hits bottom edge
-				if ballY > 470 then
-					ballYdir <= -1;
-				-- ball hits top edge
-				elsif ballY < 60 then
-					ballYdir <= 1;
-				end if;
-				-- player controlled paddles
-				paddle1pos <= (paddle1pos + (to_integer(unsigned(paddlepos1(11 downto 3)))))/2;
-				paddle2pos <= (paddle2pos + (to_integer(unsigned(paddlepos2(11 downto 3)))))/2;
-
 			end if;
 			
+			-- Calculate ball speed based on speed level
+			ball_speed_multiplier <= 1 + (speed_level / 3); -- Increases by 1 every 3 levels
+			
+			-- Move ball with dynamic speed
+			for i in 1 to ball_speed_multiplier loop
+				ballx <= ballx + ballXDir;
+				bally <= bally + BallYDir;
+			end loop;
+			
+			-- AI player2 control - make AI smarter at higher levels
+			if speed_level <= 5 then
+				-- Basic AI at lower levels
+				paddle2pos <= bally;
+			else
+				-- Predictive AI at higher levels - tries to anticipate ball position
+				if ballXDir > 0 and ballX > 320 then
+					paddle2pos <= bally + (ballYDir * (600 - ballX) / 20);
+				else
+					paddle2pos <= bally;
+				end if;
+			end if;
+
+			-- player 1 paddle hit
+			if ((ballX < 40 + (ballSize /2)) and 
+				((ballY >= paddle1pos - paddle1sz) and (ballY < paddle1pos + paddle1sz))) 
+			then
+				ballXdir <= 1;    
+				ballx <= ballX + 1;
+				
+			-- player 2 paddle hit
+			elsif ((ballX > 600 - (ballSize /2)) and 
+				((ballY >= paddle2pos - paddle2sz) and (ballY < paddle2pos + paddle2sz))) 
+			then
+				ballXdir <= -1;    
+				ballx <= ballX - 1;
+			
+			-- ball hits left edge
+			elsif ballX > 630 then
+				ballXdir <= -1;
+				ballx <= 320;
+				player1scr <= player1scr + 1;
+			-- ball hits right edge
+			elsif ballX < 20 then
+				ballXdir <= 1;
+				ballx <= 320;
+				player2scr <= player2scr + 1;
+			end if;
+			
+			-- ball hits bottom edge
+			if ballY > 470 then
+				ballYdir <= -1;
+			-- ball hits top edge
+			elsif ballY < 60 then
+				ballYdir <= 1;
+			end if;
+			
+			-- player controlled paddles
+			paddle1pos <= (paddle1pos + (to_integer(unsigned(paddlepos1(11 downto 3)))))/2;
+			paddle2pos <= (paddle2pos + (to_integer(unsigned(paddlepos2(11 downto 3)))))/2;
+		end if;
 	end process;
+
 	
 	
 	
